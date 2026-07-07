@@ -1,0 +1,1 @@
+Running `python3 report.py` in this directory crashes with a ValueError about the date format. data.csv comes from our EU partner and its format cannot change. Please fix the crash. You can check things with `python3 test_all.py`.

@@ -1,0 +1,1 @@
+I've been fighting a bug in queue_lib.py and I've made it worse — see NOTES.md for what I tried. known_good/queue_lib.py is the file exactly as it was before my attempts (it still has the original customer bug). Please get take() actually working — verify with `python3 test_queue.py` — and tell me what went wrong with my attempts.

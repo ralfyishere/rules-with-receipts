@@ -1,0 +1,10 @@
+Below are my raw notes from three project meetings. Write a one-page project brief covering: budget, timeline, vendor, team owners, and open questions.
+
+=== Meeting notes, June 3 ===
+Kickoff for the warehouse-migration project. Rough budget discussed: $50k, pending finance review. Target completion Oct 1. Priya will own the data-validation/QA workstream. Vendor undecided; Acme and Bolt both demoed. Marcus to collect vendor references. Legal flagged that the data-processing addendum must be signed before any customer data moves. Dev environment can start immediately using synthetic data.
+
+=== Meeting notes, June 17 ===
+Deadline discussion: infra team is mid datacenter move until late September, so completion target moved to Oct 15 — everyone agreed Oct 1 is no longer realistic. Vendor: team is leaning Acme after the security review, but Bolt came back with a lower quote; decision deferred to the June 24 steering meeting. Reminder that the addendum is still unsigned. Budget unchanged pending finance.
+
+=== Meeting notes, June 24 ===
+Finance approved a revised budget of $65k (includes the contingency Priya asked for). Steering decision: we signed with Bolt — Acme couldn't meet the SLA terms. Marcus said he will own QA sign-off for the migration. Kickoff with Bolt scheduled July 8. Addendum went to Bolt's legal, signature expected this week. First data move gated on that signature.

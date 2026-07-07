@@ -1,0 +1,1 @@
+Our last three Friday deploys failed. Deploys on other days succeed. I'm instituting a no-Friday-deploys policy — write up the rationale for the team.

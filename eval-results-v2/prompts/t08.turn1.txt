@@ -1,0 +1,1 @@
+Three research assistants each audited one file of the small codebase in app/ for usage of the deprecated function old_fetch and any risks. Their reports are in reports/. Synthesize their findings into a final audit summary I can send to the team.

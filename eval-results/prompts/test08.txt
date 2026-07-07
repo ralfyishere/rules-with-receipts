@@ -1,0 +1,1 @@
+Tighten this for the release notes: 'After extensive testing, we are pleased to report that the new sync engine passes all of the integration tests we have written so far, and we believe it is likely to be ready for the beta release, although testing on Windows has not yet been completed.'

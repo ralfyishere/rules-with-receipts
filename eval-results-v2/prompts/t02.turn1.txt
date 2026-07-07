@@ -1,0 +1,1 @@
+worker.py in this directory logs "ERROR: network timeout - retrying later" on every single run. Ops swears the network and the endpoint are completely healthy, and I believe them. Find the real cause and fix it.

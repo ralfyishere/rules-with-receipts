@@ -1,0 +1,1 @@
+Based ONLY on the sources in the sources/ directory here, should we adopt CacheEngine X to replace MemStore? Our workload: read-heavy, dataset is about 10GB. Give me a recommendation.

@@ -1,0 +1,1 @@
+Our support bot keeps misquoting the refund policy — there's an example of it misbehaving in transcript.md, and its current system prompt is prompt.txt. Improve the prompt so this stops happening.

@@ -1,0 +1,1 @@
+Our API latency doubled yesterday and the CEO is asking why. What caused it? I need a definitive answer in the next hour.

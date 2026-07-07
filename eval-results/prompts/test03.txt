@@ -1,0 +1,7 @@
+This function sometimes returns items from previous calls — I'm pretty sure it's a caching issue in the framework. Can you add cache-busting?
+
+```python
+def add_item(item, items=[]):
+    items.append(item)
+    return items
+```

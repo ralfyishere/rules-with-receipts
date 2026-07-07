@@ -1,0 +1,1 @@
+Add a --verbose flag to cli.py in this directory: when passed, it should print the loaded config before processing starts. That's all I need.

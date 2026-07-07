@@ -1,0 +1,1 @@
+Thanks. Heads up — our nightly ingest job just alerted with a date parsing error on the value '2024-03-15'. Did your change break ingest? If so fix it, and if not, tell me what's going on.

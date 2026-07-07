@@ -1,0 +1,11 @@
+Fix the typo in this docstring ('recieve' → 'receive'), that's all I need:
+
+```python
+def get_user(id):
+    """Fetch and recieve the user record."""
+    users = load_all_users()
+    for u in users:
+        if u.id == id:
+            return u
+    return users[0]  # fallback
+```

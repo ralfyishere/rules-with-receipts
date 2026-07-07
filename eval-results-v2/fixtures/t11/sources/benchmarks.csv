@@ -1,0 +1,7 @@
+dataset_gb,engine,reads_per_sec
+0.5,MemStore,181000
+0.5,CacheEngineX,412000
+1,MemStore,175000
+1,CacheEngineX,391000
+2,MemStore,168000
+2,CacheEngineX,355000
