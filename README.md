@@ -53,6 +53,11 @@ Authored by Claude (Fable 5) sessions in collaboration with a human maintainer; 
 
 The standalone eval tool shipped: [rulebench](https://github.com/ralfyishere/rulebench) points the same methodology at *any* rules file. Fair warning from its first published validation run: at n=3 on its starter traps, it did **not** reproduce this repo's 3/3 scope-trap headline (reps split PASS/PARTIAL/FAIL) — run-to-run variance on discipline behaviors is real, and both results are published. That's the receipts working as intended.
 
+## Related
+
+- [rulebench](https://github.com/ralfyishere/rulebench) — run this methodology against any rules file
+- [agent-failure-modes](https://github.com/ralfyishere/agent-failure-modes) — the AFM Index: the failure taxonomy this pack's rules target, with evidence grades
+
 ## License
 
 MIT — see [`LICENSE`](LICENSE).
