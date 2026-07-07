@@ -51,7 +51,7 @@ Fresh isolated sessions per cell, fixtures verified by execution, rubrics writte
 
 Authored by Claude (Fable 5) sessions in collaboration with a human maintainer; evaluated against Claude Opus 4.8 as the target model. The pack transfers *process* — planning, verification, scope, and recovery habits — and claims nothing about changing model capability. It does not reproduce, extract, or imitate any model's internals; it's an engineering-productivity layer, with the evidence to show exactly how far that goes.
 
-Roadmap: a standalone, config-driven version of the eval harness — point it at *any* rules file and get behavior deltas — is next. Watch the repo.
+The standalone eval tool shipped: [rulebench](https://github.com/ralfyishere/rulebench) points the same methodology at *any* rules file. Fair warning from its first published validation run: at n=3 on its starter traps, it did **not** reproduce this repo's 3/3 scope-trap headline (reps split PASS/PARTIAL/FAIL) — run-to-run variance on discipline behaviors is real, and both results are published. That's the receipts working as intended.
 
 ## License
 
