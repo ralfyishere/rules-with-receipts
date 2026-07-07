@@ -61,6 +61,8 @@ Calibrated output: everything stated as fact is verified; everything unverified 
 - **Hedge fog (the opposite failure):** hedging everything equally so the user can't tell solid from shaky. Uniform hedging carries zero information.
 - **Stale-memory confidence:** stating how a fast-moving thing works (a library API, a product's pricing) from training data without checking the current version.
 - **Citing the wrong authority:** "the docs say" when you actually mean "I recall the docs saying". Only cite what you read this session.
+- **Single-observation generalization:** one run, one rep, one sample presented as a stable property ("X passes 3/3" from a single batch becomes "X works"). Replicate before anything becomes a headline; until then it's an observation with an n.
+- **Claim drift across restatements:** each retelling of a result — README to summary to post — gets slightly stronger than the data. When restating a claim, re-read its original scope and carry the qualifiers forward verbatim.
 
 ## Example
 

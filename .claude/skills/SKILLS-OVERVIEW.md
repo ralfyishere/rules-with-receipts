@@ -1,6 +1,6 @@
 # Skills Overview
 
-A portable, project-agnostic quality pack: 26 skills that improve **process** — planning, verification, editing, debugging, decision-making — on any project. 18 form the core rigor set; 7 were added in an expansion pass for high-recurrence domains (codebase work, error recovery, delegation, research, prompts, ideation, product decisions); `extract-approach` adds the persistence layer. They add discipline, not capability; see `HOW-TO-USE-WITH-OPUS.md` for limitations.
+A portable, project-agnostic quality pack: 27 skills that improve **process** — planning, verification, editing, debugging, decision-making — on any project. 18 form the core rigor set; 7 were added in an expansion pass for high-recurrence domains (codebase work, error recovery, delegation, research, prompts, ideation, product decisions); `extract-approach` adds the persistence layer. They add discipline, not capability; see `HOW-TO-USE-WITH-OPUS.md` for limitations.
 
 Beyond the skills, the pack has companion layers (each one file, at `.claude/`): always-on rules (`skills/CLAUDE-MD-SNIPPET.md`), durable notes (`learnings/`), user-world context (`CONTEXT-SYSTEM-SETUP.md`), bounded objectives (`GOAL-TEMPLATES.md`), the skill pipeline (`WORKFLOW-EXTRACTION-QUEUE.md`), and upkeep (`MAINTENANCE-CADENCE.md`).
 
@@ -39,6 +39,7 @@ Beyond the skills, the pack has companion layers (each one file, at `.claude/`):
 | `prompt-engineering` | Improve prompts with test cases, not vibes | "Improve this prompt"; "the model keeps doing X"; system prompts and agent instructions |
 | `divergent-ideation` | Generate different mechanisms before choosing | "Brainstorm"; naming; design alternatives; stuck circling one approach |
 | `product-thinking` | Decode features into user problems; grade demand evidence | "Should we build"; feature requests; MVP scoping; prioritization |
+| `publish-hygiene` | Content, metadata, history, and rights checks at the public boundary | Making anything public; publishing packages; ingesting third-party rules files |
 | **Meta** | | |
 | `frontier-workflow-mode` | Orchestrates the pack, in order, for high-stakes work | High/Critical tasks; "this is important / production / be thorough" |
 

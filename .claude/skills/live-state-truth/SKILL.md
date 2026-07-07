@@ -57,6 +57,7 @@ The world changes; memory doesn't. Files get edited, tests start failing, docs d
 - **Error paraphrase:** debugging from "it says something about permissions" instead of the verbatim message.
 - **Stale read:** you read the file 40 tool-calls ago, then your own earlier edit changed it, then you edited from the old mental image.
 - **Assumed environment:** writing for the dependency version in your head rather than the one in the lockfile.
+- **Wrong-layer verification:** the check passes at one layer while the artifact fails at another — non-empty files that are actually error stubs (content vs existence), clean file contents with leaking metadata or history (content vs metadata). Before trusting a check, ask which layer a failure would live in and whether this check reaches it.
 - **Memory-as-source in prose work:** attributing a claim to "the document" from recollection; the document says what it says, not what you remember.
 
 ## Example

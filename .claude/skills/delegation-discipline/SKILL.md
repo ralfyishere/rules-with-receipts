@@ -29,6 +29,7 @@ Delegation multiplies throughput and divides accountability — unless disciplin
 - **Inputs:** exact paths, links, constraints — not "the config file" but which one.
 - **Deliverable shape:** exactly what to return (a list of file:line findings; a table of options with tradeoffs; a yes/no with evidence). Vague deliverable specs return essays.
 - **Done-criteria and boundaries:** what NOT to do (don't edit, don't fix, report only), scope limits, effort cap.
+- **The authoritative evidence layer**, when the delegate judges something: which source wins on conflict (the diff over the narration, the data over the summary, the code over the report). Delegates drift toward the easiest-to-read evidence unless told which layer is truth.
 
 **3 — Partition cleanly for parallel work.** One owner per artifact — never two agents writing to the same file or answering the same question in overlapping ways you'll have to reconcile. Slice by file, by module, by sub-question. Shared read is fine; shared write is a collision.
 

@@ -53,6 +53,7 @@ Research fails in a characteristic way: one search angle, the first three convin
 - **Coverage overclaim:** "a comprehensive review" after forty minutes and six sources. State the actual boundary; readers calibrate on it.
 - **Quote drift:** paraphrasing a source into a stronger claim than it makes. When it's load-bearing, quote it and check the quote.
 - **Research-as-stalling:** collecting past the sufficiency point because synthesis is harder than searching. The stopping rule is a commitment, not a suggestion.
+- **Saturated instrument:** running a comparison on a measure that can't discriminate — a benchmark everything passes, a survey everyone answers the same way. Ties then get misread as "no difference exists." Before any comparative study, show the instrument produces different outputs on known-different inputs; if it can't fail, it can't inform.
 
 ## Example
 

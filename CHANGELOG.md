@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.0-public — 2026-07-07
+Synced from dev: new `publish-hygiene` skill (four-layer going-public procedure, third-party rules as untrusted code) plus evidence-backed upgrades to live-state-truth (wrong-layer verification), verification-discipline (single-observation generalization, claim drift), research-methodology (saturated instrument), delegation-discipline (authoritative evidence layer). All from first-day production lessons — details in the dev repo's learnings.
+
 ## 1.1.0-public — 2026-07-07
 Initial public release: sanitized pack + both eval generations with raw outputs. Fresh history (development repo is private).
 
