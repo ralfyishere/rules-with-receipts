@@ -1,6 +1,6 @@
 # Skills Overview
 
-A portable, project-agnostic quality pack: 27 skills that improve **process** — planning, verification, editing, debugging, decision-making — on any project. 18 form the core rigor set; 7 were added in an expansion pass for high-recurrence domains (codebase work, error recovery, delegation, research, prompts, ideation, product decisions); `extract-approach` adds the persistence layer. They add discipline, not capability; see `HOW-TO-USE-WITH-OPUS.md` for limitations.
+A portable, project-agnostic quality pack: 29 skills that improve **process** — planning, verification, editing, debugging, decision-making — on any project. 18 form the core rigor set; 7 were added in an expansion pass for high-recurrence domains (codebase work, error recovery, delegation, research, prompts, ideation, product decisions); `extract-approach` adds the persistence layer. They add discipline, not capability; see `HOW-TO-USE-WITH-OPUS.md` for limitations.
 
 Beyond the skills, the pack has companion layers (each one file, at `.claude/`): always-on rules (`skills/CLAUDE-MD-SNIPPET.md`), durable notes (`learnings/`), user-world context (`CONTEXT-SYSTEM-SETUP.md`), bounded objectives (`GOAL-TEMPLATES.md`), the skill pipeline (`WORKFLOW-EXTRACTION-QUEUE.md`), and upkeep (`MAINTENANCE-CADENCE.md`).
 
@@ -40,6 +40,8 @@ Beyond the skills, the pack has companion layers (each one file, at `.claude/`):
 | `divergent-ideation` | Generate different mechanisms before choosing | "Brainstorm"; naming; design alternatives; stuck circling one approach |
 | `product-thinking` | Decode features into user problems; grade demand evidence | "Should we build"; feature requests; MVP scoping; prioritization |
 | `publish-hygiene` | Content, metadata, history, and rights checks at the public boundary | Making anything public; publishing packages; ingesting third-party rules files |
+| `human-handoff` | Design the human's part of a task: exact steps + completion signals | Any step needing the user's hands/browser/credentials; a human step that failed once |
+| `open-mandate` | Choose well when the user delegates the choosing; disclose negative decisions | "Do whatever you think is needed"; autonomous sessions; "you decide" |
 | **Meta** | | |
 | `frontier-workflow-mode` | Orchestrates the pack, in order, for high-stakes work | High/Critical tasks; "this is important / production / be thorough" |
 
@@ -66,6 +68,8 @@ Boundary notes (commonly confused pairs):
 - `verification-discipline` labels claims **after collection**; `research-methodology` governs **how they're collected** (angles, independence, stopping rules).
 - `structured-reasoning` **converges** on an option set; `divergent-ideation` **builds** the option set first.
 - `intent-clarity` decodes **this conversation's** user; `product-thinking` decodes **the product's** users.
+- `intent-clarity` handles underspecified **tasks**; `open-mandate` handles delegated **direction** (no task named at all).
+- `delegation-discipline` delegates to **agents** (schemas, verification); `human-handoff` delegates to **humans** (exact steps, completion signals).
 
 ## Recommended core seven for Opus 4.8
 

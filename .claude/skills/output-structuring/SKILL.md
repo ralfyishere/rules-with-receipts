@@ -61,6 +61,7 @@ Format is a usability decision, not decoration. The same content in the wrong sh
 - **Teaser summaries:** an executive summary that says "we analyze three options" instead of "Option B — buy — is the recommendation because..." The summary *is* the memo for most readers.
 - **Format ceremony on small answers:** headers, sections, and a summary for what needed two sentences.
 - **Unforwardable drafts:** an "email draft" wrapped in meta-commentary the user must strip before sending. Deliver send-ready.
+- **Unanchored waiting:** status updates on long-running work without a time estimate or completion signal ("still running..."). The user polls because you made them; every status message names roughly how long, what happens automatically at completion, and whether they're needed.
 
 ## Example
 

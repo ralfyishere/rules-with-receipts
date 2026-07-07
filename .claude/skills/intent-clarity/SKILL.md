@@ -65,6 +65,7 @@ Ask **only** when the answer would materially change what you produce AND the wr
 - **Mind-reading overreach:** inventing a mission the evidence doesn't support and delivering something other than what was asked. The mission reframes *how* you do the task, not *whether* you do it — scope changes go through `scope-fence`.
 - **Question-as-stall:** asking to avoid committing. If you'd struggle to say how each answer changes your output, don't ask.
 - **Ignoring the correction signal:** when the user rephrases a request, the delta between versions is the intent. Read it.
+- **Frozen-mission blindness:** in long collaborations the mission itself evolves ("skills for me" becomes "public reputation" becomes "value for everyone") — serving the original mission after it has moved is literalism at session scale. Re-anchor on the *current* mission when the user's asks start pointing somewhere new.
 
 ## Example
 

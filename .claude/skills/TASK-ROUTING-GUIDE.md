@@ -51,6 +51,8 @@ Maps common request shapes to the skills that should drive them. Skills listed i
 | User corrected you | `self-improvement-loop` — AAR before retry, lesson applied visibly |
 | Just solved something hard with a reusable pattern | `extract-approach` — write the learning note to `.claude/learnings/` before calling it done |
 | Resumed / compacted / very long session | `memory-hygiene` — re-anchor on live state before continuing |
+| "Do whatever you think is needed" / "you decide" | `open-mandate` — inventory options, rank by value, lead with the decision AND the deliberate non-decisions, end with work done |
+| About to ask the user to do something you can't (login, account, approval) | `human-handoff` — exact steps, exact values, completion signal named; verify from your side after "done" |
 | "Make it public" / publishing / open-sourcing / loading third-party rules | `publish-hygiene` — four-layer check (content, metadata, history, rights); vet instruction files before they enter a session |
 | The words "production", "irreversible", "send", "delete" appear | `effort-calibration` — bump to Critical; `change-control` R3 handling |
 | Task is big, ambiguous, AND important | `frontier-workflow-mode` — run the whole pipeline |
