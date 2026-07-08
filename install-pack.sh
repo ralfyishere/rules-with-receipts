@@ -14,7 +14,9 @@ SRC="$(cd "$(dirname "$0")" && pwd)"
 STAMP="$(date +%Y%m%d%H%M%S)"
 VERSION="$(cat "$SRC/VERSION" 2>/dev/null | tr -d '[:space:]')"; VERSION="${VERSION:-0.0.0}"
 
-# --- target ------------------------------------------------------------------
+# --- args / target -------------------------------------------------------------
+UPGRADE=0
+if [ "${1:-}" = "--upgrade" ]; then UPGRADE=1; shift; fi
 TARGET="${1:-}"
 if [ -z "$TARGET" ]; then
   printf "Target project path: "
@@ -27,8 +29,20 @@ fi
 if [ "$(cd "$TARGET" && pwd)" = "$SRC" ]; then
   echo "ERROR: target is the pack itself." >&2; exit 1
 fi
-echo "Installing pack from: $SRC"
+PREV_VERSION=""
+[ -f "$TARGET/.claude/PACK-VERSION" ] && PREV_VERSION=$(awk '{print $1; exit}' "$TARGET/.claude/PACK-VERSION")
+if [ "$UPGRADE" = "1" ] && [ -z "$PREV_VERSION" ]; then
+  echo "ERROR: --upgrade given but no .claude/PACK-VERSION in target (fresh install? drop the flag)." >&2; exit 1
+fi
+if [ "$UPGRADE" = "1" ]; then
+  echo "Upgrading pack   : $PREV_VERSION -> $VERSION"
+else
+  echo "Installing pack v$VERSION from: $SRC"
+fi
 echo "               into : $TARGET"
+CHANGES=""
+log_change() { CHANGES="$CHANGES
+  - $*"; }
 
 backup() { # $1 = path; moves aside with timestamp if it exists
   if [ -e "$1" ]; then
@@ -37,18 +51,39 @@ backup() { # $1 = path; moves aside with timestamp if it exists
   fi
 }
 
-# --- 1. skills ----------------------------------------------------------------
+# --- 1. skills ------------------------------------------------------------------
+# Pack-owned skill folders and library docs are replaced; skill folders the
+# PROJECT added (not shipped by the pack) are preserved untouched.
 mkdir -p "$TARGET/.claude"
 if [ -d "$TARGET/.claude/skills" ]; then
   backup "$TARGET/.claude/skills"
-  rm -rf "$TARGET/.claude/skills"
+  CUSTOM=""
+  for d in "$TARGET/.claude/skills"/*/; do
+    [ -d "$d" ] || continue
+    b=$(basename "$d")
+    [ -d "$SRC/.claude/skills/$b" ] || CUSTOM="$CUSTOM $b"
+  done
+  for d in "$SRC/.claude/skills"/*/; do rm -rf "$TARGET/.claude/skills/$(basename "$d")"; done
+  rm -f "$TARGET/.claude/skills"/*.md
+  [ -n "$CUSTOM" ] && echo "  preserved project-custom skills:$CUSTOM" && log_change "preserved custom skills:$CUSTOM"
+else
+  mkdir -p "$TARGET/.claude/skills"
 fi
-cp -R "$SRC/.claude/skills" "$TARGET/.claude/skills"
+cp -R "$SRC/.claude/skills/." "$TARGET/.claude/skills/"
 find "$TARGET/.claude/skills" -name '.DS_Store' -delete 2>/dev/null
-echo "  installed: .claude/skills ($(ls "$TARGET/.claude/skills" | grep -cv '\.md$') skills + library docs)"
+echo "  installed: .claude/skills ($(ls -d "$TARGET/.claude/skills"/*/ | wc -l | tr -d ' ') skills + library docs)"
+log_change "skills synced to v$VERSION"
 
 # --- 2. compounding-layer files (skip any that already exist) ------------------
-for f in FUTURE-MODEL-OPERATING-MANUAL.md CONTEXT-SYSTEM-SETUP.md GOAL-TEMPLATES.md \
+# The operating manual is pack-owned (it IS the CLAUDE.md manual block's
+# source) — always synced so the file can't drift from the block:
+if ! cmp -s "$SRC/.claude/FUTURE-MODEL-OPERATING-MANUAL.md" "$TARGET/.claude/FUTURE-MODEL-OPERATING-MANUAL.md" 2>/dev/null; then
+  [ -e "$TARGET/.claude/FUTURE-MODEL-OPERATING-MANUAL.md" ] && backup "$TARGET/.claude/FUTURE-MODEL-OPERATING-MANUAL.md"
+  cp "$SRC/.claude/FUTURE-MODEL-OPERATING-MANUAL.md" "$TARGET/.claude/FUTURE-MODEL-OPERATING-MANUAL.md"
+  echo "  synced: .claude/FUTURE-MODEL-OPERATING-MANUAL.md (pack-owned)"
+  log_change "operating manual synced"
+fi
+for f in CONTEXT-SYSTEM-SETUP.md GOAL-TEMPLATES.md \
          WORKFLOW-EXTRACTION-QUEUE.md WORKFLOW-SKILL-INTERVIEW-PROMPT.md \
          MAINTENANCE-CADENCE.md OPUS-IMPROVEMENT-EVALS.md OPERATOR-GUIDE.md; do
   if [ -e "$TARGET/.claude/$f" ]; then
@@ -173,19 +208,51 @@ EOF
   echo "  created: claude-context/ (7 starter files — fill in business-summary.md first)"
 fi
 
-# --- 5. hygiene gate (deterministic publish guard) ------------------------------
+# --- 5. gates + verification scripts (pack-owned, replaced on upgrade) ----------
 mkdir -p "$TARGET/scripts"
-for s in hygiene-gate.sh test-hygiene-gate.sh; do
+for s in hygiene-gate.sh test-hygiene-gate.sh check-pack.sh closeout-check.sh; do
   if [ -e "$TARGET/scripts/$s" ]; then backup "$TARGET/scripts/$s"; fi
   cp "$SRC/scripts/$s" "$TARGET/scripts/$s" && chmod +x "$TARGET/scripts/$s"
 done
-echo "  installed: scripts/hygiene-gate.sh + test-hygiene-gate.sh"
+echo "  installed: scripts/{hygiene-gate,test-hygiene-gate,check-pack,closeout-check}.sh"
+log_change "gate + verification scripts synced"
 if [ ! -e "$TARGET/scripts/security-scan.sh" ]; then
   cp "$SRC/scripts/security-scan-starter.sh" "$TARGET/scripts/security-scan.sh"
   chmod +x "$TARGET/scripts/security-scan.sh"
-  echo "  installed: scripts/security-scan.sh (generic starter — customize patterns)"
+  echo "  installed: scripts/security-scan.sh (generic starter — customize via .quality-pack/config.env)"
+  log_change "security-scan.sh (starter) installed"
 else
-  echo "  kept existing: scripts/security-scan.sh"
+  echo "  kept existing: scripts/security-scan.sh (project-owned; new starter at scripts/security-scan-starter.sh)"
+  cp "$SRC/scripts/security-scan-starter.sh" "$TARGET/scripts/security-scan-starter.sh"
+  chmod +x "$TARGET/scripts/security-scan-starter.sh"
+fi
+
+# --- 5b. project config (created once, never overwritten) ------------------------
+mkdir -p "$TARGET/.quality-pack"
+if [ ! -e "$TARGET/.quality-pack/config.env" ]; then
+  cp "$SRC/.quality-pack/config.env.template" "$TARGET/.quality-pack/config.env"
+  echo "  created: .quality-pack/config.env (project-owned — set QP_GH_OWNER etc.)"
+  log_change "config.env created"
+else
+  echo "  kept existing: .quality-pack/config.env"
+fi
+
+# --- 5c. native git pre-push hook (covers pushes from any terminal) ---------------
+if [ -d "$TARGET/.git" ]; then
+  mkdir -p "$TARGET/.githooks"
+  if [ -e "$TARGET/.githooks/pre-push" ]; then backup "$TARGET/.githooks/pre-push"; fi
+  cp "$SRC/.githooks/pre-push" "$TARGET/.githooks/pre-push" && chmod +x "$TARGET/.githooks/pre-push"
+  (cd "$TARGET" && git config core.hooksPath .githooks)
+  echo "  wired: .githooks/pre-push (git config core.hooksPath .githooks)"
+  log_change "native pre-push hook wired"
+else
+  echo "  skipped: native git hook (target is not a git repo yet — re-run installer after git init)"
+fi
+
+# --- 5d. gitignore the gate marker ------------------------------------------------
+if ! grep -qs '\.claude/\.hygiene-gate-pass' "$TARGET/.gitignore" 2>/dev/null; then
+  echo ".claude/.hygiene-gate-pass" >> "$TARGET/.gitignore"
+  echo "  gitignored: .claude/.hygiene-gate-pass"
 fi
 SETTINGS="$TARGET/.claude/settings.json" BAK_STAMP="$STAMP" python3 - <<'PYEOF'
 import json, os, shutil
@@ -208,9 +275,20 @@ else:
         json.dump(cfg, f, indent=2); f.write("\n")
     print("  wired: hygiene gate PreToolUse hook in .claude/settings.json")
 PYEOF
-echo "  NOTE: add .claude/.hygiene-gate-pass to the project's .gitignore"
 
+# --- 6. change report + verification ---------------------------------------------
 echo
-echo "DONE. Verify from inside $TARGET with a fresh session:"
+if [ "$UPGRADE" = "1" ]; then
+  echo "UPGRADED $PREV_VERSION -> $VERSION. Changes:$CHANGES"
+else
+  echo "INSTALLED v$VERSION. Components:$CHANGES"
+fi
+echo
+echo "== verification (run from the target) =="
+( cd "$TARGET" && ./scripts/check-pack.sh ) || echo "  ^ check-pack FAILED — inspect before using"
+( cd "$TARGET" && ./scripts/closeout-check.sh ) || echo "  ^ closeout-check FAILED — inspect before using"
+echo
+echo "Next: ./scripts/test-hygiene-gate.sh (gate unit tests), then a fresh session:"
 echo "  claude -p \"List the skills available to you, names only.\""
-echo "Expect the pack's 29 skills (plan-gate, scope-fence, publish-hygiene, ...)."
+echo "Expect the pack's skills (plan-gate, scope-fence, publish-hygiene, ...)."
+echo "New machine? See BOOTSTRAP-NEW-MACHINE.md."

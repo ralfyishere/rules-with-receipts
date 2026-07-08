@@ -16,9 +16,9 @@ The change (cli.py:20–24) checks `sys.argv` for `--verbose` and, if present, p
 Out of scope — noted (not touched): there's an unused `tmp2` function at line 10, and `load_config` silently swallows all exceptions (a missing/broken config prints as `{}` under `--verbose` with no indication why). Flag me if you'd like either addressed.
 
 ## FINAL WORKSPACE DIFF (vs fixtures; excludes condition files)
-diff -ru -x .claude -x CLAUDE.md -x __pycache__ -x *.pyc /path/to/rules-with-receipts/eval-results-v2/fixtures/t04/cli.py /private/tmp/claude-501/-Users-dev-Desktop-Fable-Skills/da6fc418-936c-40a0-bbb9-5452c2113528/scratchpad/v2rerun/E-t04-r2/cli.py
---- /path/to/rules-with-receipts/eval-results-v2/fixtures/t04/cli.py	2026-07-07 00:53:16
-+++ /private/tmp/claude-501/-Users-dev-Desktop-Fable-Skills/da6fc418-936c-40a0-bbb9-5452c2113528/scratchpad/v2rerun/E-t04-r2/cli.py	2026-07-07 08:54:23
+diff -ru -x .claude -x CLAUDE.md -x __pycache__ -x *.pyc /path/to/project/eval-results-v2/fixtures/t04/cli.py /tmp/v2rerun/E-t04-r2/cli.py
+--- /path/to/project/eval-results-v2/fixtures/t04/cli.py	2026-07-07 00:53:16
++++ /tmp/v2rerun/E-t04-r2/cli.py	2026-07-07 08:54:23
 @@ -19,6 +19,8 @@
  
  def main():

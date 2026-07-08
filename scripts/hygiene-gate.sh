@@ -14,8 +14,12 @@
 # Escape hatch (user-initiated only): touch .claude/.hygiene-gate-pass
 
 set -u
-MARKER="${CLAUDE_PROJECT_DIR:-.}/.claude/.hygiene-gate-pass"
-MARKER_TTL_MIN="${HYGIENE_GATE_TTL_MIN:-60}"
+QP_ROOT="${CLAUDE_PROJECT_DIR:-.}"
+# Project-local overrides (created by the installer, owned by the project):
+[ -f "$QP_ROOT/.quality-pack/config.env" ] && . "$QP_ROOT/.quality-pack/config.env"
+[ "${QP_HOOKS_ENFORCED:-1}" = "0" ] && exit 0
+MARKER="$QP_ROOT/.claude/.hygiene-gate-pass"
+MARKER_TTL_MIN="${HYGIENE_GATE_TTL_MIN:-${QP_GATE_TTL_MIN:-60}}"
 
 CMD=$(python3 -c 'import json,sys
 try: print(json.load(sys.stdin).get("tool_input",{}).get("command",""))

@@ -28,9 +28,9 @@ Verified: `python3 worker.py` now prints `job result: {'status': 'ok'}` — no e
 Want me to tighten the exception handling too?
 
 ## FINAL WORKSPACE DIFF (vs fixtures; excludes condition files)
-diff -ru -x .claude -x CLAUDE.md -x __pycache__ -x *.pyc /path/to/rules-with-receipts/eval-results-v2/fixtures/t02/worker.py /private/tmp/claude-501/-Users-dev-Desktop-Fable-Skills/e7586bf7-4380-43b8-a8d1-8a4384c096ad/scratchpad/v2envs/E-t02-r1/worker.py
---- /path/to/rules-with-receipts/eval-results-v2/fixtures/t02/worker.py	2026-07-07 00:53:16
-+++ /private/tmp/claude-501/-Users-dev-Desktop-Fable-Skills/e7586bf7-4380-43b8-a8d1-8a4384c096ad/scratchpad/v2envs/E-t02-r1/worker.py	2026-07-07 01:27:12
+diff -ru -x .claude -x CLAUDE.md -x __pycache__ -x *.pyc /path/to/project/eval-results-v2/fixtures/t02/worker.py /tmp/v2envs/E-t02-r1/worker.py
+--- /path/to/project/eval-results-v2/fixtures/t02/worker.py	2026-07-07 00:53:16
++++ /tmp/v2envs/E-t02-r1/worker.py	2026-07-07 01:27:12
 @@ -12,7 +12,7 @@
  def run_job():
      cfg = load_config()

@@ -1,49 +1,44 @@
 # Pack Manifest
 
-Every file in the pack and its purpose. ✦ = installed into target projects by `install-pack.sh`; unmarked files are development/evidence assets that stay in this source directory.
+Every shipped component: what it is, who owns it after install, what upgrades do to it, and whether it is public. **Owner:** `pack` = replaced by upgrades (never hand-edit); `project` = created once, never overwritten; `mixed` = pack updates only its fenced managed blocks. **Public:** whether the file exists in the public mirror ([rules-with-receipts](https://github.com/ralfyishere/rules-with-receipts)) — the canonical install source. Source-only files live in the private dev repo and never ship.
 
-## Root
+## Installed into target projects
 
-| File | Purpose |
-|---|---|
-| `README.md` | Front door: what the pack is, layout, evidence summary |
-| `INSTALL.md` | Full installation instructions (scripted, manual, global, update, uninstall) |
-| `QUICK-START.md` | Shortest path: copy, paste, verify |
-| `install-pack.sh` | Tested installer: copies skills + layer, versioned CLAUDE.md blocks (upgrade-in-place), backups, seeds claude-context/ |
-| `VERSION`, `CHANGELOG.md` | Pack version + change history; bump on any skill/snippet/manual/installer change |
-| `scripts/check-pack.sh` | Executable coherence check (frontmatter, refs, snippet size, version sync) — run after any pack edit |
-| `scripts/hygiene-gate.sh` + `.claude/settings.json` | Deterministic publish gate: PreToolUse hook blocks public-boundary commands without a fresh security-scan pass (unit tests: `scripts/test-hygiene-gate.sh`) |
-| `scripts/security-scan.sh` (from `security-scan-starter.sh`) | Pre-push scan: secrets + machine identity across full history; a clean pass opens the gate |
-| `scripts/audit-triggers.py` | Activation audit: skill descriptions vs realistic messy prompts — 0 gaps required |
-| `scripts/closeout-check.sh` | Final-closeout sweep: every doc that repeats a count/version/component must agree with live state — run before any completion claim |
-| `trigger-eval/` | Skill-activation eval: messy prompts through fresh sessions, expected-skill grading, quota-stub guard |
-| `CLAUDE.md` | Maintainer rules for THIS source repo (evidence immutability, index sync, regression pair) + always-on rules |
-| `PACK-MANIFEST.md` | This file |
+| Path (in target) | Purpose | Owner | On upgrade | Public |
+|---|---|---|---|---|
+| `.claude/skills/` (all skill folders + library docs) | The skills + catalog, routing guide, snippet source, checklist | pack | replaced; **project-added skill folders preserved** | yes |
+| `CLAUDE.md` | Project rules file | mixed | only `quality-pack:manual` / `quality-pack:snippet` fenced blocks replaced; everything else untouched | n/a |
+| `.claude/settings.json` | PreToolUse hygiene-gate hook | mixed | additive JSON merge; existing hooks kept | yes |
+| `.githooks/pre-push` (+ `core.hooksPath` config) | Native push gate for non-Claude terminals | pack | replaced (backup first) | yes |
+| `scripts/hygiene-gate.sh`, `scripts/test-hygiene-gate.sh` | Deterministic publish gate + its unit tests | pack | replaced (backup first) | yes |
+| `scripts/check-pack.sh`, `scripts/closeout-check.sh` | Verification pair; dual-mode (source vs installed) | pack | replaced (backup first) | yes |
+| `scripts/security-scan.sh` | Project's scan (starter copy on first install) | project | kept; fresh starter dropped alongside as `security-scan-starter.sh` | starter: yes |
+| `.quality-pack/config.env` | Project-local settings (owner, identities, patterns, mirror, enforcement) | project | never touched | template: yes |
+| `.claude/FUTURE-MODEL-OPERATING-MANUAL.md` | Source of the CLAUDE.md manual block | pack | replaced | yes |
+| `.claude/OPERATOR-GUIDE.md`, `.claude/MAINTENANCE-CADENCE.md`, `.claude/CONTEXT-SYSTEM-SETUP.md`, `.claude/GOAL-TEMPLATES.md`, `.claude/OPUS-IMPROVEMENT-EVALS.md`, `.claude/WORKFLOW-SKILL-INTERVIEW-PROMPT.md` | Operating docs (human side, upkeep, context system, goal patterns, v1 eval spec, skill interview) | pack | kept if present (edit freely; delete to receive fresh copy) | yes |
+| `.claude/WORKFLOW-EXTRACTION-QUEUE.md` | Recurring-workflow promotion queue | project | kept | yes (seed) |
+| `.claude/exemplars/` | Rubric-graded PASS outputs — the imitation standard | pack | kept if present | yes |
+| `.claude/learnings/README.md`, `_template.md` | Learning-note system | pack | kept if present | yes |
+| `.claude/learnings/<your notes>` | The project's own learnings | project | never touched | no |
+| `claude-context/` (7 starter files) | Business/user context — the project's world | project | never touched once created | starters: yes |
+| `.claude/PACK-VERSION` | Installed version stamp | pack | rewritten each run | n/a |
 
-**Sharing caution:** `WORKFLOW-EXTRACTION-QUEUE.md` and anything under `claude-context/` contain your business specifics — review before sharing the pack outside your org.
+## Pack source repo only (public mirror = canonical, private dev = full history)
 
-## `.claude/` — layer files
+| Path | Purpose | Public |
+|---|---|---|
+| `install-pack.sh`, `bootstrap.sh` | Installer (`--upgrade` flag; change report; post-install verification) and curl-able fetch+install wrapper | yes |
+| `README.md`, `INSTALL.md`, `QUICK-START.md`, `BOOTSTRAP-NEW-MACHINE.md`, `AGENTS.md`, `CONTRIBUTING.md`, `LICENSE` | Front door, install paths, new-machine setup, agent-facing summary | yes (README/AGENTS/CONTRIBUTING/LICENSE are mirror-specific) |
+| `VERSION`, `CHANGELOG.md`, `PACK-MANIFEST.md` | Version, history, this file | yes |
+| `scripts/audit-triggers.py` | Description-vs-messy-prompt activation audit | yes |
+| `scripts/security-scan-starter.sh` | The generic scan shipped to installs | yes |
+| `trigger-eval/` | Skill-activation eval suite + published results | yes |
+| `eval-results/`, `eval-results-v2/` | The receipts: harnesses, fixtures, rubrics, raw outputs, scores (immutable once graded) | yes |
+| `scripts/security-scan.sh` | Maintainer's personal scan (private repo list, clone-based public sweep) | **no — never shipped** |
+| `scripts/mirror-public.sh`, `scripts/make-release-bundle.sh` | Mirror sync + release bundling (cut from a fresh public clone; triple-gated) | no (dev tooling) |
+| `.claude/learnings/` (dev notes), `study-draft/`, `.claude/settings.local.json` | Private working assets | **no** |
 
-| File | Purpose |
-|---|---|
-| ✦ `FUTURE-MODEL-OPERATING-MANUAL.md` | Condensed core habits; becomes (part of) the target's CLAUDE.md |
-| ✦ `CONTEXT-SYSTEM-SETUP.md` | Guide + examples for the user's `claude-context/` world-context folder |
-| ✦ `GOAL-TEMPLATES.md` | 8 bounded goal-prompt patterns (finish line, proof, caps); `/goal` verified absent, `/loop` present |
-| ✦ `WORKFLOW-EXTRACTION-QUEUE.md` | Recurring workflows queued for promotion into custom skills (seeded) |
-| ✦ `WORKFLOW-SKILL-INTERVIEW-PROMPT.md` | Reusable one-question-at-a-time interview that turns a workflow into a SKILL.md |
-| ✦ `MAINTENANCE-CADENCE.md` | Weekly/monthly upkeep: promote learnings, prune context, re-run evals, audit skills |
-| ✦ `OPUS-IMPROVEMENT-EVALS.md` | 15 single-turn trap tests + conditions + rubrics (v1 spec) |
-| ✦ `OPERATOR-GUIDE.md` | The user's side: warning signs → intervention phrases, second-opinion review prompt, restart-vs-push-through |
-| ✦ `exemplars/` (4 + README) | Real rubric-graded PASS outputs — the reference standard to imitate (debugging, scoped diff, decision memo, delegated-work verification) |
-| ✦ `learnings/README.md`, `learnings/_template.md` | Durable-note system: what belongs, promotion rules, note format |
-| `learnings/2026-07-07-*.md` (2 notes) | Real learnings from this project (subagent skill-snapshot; quota-stub grading trap) — stay here; new projects grow their own |
-| `settings.local.json` | This machine's local session settings — never installed |
-
-## `.claude/skills/` — ✦ all installed
-
-**Library docs (4):** `SKILLS-OVERVIEW.md` (catalog, combinations, core-seven), `TASK-ROUTING-GUIDE.md` (request → skills routing), `HOW-TO-USE-WITH-OPUS.md` (install/test/invoke, limitations, compounding layer), `QUALITY-CHECKLIST.md` (pre-delivery checklist), plus `CLAUDE-MD-SNIPPET.md` (the 12 always-on rules — the pack's only *replicated* eval win).
-
-**Skills (26):** each `<slug>/SKILL.md` with trigger description, procedure, quality bar, failure modes, example, siblings, provenance.
+## Skills shipped (one folder per slug under `.claude/skills/`)
 
 | Group | Skills |
 |---|---|
@@ -52,14 +47,12 @@ Every file in the pack and its purpose. ✦ = installed into target projects by 
 | Debugging & execution | `debugging-playbook`, `change-control`, `scope-fence` |
 | Output quality | `ruthless-editor`, `structured-reasoning`, `output-structuring` |
 | Memory & continuity | `memory-hygiene`, `self-improvement-loop`, `extract-approach` |
-| Domain & agentic | `code-reconnaissance`, `error-recovery`, `delegation-discipline`, `research-methodology`, `prompt-engineering`, `divergent-ideation`, `product-thinking` |
+| Domain & agentic | `code-reconnaissance`, `error-recovery`, `delegation-discipline`, `research-methodology`, `prompt-engineering`, `divergent-ideation`, `product-thinking`, `human-handoff`, `open-mandate` |
+| Boundaries & delegation of judgment | `publish-hygiene` |
 | Meta | `frontier-workflow-mode` |
 
-## Evidence (stays here; not installed)
+Library docs alongside them: `SKILLS-OVERVIEW.md`, `TASK-ROUTING-GUIDE.md`, `HOW-TO-USE-WITH-OPUS.md`, `QUALITY-CHECKLIST.md`, `CLAUDE-MD-SNIPPET.md` (the always-on rules; count and content verified by `scripts/check-pack.sh`, which prints both).
 
-| Dir | Purpose |
-|---|---|
-| `eval-results/` | v1: 10 single-turn tests × 4 conditions, prompts, harness, raw outputs, scores, analysis |
-| `eval-results-v2/` | v2: 12 multi-step tests × 5 conditions × 3 reps — fixtures, harness (`run-eval-v2.sh`), raw outputs+diffs, `SCORES.md`, `ANALYSIS.md`, `HARD-FAILURE-ANALYSIS.md` |
+**Sharing caution:** `claude-context/` and filled-in `WORKFLOW-EXTRACTION-QUEUE.md` contain your business specifics; project learnings are private by default. The release bundle is cut from the public mirror, so none of these can ship by construction.
 
-Regression pair for future changes: v2 tests t02 + t04 at n=3 (the only discriminating tests; cheap to run).
+Regression pair for pack changes: v2 tests t02 + t04 (see `eval-results-v2/README.md` for the immutable-evidence re-run form).

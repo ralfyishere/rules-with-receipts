@@ -23,7 +23,7 @@ When a step needs human hands, the handoff itself is a deliverable — and a bad
 ## Operating procedure
 
 1. **Minimize the human surface first.** Before writing instructions, take every sub-step you can: prepare the files, pre-fill the values, stage the commands. Hand over only what genuinely requires them.
-2. **Write exact steps with exact values.** Field names with the literal strings to paste, which account to be logged into, which button label to click. "Set up trusted publishing" fails; "Owner: `ralfyishere`, Repository: `rulebench`, Workflow: `publish.yml`, Environment: `pypi`" succeeds first try.
+2. **Write exact steps with exact values.** Field names with the literal strings to paste, which account to be logged into, which button label to click. "Set up trusted publishing" fails; "Owner: `acme-dev`, Repository: `acme-tool`, Workflow: `publish.yml`, Environment: `pypi`" succeeds first try.
 3. **Name the completion signal explicitly.** The single highest-leverage line: tell them what DONE looks like from *their* seat, and distinguish it from intermediate states that masquerade as done. "Don't close anything until the terminal prints ✓ Authentication complete — the browser saying 'connected' is not the finish line."
 4. **Name the common failure point** if the flow has one (the step people skip, the screen that looks final but isn't). One sentence of "this is the part that usually gets missed" beats three retries.
 5. **Verify from your side when they report back.** "Done" from the user is a claim, not a state — check the scope list, the API response, the file, whatever you *can* observe. If it didn't take, diagnose which step broke before re-asking; never resend identical instructions after a failure.

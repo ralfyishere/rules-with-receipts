@@ -1,6 +1,14 @@
 # Installing the Quality Pack
 
-The pack = 26 process skills + operating manual + always-on snippet + compounding layer (learnings, context system, goal templates, workflow queue, maintenance cadence). The eval-tested configuration is **skills + manual-as-CLAUDE.md + snippet together** ("condition E" in `eval-results-v2/SCORES.md`) — install all three; skills alone measurably under-deliver on scope/flag discipline.
+The pack = the process skills + operating manual + always-on snippet + gates (publish hygiene, closeout) + compounding layer (learnings, context system, goal templates, workflow queue, maintenance cadence). The eval-tested configuration is **skills + manual-as-CLAUDE.md + snippet together** ("condition E" in `eval-results-v2/SCORES.md`) — install all three; skills alone measurably under-deliver on scope/flag discipline.
+
+## Option 0 — One-liner from the public source of truth
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ralfyishere/rules-with-receipts/main/bootstrap.sh | bash -s -- /path/to/your/project
+```
+
+This clones/updates the pack source to `~/.quality-pack-src` and runs the installer (auto-detects fresh install vs `--upgrade`). Per this pack's own publish-hygiene rule: piping URLs to bash runs unread code — the clone-read-install path below is the vetted-by-you version of the same steps. New machine from zero: `BOOTSTRAP-NEW-MACHINE.md`.
 
 ## Option 1 — Scripted install into one project (recommended)
 
@@ -59,7 +67,15 @@ Behavior smoke test: ask for a trivial code change and confirm the session *runs
 
 ## Updating an installed project
 
-Re-run the same command. The installer replaces the versioned pack blocks in `CLAUDE.md` in place (your own content above them is untouched), refreshes `.claude/skills/` (old copy backed up), and records the version in `.claude/PACK-VERSION`. Check what changed between versions in `CHANGELOG.md`.
+```bash
+./install-pack.sh --upgrade /path/to/your/project
+```
+
+The upgrade: replaces pack-owned pieces (skills, gate + verification scripts, managed CLAUDE.md blocks) with backups of anything touched; **preserves** everything project-owned — `claude-context/`, `.quality-pack/config.env`, your `scripts/security-scan.sh` (fresh starter dropped alongside), skill folders you added yourself, and all CLAUDE.md content outside the fenced markers; prints a from→to change report; and runs `check-pack` + `closeout-check` at the end. `--upgrade` refuses to run on a target with no `.claude/PACK-VERSION` (use a plain install there). Diff between versions: `CHANGELOG.md`.
+
+## Project configuration
+
+`.quality-pack/config.env` (created once, yours): GitHub owner for surface scans, allowed git identities, gate enforcement + TTL, extra scan patterns, mirror settings. The gate and scan read it on every run.
 
 ## Uninstalling
 

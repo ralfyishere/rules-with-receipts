@@ -42,7 +42,7 @@ while IFS=$'\t' read -r exp cmd; do run_case "$exp" "$cmd"; done <<'CASES'
 2	git push -f origin main
 2	cd /somewhere && git push
 2	gh release create v1.4.0 --notes "x"
-2	gh repo edit ralfyishere/x --visibility public
+2	gh repo edit some-owner/x --visibility public
 2	gh repo create newrepo --public
 2	npm publish
 2	twine upload dist/*

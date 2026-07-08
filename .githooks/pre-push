@@ -1,0 +1,34 @@
+#!/bin/bash
+# Native git pre-push gate: covers pushes from ANY terminal, not just Claude
+# sessions (the Claude PreToolUse hook only sees Claude's Bash calls).
+# Same marker contract as scripts/hygiene-gate.sh; if the marker is stale,
+# runs the security scan inline — a clean scan lets the push proceed.
+# Enable per-clone with: git config core.hooksPath .githooks
+set -u
+ROOT="$(git rev-parse --show-toplevel)"
+MARKER="$ROOT/.claude/.hygiene-gate-pass"
+TTL_MIN="${HYGIENE_GATE_TTL_MIN:-60}"
+
+fresh() {
+  [ -f "$MARKER" ] || return 1
+  AGE=$(( ( $(date +%s) - $(stat -f %m "$MARKER" 2>/dev/null || stat -c %Y "$MARKER") ) / 60 ))
+  [ "$AGE" -le "$TTL_MIN" ]
+}
+
+# Consistency first: pushes with stale counts/versions/manifest rows are
+# blocked regardless of the security marker (local-vs-global completion guard).
+if ! "$ROOT/scripts/closeout-check.sh"; then
+  echo "pre-push: BLOCKED — closeout-check found stale docs (above). Fix, then push."
+  exit 1
+fi
+
+if fresh; then exit 0; fi
+
+echo "pre-push: no fresh security-scan pass — running the scan now..."
+if "$ROOT/scripts/security-scan.sh"; then
+  echo "pre-push: scan clean, push allowed."
+  exit 0
+fi
+echo "pre-push: BLOCKED — fix the findings above, or force-open deliberately:"
+echo "  touch '$MARKER'"
+exit 1

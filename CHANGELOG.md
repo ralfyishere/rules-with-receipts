@@ -2,6 +2,17 @@
 
 Bump `VERSION` and add an entry here on any change to skills, the snippet, the manual, or the installer. Installed projects record their version in `.claude/PACK-VERSION`; re-running `install-pack.sh` upgrades them in place.
 
+## 1.5.0 — 2026-07-08
+
+Productization: the pack is now a portable operating system, installable and upgradable anywhere from the public source of truth (rules-with-receipts), with a cold-start replication test as the release bar.
+- **Config layer:** `.quality-pack/config.env` per project (owner, allowed git identities, gate enforcement/TTL, extra scan patterns, mirror settings) — created once, never overwritten; gate + scan read it.
+- **Dual-mode verification:** `check-pack.sh` and `closeout-check.sh` now detect pack-source vs installed-project mode; installed mode verifies skills integrity, managed-block versions vs PACK-VERSION, snippet parity, hook wiring, script presence.
+- **Installer:** `--upgrade` flag with from→to change report; ships closeout/check-pack; per-skill sync preserves project-added skills; creates config.env; wires `.githooks/pre-push` (`core.hooksPath`) when the target is a git repo; gitignores the gate marker; runs verification at the end; count-free output.
+- **Bootstrap:** `bootstrap.sh` (curl-able, with the read-before-you-run caveat in its own header) + `BOOTSTRAP-NEW-MACHINE.md` (zero-to-verified on a fresh computer).
+- **Release bundling:** `scripts/make-release-bundle.sh` — cut from a fresh public clone only, triple-gated (closeout vs clone, security scan, identity grep), sha256-stamped.
+- **Portability audit fixes:** exemplars carried real machine paths in diff headers (sanitized; installs from the dev tree would have leaked them — public copies were already clean); gate-test fixture and human-handoff example genericized; MAINTENANCE-CADENCE items scoped source-only vs installed; INSTALL header count-free; closeout regex widened to catch "N word skills" forms.
+- **PACK-MANIFEST rewritten** with owner/upgrade/public columns per component, and promoted to a shared (mirror-synced) file so it cannot fork again.
+
 ## 1.4.1 — 2026-07-08
 
 The remaining meta-bug, encoded: "local verification mistaken for global completion" (validated my changes, never swept what they made stale — caught by the user twice).
