@@ -33,6 +33,7 @@ Every shipped component: what it is, who owns it after install, what upgrades do
 | `scripts/audit-triggers.py` | Description-vs-messy-prompt activation audit | yes |
 | `scripts/security-scan-starter.sh` | The generic scan shipped to installs | yes |
 | `RELEASE-CHECKLIST.md` | Release governance: 13 items, AUTO-enforced vs MANUAL-attested | yes |
+| `SECURITY.md` | Rules-files-are-untrusted-code policy, reporting channel, deliberate gate properties | yes |
 | `scripts/release-test.sh` | Cold-start behavioral test of an install from a given pack source (checklist 4/9/10/11) | yes |
 | `trigger-eval/` | Skill-activation eval suite + published results | yes |
 | `eval-results/`, `eval-results-v2/` | The receipts: harnesses, fixtures, rubrics, raw outputs, scores (immutable once graded) | yes |
