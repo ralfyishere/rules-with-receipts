@@ -59,6 +59,7 @@ Switch from author to attacker before the user does. Work that survives a genuin
 - **Verification by re-assertion:** "I checked and it's correct" with no artifact. A defense cites evidence: a command output, a test result, a quoted source.
 - **Skipping the strongest attack** because it's expensive to test. That's the one that matters — run it or disclose it.
 - **Infinite loop:** review passes forever, deliverable never ships. One pass, fix, one confirm pass, done.
+- **Local verification mistaken for global completion:** verifying the things you changed while never asking what your changes made stale elsewhere — sibling docs, mirrors, cross-repo claims, counts and version strings that repeat the fact you just altered. The attack that catches it: "if a stranger diffed the whole system against reality, what would disagree?" Sweep everything that RESTATES the changed fact, not just the fact (real case, 2026-07: five repos claimed 'updated'; a detail pass found staleness in all five).
 
 ## Example
 

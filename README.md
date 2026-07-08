@@ -44,7 +44,7 @@ The whole point is falsifiability:
 
 ```bash
 cd eval-results-v2
-./run-eval-v2.sh A,E t04 3   # baseline vs full install on the scope-control trap
+REP_START=4 ./run-eval-v2.sh A,E t04 6   # baseline vs full install on the scope-control trap (reps 4–6; shipped r1–r3 evidence is immutable and the harness refuses to overwrite it)
 ```
 
 Fresh isolated sessions per cell, fixtures verified by execution, rubrics written before grading. If you get different numbers, open an issue with your raw outputs — a disconfirming replication is a first-class contribution here (see [`CONTRIBUTING.md`](CONTRIBUTING.md)).

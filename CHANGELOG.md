@@ -2,6 +2,14 @@
 
 Bump `VERSION` and add an entry here on any change to skills, the snippet, the manual, or the installer. Installed projects record their version in `.claude/PACK-VERSION`; re-running `install-pack.sh` upgrades them in place.
 
+## 1.4.1 — 2026-07-08
+
+The remaining meta-bug, encoded: "local verification mistaken for global completion" (validated my changes, never swept what they made stale — caught by the user twice).
+- **`scripts/closeout-check.sh`:** repo-wide consistency sweep — live-state ground truth (skill count, snippet rule count, VERSION) vs every doc that repeats it; CHANGELOG-top-vs-VERSION; installer expectation line; manifest completeness; and with a public-clone path: shared-file drift, intentional-divergence allowlist, personal-scan-never-public check. Wired into `.githooks/pre-push` — inconsistent docs block the push.
+- **CLAUDE.md maintainer rule:** completion claims are forbidden without the closeout sweep + a manual behavior-claims review; unchecked things must be named as unchecked.
+- **`adversarial-verify`** gains the failure mode by name.
+- Found by the first sweep, fixed: dev PACK-MANIFEST missing all six new component rows + "12 rules"; public AGENTS "12 rules"; INSTALL.md had diverged (public-only step 4 backported; INSTALL/QUICK-START/eval-README now mirror-synced); **README/AGENTS "run the evals yourself" command was broken by the 1.4.0 overwrite guard** — replicators now get the `REP_START=4 … 6` form; eval README documents re-run semantics; QUICK-START mentions the gate.
+
 ## 1.4.0 — 2026-07-07
 
 Skill activation treated as a system design bug (a publish-hygiene miss required a user reminder before a real leak sweep; the sweep then found a live identity leak). Activation now has three layers instead of one:

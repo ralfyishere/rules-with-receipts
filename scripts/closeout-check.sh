@@ -1,0 +1,78 @@
+#!/bin/bash
+# Final-closeout consistency sweep. Guards against the failure mode
+# "local verification mistaken for global completion": after any pack,
+# publish, or mirror change, every doc that REPEATS a fact (skill count,
+# rule count, version, component list) must agree with the live state.
+#
+# Usage:
+#   ./scripts/closeout-check.sh                  # sweep this repo
+#   ./scripts/closeout-check.sh /path/to/public  # + drift vs a public-mirror clone
+#
+# Exit 0 = consistent; 1 = findings printed. Wired into .githooks/pre-push.
+# LIMITS (by design, do the manual pass too): catches numeric/name drift and
+# file-set drift; cannot catch prose describing outdated BEHAVIOR.
+set -u
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$ROOT" || exit 1
+FINDINGS=0
+note() { echo "STALE: $*"; FINDINGS=$((FINDINGS+1)); }
+
+# --- ground truth from live state ---
+SKILLS=$(ls -d .claude/skills/*/ | wc -l | tr -d ' ')
+RULES=$(awk '/^```markdown$/{f=1;next} /^```$/{f=0} f' .claude/skills/CLAUDE-MD-SNIPPET.md | grep -c '^- ')
+VERSION=$(tr -d '[:space:]' < VERSION)
+echo "ground truth: $SKILLS skills, $RULES snippet rules, version $VERSION"
+
+# --- 1. counts: any "N skills" / "N always-on rules" claim must match ---
+# Exempt: evidence dirs (immutable), learnings + CHANGELOG (dated history is
+# correct as history), and this script (detector self-match).
+DOCS=$(git ls-files '*.md' '*.sh' | grep -vE '^eval-results.*/(raw|fixtures|prompts)|^\.claude/learnings/|^study-draft/|raw-regression|CHANGELOG\.md|scripts/closeout-check\.sh')
+HITS=$( (for f in $DOCS; do
+  grep -HnEo '[0-9]+ skills' "$f" | grep -v ":$SKILLS skills"
+  grep -HnEo "[0-9]+ always-on rules|[0-9]+ rules?( snippet| —)" "$f" | grep -vE ":($RULES) "
+done) 2>/dev/null )
+if [ -n "$HITS" ]; then
+  echo "$HITS" | sed "s/^/STALE count (live: $SKILLS skills, $RULES rules): /"
+  FINDINGS=$((FINDINGS + $(echo "$HITS" | wc -l | tr -d ' ')))
+fi
+
+# --- 2. version agreement: CHANGELOG top entry == VERSION ---
+TOPVER=$(grep -m1 -Eo '^## [0-9]+\.[0-9]+\.[0-9]+' CHANGELOG.md | awk '{print $2}')
+[ "$TOPVER" = "$VERSION" ] || { note "CHANGELOG top entry $TOPVER != VERSION $VERSION"; }
+
+# --- 3. installer expectation line matches live counts ---
+grep -q "pack's $SKILLS skills" install-pack.sh || note "install-pack.sh 'Expect ... skills' line disagrees with live count $SKILLS"
+
+# --- 4. every component in scripts/ + trigger-eval appears in PACK-MANIFEST ---
+for comp in hygiene-gate.sh security-scan.sh audit-triggers.py check-pack.sh closeout-check.sh mirror-public.sh; do
+  [ -e "scripts/$comp" ] && ! grep -q "$comp" PACK-MANIFEST.md && note "PACK-MANIFEST.md missing scripts/$comp"
+done
+grep -q "trigger-eval" PACK-MANIFEST.md || note "PACK-MANIFEST.md missing trigger-eval/"
+
+# --- 5. public-mirror drift (optional arg) ---
+if [ $# -ge 1 ] && [ -d "$1" ]; then
+  PUB="$1"
+  echo "== mirror drift vs $PUB =="
+  # Shared files must be identical:
+  SHARED="CLAUDE.md CHANGELOG.md VERSION install-pack.sh INSTALL.md QUICK-START.md
+          scripts/check-pack.sh scripts/hygiene-gate.sh scripts/test-hygiene-gate.sh
+          scripts/audit-triggers.py scripts/security-scan-starter.sh scripts/closeout-check.sh
+          .claude/settings.json trigger-eval/cases.json trigger-eval/run-trigger-eval.sh
+          eval-results-v2/run-eval-v2.sh eval-results-v2/README.md"
+  for f in $SHARED; do
+    [ -e "$PUB/$f" ] || { note "mirror missing shared file: $f"; continue; }
+    cmp -s "$f" "$PUB/$f" || note "mirror drift in shared file: $f"
+  done
+  diff -rq .claude/skills "$PUB/.claude/skills" >/dev/null 2>&1 || note "mirror drift in .claude/skills/"
+  # Intentional divergences — everything else in the public root must exist here too:
+  INTENTIONAL="README.md AGENTS.md LICENSE CONTRIBUTING.md PACK-MANIFEST.md"
+  for f in $(cd "$PUB" && git ls-files | grep -v '/'); do
+    case " $INTENTIONAL " in *" $f "*) continue;; esac
+    [ -e "$f" ] || note "public-only root file not documented as intentional: $f"
+  done
+  # The personal scan must never be the public one:
+  grep -q "REPOS_LOCAL" "$PUB/scripts/security-scan.sh" 2>/dev/null && note "PUBLIC security-scan.sh looks like the personal one (REPOS_LOCAL)"
+fi
+
+echo
+if [ "$FINDINGS" = "0" ]; then echo "CLOSEOUT: consistent"; else echo "CLOSEOUT: $FINDINGS finding(s)"; exit 1; fi

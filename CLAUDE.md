@@ -8,6 +8,7 @@ This directory IS the quality pack's source. Sessions here are usually *maintain
 - **Version on change:** bump `VERSION` + add a `CHANGELOG.md` entry for any change to skills, snippet, manual, or installer. Installed projects upgrade via re-running `install-pack.sh`.
 - **Snippet stays ≤ ~15 rules;** this file stays lean — procedures belong in skills, not here.
 - Skill-triggering can only be tested in fresh `claude -p` sessions in temp dirs outside this tree — never via subagents (they inherit the parent's skill snapshot).
+- **Final closeout before any completion claim:** after any pack/publish/mirror change, run `scripts/closeout-check.sh` (plus, for mirror work, with the public-clone path) AND do a manual behavior-claims review of docs the script can't judge. "Everything is done" is forbidden unless that sweep passed; claims in the final response are limited to what was actually checked, and anything unchecked is named as unchecked. Local verification is not global completion.
 
 <!-- quality-pack:snippet:BEGIN v1.0.0 -->
 ## Working rules (always on — full procedures in .claude/skills/)

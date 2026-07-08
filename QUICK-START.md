@@ -4,7 +4,7 @@
 ```bash
 ./install-pack.sh /path/to/your/project
 ```
-That's the whole install — skills, CLAUDE.md (manual + always-on rules), starter `claude-context/`.
+That's the whole install — skills, CLAUDE.md (manual + always-on rules), starter `claude-context/`, and the publish hygiene gate (a hook that blocks push/release commands until the project's security scan passes).
 
 **2. If installing by hand instead**, copy `.claude/skills/` into the project, and paste into the project's `CLAUDE.md`: the contents of `.claude/FUTURE-MODEL-OPERATING-MANUAL.md`, then the fenced rules block from `.claude/skills/CLAUDE-MD-SNIPPET.md`.
 

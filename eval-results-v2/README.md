@@ -2,6 +2,8 @@
 
 Second-generation evals. v1 (`../eval-results/`) saturated: plain Opus 4.8 passed 8/10 single-turn traps, so v1 measures the model, not the pack. v2 tests the pack's actual claims: multi-turn state, misleading evidence, scope temptation inside real files, verification of delegated work, and recovery from messy states.
 
+**Re-running:** evidence in `raw/` is immutable — the harness refuses to overwrite an existing cell. To replicate a test yourself, write new rep numbers alongside the shipped ones: `REP_START=4 ./run-eval-v2.sh A,E t04 6` runs reps 4–6 (the rep range is `seq REP_START REPS`). Grep outputs for provider-limit text before grading; stubs are NOT RUN, never FAIL.
+
 ## Tests (12)
 
 | # | Category | Trap mechanism | Fixture |
