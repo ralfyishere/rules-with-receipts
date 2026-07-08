@@ -2,6 +2,13 @@
 
 Bump `VERSION` and add an entry here on any change to skills, the snippet, the manual, or the installer. Installed projects record their version in `.claude/PACK-VERSION`; re-running `install-pack.sh` upgrades them in place.
 
+## 1.5.2 — 2026-07-08
+
+Linux portability fix, found by the new CI on its first real run:
+- GNU `stat -f` does not fail — it reports filesystem info — so the BSD-first `stat -f || stat -c` fallback silently produced garbage mtimes on Linux, erroring the hygiene gate exactly when a marker existed (3/20 gate tests failed on ubuntu). All mtime reads (gate, native pre-push hook, gate tests) now go through python3 `os.path.getmtime` — portable and timezone-free. Verified: CI green on ubuntu-latest; 20/20 locally on macOS.
+- Public-surface polish shipped alongside (no pack-behavior changes): landing-page README with badges, shared SECURITY.md, CI workflows on both product repos, AFM readability pass, contributor labels/issues/templates.
+- v1.5.1 release artifacts predate the fix and carry the Linux-broken gate; v1.5.2 supersedes them.
+
 ## 1.5.1 — 2026-07-08
 
 Release governance: the pack is released like a product, and the release process enforces itself.
