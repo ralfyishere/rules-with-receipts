@@ -35,7 +35,9 @@ RISKY='(git[^|;&]*[^-[:alnum:]]push([^-[:alnum:]]|$)|gh (release|pr) create|gh r
 echo "$CMD" | grep -qiE "$RISKY" || exit 0
 
 if [ -f "$MARKER" ]; then
-  AGE_MIN=$(( ( $(date +%s) - $(stat -f %m "$MARKER" 2>/dev/null || stat -c %Y "$MARKER") ) / 60 ))
+  # mtime via python3: GNU stat -f "succeeds" with filesystem info, so a
+  # stat -f || stat -c fallback silently breaks on Linux.
+  AGE_MIN=$(( ( $(date +%s) - $(python3 -c 'import os,sys;print(int(os.path.getmtime(sys.argv[1])))' "$MARKER") ) / 60 ))
   [ "$AGE_MIN" -le "$MARKER_TTL_MIN" ] && exit 0
   STALE=" (marker is ${AGE_MIN}min old; TTL ${MARKER_TTL_MIN}min)"
 else

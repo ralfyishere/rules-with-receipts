@@ -9,7 +9,7 @@ PASS=0; FAIL=0
 # Restore via os.utime (raw epoch, timezone-free): touch -t is local-time
 # formatted and skewed the restored mtime by the UTC offset.
 SAVED=""
-[ -f "$MARKER" ] && SAVED=$(stat -f %m "$MARKER" 2>/dev/null || stat -c %Y "$MARKER")
+[ -f "$MARKER" ] && SAVED=$(python3 -c 'import os,sys;print(int(os.path.getmtime(sys.argv[1])))' "$MARKER")
 restore_marker() {
   rm -f "$MARKER"
   [ -n "$SAVED" ] && python3 - "$MARKER" "$SAVED" <<'PYEOF'
