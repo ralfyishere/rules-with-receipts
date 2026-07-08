@@ -15,6 +15,7 @@ Every file in the pack and its purpose. ✦ = installed into target projects by 
 | `scripts/hygiene-gate.sh` + `.claude/settings.json` | Deterministic publish gate: PreToolUse hook blocks public-boundary commands without a fresh security-scan pass (unit tests: `scripts/test-hygiene-gate.sh`) |
 | `scripts/security-scan.sh` (from `security-scan-starter.sh`) | Pre-push scan: secrets + machine identity across full history; a clean pass opens the gate |
 | `scripts/audit-triggers.py` | Activation audit: skill descriptions vs realistic messy prompts — 0 gaps required |
+| `scripts/closeout-check.sh` | Final-closeout sweep: every doc that repeats a count/version/component must agree with live state — run before any completion claim |
 | `trigger-eval/` | Skill-activation eval: messy prompts through fresh sessions, expected-skill grading, quota-stub guard |
 | `CLAUDE.md` | Maintainer rules for THIS source repo (evidence immutability, index sync, regression pair) + always-on rules |
 | `PACK-MANIFEST.md` | This file |
