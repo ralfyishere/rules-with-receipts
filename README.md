@@ -78,6 +78,7 @@ Different numbers? Open an issue with your raw outputs — a disconfirming repli
 
 | Repo | Role |
 |---|---|
+| [agent-zero-trust](https://github.com/ralfyishere/agent-zero-trust) | **Intake**: scan a repo's instruction environment before any agent enters it |
 | **rules-with-receipts** (this repo) | Install the operating discipline |
 | [rulebench](https://github.com/ralfyishere/rulebench) | Test whether any rules file actually does anything |
 | [agent-failure-modes](https://github.com/ralfyishere/agent-failure-modes) | The AFM Index: named, numbered agent failures with detection traps and evidence grades |
