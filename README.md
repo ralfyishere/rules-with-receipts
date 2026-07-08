@@ -1,6 +1,6 @@
 # Rules with Receipts
 
-**A quality pack for Claude Code — 26 skills, an operating manual, and an always-on rules snippet — shipped with the eval harness and honest A/B numbers showing exactly what it does and doesn't change.**
+**A quality pack for Claude Code — 29 skills, an operating manual, and an always-on rules snippet — shipped with the eval harness and honest A/B numbers showing exactly what it does and doesn't change.**
 
 Every agent rules file you've seen ships on vibes: "makes your agent 10x better," zero evidence. This one ships with receipts. We built two generations of trap-prompt evals, ran them across five install configurations in fresh isolated sessions, rubric-graded them, and published the raw outputs — including the findings that don't flatter us.
 
@@ -16,7 +16,7 @@ Full numbers, rubrics, raw session outputs, and limitations: [`eval-results-v2/S
 
 | Layer | What it does |
 |---|---|
-| [`.claude/skills/`](.claude/skills/) — 26 skills | Trigger-based procedures: planning gates, debugging playbook, scope fencing, adversarial self-review, error recovery, delegation verification, and more. Catalog: [`SKILLS-OVERVIEW.md`](.claude/skills/SKILLS-OVERVIEW.md) |
+| [`.claude/skills/`](.claude/skills/) — 29 skills | Trigger-based procedures: planning gates, debugging playbook, scope fencing, adversarial self-review, error recovery, delegation verification, and more. Catalog: [`SKILLS-OVERVIEW.md`](.claude/skills/SKILLS-OVERVIEW.md) |
 | [12 always-on rules](.claude/skills/CLAUDE-MD-SNIPPET.md) | The proven layer: read-before-edit, quote-your-verification, two-strike error recovery, flag-don't-fix |
 | [Operating manual](.claude/FUTURE-MODEL-OPERATING-MANUAL.md) | The habits condensed into one paste-able document |
 | [Operator guide](.claude/OPERATOR-GUIDE.md) | For humans: warning signs → exact intervention phrases, plus a second-opinion review prompt |

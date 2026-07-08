@@ -12,6 +12,10 @@ Every file in the pack and its purpose. ✦ = installed into target projects by 
 | `install-pack.sh` | Tested installer: copies skills + layer, versioned CLAUDE.md blocks (upgrade-in-place), backups, seeds claude-context/ |
 | `VERSION`, `CHANGELOG.md` | Pack version + change history; bump on any skill/snippet/manual/installer change |
 | `scripts/check-pack.sh` | Executable coherence check (frontmatter, refs, snippet size, version sync) — run after any pack edit |
+| `scripts/hygiene-gate.sh` + `.claude/settings.json` | Deterministic publish gate: PreToolUse hook blocks public-boundary commands without a fresh security-scan pass (unit tests: `scripts/test-hygiene-gate.sh`) |
+| `scripts/security-scan.sh` (from `security-scan-starter.sh`) | Pre-push scan: secrets + machine identity across full history; a clean pass opens the gate |
+| `scripts/audit-triggers.py` | Activation audit: skill descriptions vs realistic messy prompts — 0 gaps required |
+| `trigger-eval/` | Skill-activation eval: messy prompts through fresh sessions, expected-skill grading, quota-stub guard |
 | `CLAUDE.md` | Maintainer rules for THIS source repo (evidence immutability, index sync, regression pair) + always-on rules |
 | `PACK-MANIFEST.md` | This file |
 

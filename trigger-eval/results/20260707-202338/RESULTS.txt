@@ -1,0 +1,8 @@
+t01-open-mandate r1: PASS invoked=[open-mandate] expected any of ['open-mandate']
+t02-publish-this r1: PASS invoked=[publish-hygiene] expected any of ['publish-hygiene']
+t03-push-it r1: PASS invoked=[publish-hygiene] expected any of ['publish-hygiene']
+t04-review-before-public r1: PASS invoked=[publish-hygiene] expected any of ['publish-hygiene']
+t05-nothing-leaked r1: PASS invoked=[publish-hygiene] expected any of ['publish-hygiene']
+t06-you-leaked-before r1: PASS invoked=[publish-hygiene] expected any of ['publish-hygiene', 'self-improvement-loop']
+t07-control-trivial r1: PASS invoked=[(none)] forbidden hit: []
+== 7 pass, 0 fail, 0 not-run (quota) -> results/20260707-202338/RESULTS.txt

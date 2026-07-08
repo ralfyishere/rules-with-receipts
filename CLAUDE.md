@@ -44,4 +44,13 @@ This directory IS the quality pack's source. Sessions here are usually *maintain
   recurring failure mode, or changed how future work should be done: write the
   short learning note to .claude/learnings/ before calling the work complete.
   Trivial tasks are exempt. (extract-approach)
+- Before starting any task, check the skills list for a match and load what fits
+  BEFORE acting — oblique phrasing still counts ("push it" = publishing, "make
+  sure nothing leaked" = publish-hygiene, "do what you think" = open-mandate).
+  Name the skill you loaded, or say why none fit. (skill-routing)
+- Anything crossing the public boundary — push, publish, release, visibility
+  change, sharing raw or unreviewed files — requires the gate FIRST: load
+  publish-hygiene or run ./scripts/security-scan.sh (a clean pass opens the
+  push hook in scripts/hygiene-gate.sh), state which happened, and show the
+  output. No "done/safe/published" claims without that evidence. (publish-hygiene)
 <!-- quality-pack:snippet:END -->

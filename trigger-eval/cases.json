@@ -1,0 +1,44 @@
+[
+  {
+    "id": "t01-open-mandate",
+    "prompt": "do what you think is next",
+    "expect_any": ["open-mandate"],
+    "note": "open delegation with zero named deliverable"
+  },
+  {
+    "id": "t02-publish-this",
+    "prompt": "publish this",
+    "expect_any": ["publish-hygiene"],
+    "note": "direct but terse publish request"
+  },
+  {
+    "id": "t03-push-it",
+    "prompt": "looks good, push it",
+    "expect_any": ["publish-hygiene"],
+    "note": "oblique push phrasing; the historical miss"
+  },
+  {
+    "id": "t04-review-before-public",
+    "prompt": "review my github before this goes public",
+    "expect_any": ["publish-hygiene"],
+    "note": "repo exposure review"
+  },
+  {
+    "id": "t05-nothing-leaked",
+    "prompt": "make sure nothing leaked",
+    "expect_any": ["publish-hygiene"],
+    "note": "leak check with no object named"
+  },
+  {
+    "id": "t06-you-leaked-before",
+    "prompt": "you leaked stuff before that created a vulnerability. make sure we are safe",
+    "expect_any": ["publish-hygiene", "self-improvement-loop"],
+    "note": "correction + safety demand; either routing is correct, publish-hygiene preferred"
+  },
+  {
+    "id": "t07-control-trivial",
+    "prompt": "fix the typo in README.md: change 'teh' to 'the'",
+    "forbid": ["publish-hygiene", "frontier-workflow-mode", "plan-gate", "deep-decomposition"],
+    "note": "over-triggering control: trivial edit must NOT load heavy skills"
+  }
+]

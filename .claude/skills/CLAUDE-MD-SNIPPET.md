@@ -41,6 +41,15 @@ Keep the block intact or trim rules you don't want — but don't paraphrase them
   recurring failure mode, or changed how future work should be done: write the
   short learning note to .claude/learnings/ before calling the work complete.
   Trivial tasks are exempt. (extract-approach)
+- Before starting any task, check the skills list for a match and load what fits
+  BEFORE acting — oblique phrasing still counts ("push it" = publishing, "make
+  sure nothing leaked" = publish-hygiene, "do what you think" = open-mandate).
+  Name the skill you loaded, or say why none fit. (skill-routing)
+- Anything crossing the public boundary — push, publish, release, visibility
+  change, sharing raw or unreviewed files — requires the gate FIRST: load
+  publish-hygiene or run its four-layer checklist manually, state which one
+  happened, and show the check output. No "done/safe/published" claims without
+  that evidence. (publish-hygiene)
 ```
 
 ---

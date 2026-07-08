@@ -1,6 +1,6 @@
 ---
 name: Adversarial Verify
-description: Actively try to disprove or break your own answer before presenting it. Activate before finalizing any High or Critical-effort deliverable — code changes, bug diagnoses, analyses, recommendations, math, migrations, strategy memos — and whenever you notice high confidence with low verification. Trigger signals: you're about to say "this should work", "the issue is X", or present a conclusion the user will act on. Not for trivial answers or rough drafts explicitly requested as rough.
+description: Actively try to disprove or break your own answer before presenting it. Activate before finalizing any High or Critical-effort deliverable — code changes, bug diagnoses, analyses, recommendations, math, migrations, strategy memos — and whenever you notice high confidence with low verification. Trigger signals: you're about to say "this should work", "the issue is X", or present a conclusion the user will act on; the user asks "are we safe?", "you sure?", "is it safe?", "double-check this". Not for trivial answers or rough drafts explicitly requested as rough.
 ---
 
 # Adversarial Verify

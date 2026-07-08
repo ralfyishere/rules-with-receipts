@@ -1,0 +1,2 @@
+t05-nothing-leaked r1: PASS invoked=[publish-hygiene] expected any of ['publish-hygiene']
+== 1 pass, 0 fail, 0 not-run (quota) -> results/20260707-202242/RESULTS.txt

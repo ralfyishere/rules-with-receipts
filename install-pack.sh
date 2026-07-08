@@ -173,7 +173,44 @@ EOF
   echo "  created: claude-context/ (7 starter files — fill in business-summary.md first)"
 fi
 
+# --- 5. hygiene gate (deterministic publish guard) ------------------------------
+mkdir -p "$TARGET/scripts"
+for s in hygiene-gate.sh test-hygiene-gate.sh; do
+  if [ -e "$TARGET/scripts/$s" ]; then backup "$TARGET/scripts/$s"; fi
+  cp "$SRC/scripts/$s" "$TARGET/scripts/$s" && chmod +x "$TARGET/scripts/$s"
+done
+echo "  installed: scripts/hygiene-gate.sh + test-hygiene-gate.sh"
+if [ ! -e "$TARGET/scripts/security-scan.sh" ]; then
+  cp "$SRC/scripts/security-scan-starter.sh" "$TARGET/scripts/security-scan.sh"
+  chmod +x "$TARGET/scripts/security-scan.sh"
+  echo "  installed: scripts/security-scan.sh (generic starter — customize patterns)"
+else
+  echo "  kept existing: scripts/security-scan.sh"
+fi
+SETTINGS="$TARGET/.claude/settings.json" BAK_STAMP="$STAMP" python3 - <<'PYEOF'
+import json, os, shutil
+p, stamp = os.environ["SETTINGS"], os.environ["BAK_STAMP"]
+cfg = {}
+if os.path.exists(p):
+    with open(p) as f:
+        cfg = json.load(f)
+pre = cfg.setdefault("hooks", {}).setdefault("PreToolUse", [])
+if any("hygiene-gate.sh" in h.get("command", "")
+       for e in pre for h in e.get("hooks", [])):
+    print("  unchanged: .claude/settings.json (hygiene gate already wired)")
+else:
+    if os.path.exists(p):
+        shutil.copy2(p, f"{p}.bak-{stamp}")
+        print(f"  backed up: settings.json -> settings.json.bak-{stamp}")
+    pre.append({"matcher": "Bash", "hooks": [{"type": "command",
+        "command": "\"$CLAUDE_PROJECT_DIR\"/scripts/hygiene-gate.sh"}]})
+    with open(p, "w") as f:
+        json.dump(cfg, f, indent=2); f.write("\n")
+    print("  wired: hygiene gate PreToolUse hook in .claude/settings.json")
+PYEOF
+echo "  NOTE: add .claude/.hygiene-gate-pass to the project's .gitignore"
+
 echo
 echo "DONE. Verify from inside $TARGET with a fresh session:"
 echo "  claude -p \"List the skills available to you, names only.\""
-echo "Expect the pack's 26 skills (plan-gate, scope-fence, live-state-truth, ...)."
+echo "Expect the pack's 29 skills (plan-gate, scope-fence, publish-hygiene, ...)."
