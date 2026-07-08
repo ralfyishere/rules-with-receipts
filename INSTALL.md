@@ -27,6 +27,12 @@ Then build the project `CLAUDE.md`:
 3. Add one line: `Business/user context lives in claude-context/ — see claude-context/claude-instructions.md for when to read what.`
 
 Keep CLAUDE.md lean beyond this: always-on rules live here; procedures live in skills.
+4. (Recommended) Wire the deterministic publish gate: copy `scripts/hygiene-gate.sh`,
+   `scripts/test-hygiene-gate.sh`, and `scripts/security-scan-starter.sh` (as your
+   project's `scripts/security-scan.sh`) into the project, then add the PreToolUse
+   hook from this repo's `.claude/settings.json` to the project's settings. Add
+   `.claude/.hygiene-gate-pass` to the project's `.gitignore`. The scripted
+   installer (Option 1) does all of this for you.
 
 ## Option 3 — Global install (all projects)
 

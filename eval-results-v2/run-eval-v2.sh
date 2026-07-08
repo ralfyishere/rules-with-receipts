@@ -49,6 +49,13 @@ run_cell() {  # $1 cond  $2 test  $3 rep
   local work="$ENV_BASE/$cond-$test-r$rep"
   local out_dir="$RAW/$cond"; mkdir -p "$out_dir"
   local out="$out_dir/$test.r$rep.md"
+  # Evidence is immutable: refuse to overwrite an existing (possibly graded)
+  # cell. Re-runs must use REP_START to write new rep numbers, or FORCE=1
+  # after deliberately archiving the old cells elsewhere.
+  if [ -e "$out" ] && [ "${FORCE:-0}" != "1" ]; then
+    echo "REFUSING to overwrite existing evidence: $out (use REP_START or FORCE=1)" >&2
+    return 1
+  fi
   setup_workspace "$cond" "$test" "$work"
   : > "$out"
   local sid="" turn=1 rc=0

@@ -17,11 +17,13 @@ Full numbers, rubrics, raw session outputs, and limitations: [`eval-results-v2/S
 | Layer | What it does |
 |---|---|
 | [`.claude/skills/`](.claude/skills/) — 29 skills | Trigger-based procedures: planning gates, debugging playbook, scope fencing, adversarial self-review, error recovery, delegation verification, and more. Catalog: [`SKILLS-OVERVIEW.md`](.claude/skills/SKILLS-OVERVIEW.md) |
-| [12 always-on rules](.claude/skills/CLAUDE-MD-SNIPPET.md) | The proven layer: read-before-edit, quote-your-verification, two-strike error recovery, flag-don't-fix |
+| [14 always-on rules](.claude/skills/CLAUDE-MD-SNIPPET.md) | The proven layer: read-before-edit, quote-your-verification, two-strike error recovery, flag-don't-fix — plus skill-routing and the publish gate |
 | [Operating manual](.claude/FUTURE-MODEL-OPERATING-MANUAL.md) | The habits condensed into one paste-able document |
 | [Operator guide](.claude/OPERATOR-GUIDE.md) | For humans: warning signs → exact intervention phrases, plus a second-opinion review prompt |
 | [Exemplars](.claude/exemplars/) | Real rubric-graded PASS outputs — what "good" looks like, verbatim |
 | Compounding layer | [Learnings system](.claude/learnings/README.md), [context-folder guide](.claude/CONTEXT-SYSTEM-SETUP.md), [bounded goal templates](.claude/GOAL-TEMPLATES.md), [skill-interview prompt](.claude/WORKFLOW-SKILL-INTERVIEW-PROMPT.md) |
+| [Hygiene gate](scripts/hygiene-gate.sh) | Deterministic publish guard: a PreToolUse hook blocks push/release/publish commands unless the [security scan](scripts/security-scan.sh) passed recently — safety that doesn't depend on the model remembering |
+| [`trigger-eval/`](trigger-eval/) | Skill-activation evals: do the right skills load from messy real prompts ("push it", "make sure nothing leaked")? 18/18 on run cells at n=3; results included |
 | [`eval-results/`](eval-results/) + [`eval-results-v2/`](eval-results-v2/) | The receipts: harnesses, fixtures, prompts, rubrics, raw outputs, scores |
 
 ## Install
@@ -51,7 +53,7 @@ Fresh isolated sessions per cell, fixtures verified by execution, rubrics writte
 
 Authored by Claude (Fable 5) sessions in collaboration with a human maintainer; evaluated against Claude Opus 4.8 as the target model. The pack transfers *process* — planning, verification, scope, and recovery habits — and claims nothing about changing model capability. It does not reproduce, extract, or imitate any model's internals; it's an engineering-productivity layer, with the evidence to show exactly how far that goes.
 
-The standalone eval tool shipped: [rulebench](https://github.com/ralfyishere/rulebench) points the same methodology at *any* rules file. Fair warning from its first published validation run: at n=3 on its starter traps, it did **not** reproduce this repo's 3/3 scope-trap headline (reps split PASS/PARTIAL/FAIL) — run-to-run variance on discipline behaviors is real, and both results are published. That's the receipts working as intended.
+The standalone eval tool shipped: [rulebench](https://github.com/ralfyishere/rulebench) points the same methodology at *any* rules file. Fair warning from its first published validation run: at n=3 on its starter traps, it did **not** reproduce this repo's 3/3 scope-trap headline (reps split PASS/PARTIAL/FAIL) — run-to-run variance on discipline behaviors is real, and both results are published. That's the receipts working as intended. rulebench's follow-up [six-pack study](https://github.com/ralfyishere/rulebench/blob/main/study/STUDY.md) (this pack + baseline + four popular public packs, three traps, n=3) found the same shape: the one trap that differentiated (honest completion accounting) favored the two packs that demand explicit verification — this one included — one trap's split was grader noise (documented with the proof), and the third saturated at baseline.
 
 ## Related
 
