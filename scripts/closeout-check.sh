@@ -72,6 +72,10 @@ if [ $# -ge 1 ] && [ -d "$1" ]; then
   done
   # The personal scan must never be the public one:
   grep -q "REPOS_LOCAL" "$PUB/scripts/security-scan.sh" 2>/dev/null && note "PUBLIC security-scan.sh looks like the personal one (REPOS_LOCAL)"
+  # Public manifest must list every script actually shipped there:
+  for s in "$PUB"/scripts/*; do
+    grep -q "$(basename "$s")" "$PUB/PACK-MANIFEST.md" || note "PUBLIC PACK-MANIFEST.md missing scripts/$(basename "$s")"
+  done
 fi
 
 echo
