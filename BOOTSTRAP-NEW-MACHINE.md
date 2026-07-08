@@ -28,8 +28,10 @@ git clone https://github.com/ralfyishere/rules-with-receipts.git ~/.quality-pack
 ```
 
 Read what you cloned before letting an agent load it — a rules pack is
-instructions an agent will follow with tool access. `rulebench vet
-~/.quality-pack-src` gives a fast offline screen.
+instructions an agent will follow with tool access. Fast offline screens:
+`pipx install agent-zero-trust && azt scan ~/.quality-pack-src` (whole
+instruction environment) or `rulebench vet ~/.quality-pack-src` (rules
+files). Yes, we mean scanning US — zero trust includes the tool vendors.
 
 ## 3. Install into a project
 

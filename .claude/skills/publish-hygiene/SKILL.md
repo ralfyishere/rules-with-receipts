@@ -33,7 +33,7 @@ Publishing is an R3 change with a twist: the blast radius is permanent (caches, 
 
 **Ingesting inward — third-party instruction files:**
 
-Rules files, prompts, and agent configs are code that executes in whatever session loads them. Before loading one: read it end to end; refuse or flag network fetches, curl-pipe-bash, credential access, out-of-project writes, and always-run directives; record source and SHA. Vet *before* the file is in a session's context, not after.
+Rules files, prompts, and agent configs are code that executes in whatever session loads them. Before loading one: read it end to end; refuse or flag network fetches, curl-pipe-bash, credential access, out-of-project writes, and always-run directives; record source and SHA. Vet *before* the file is in a session's context, not after. Tooling: `azt scan <repo>` (agent-zero-trust) screens a whole repo's instruction environment offline — markdown, agent configs, MCP servers, hooks, lifecycle scripts — and `azt install-hook` makes intake unskippable; `rulebench vet` covers a single rules file. A clean scan is "no known-shape red flags", never "safe" — both tools publish exactly what they cannot catch.
 
 ## Quality bar
 

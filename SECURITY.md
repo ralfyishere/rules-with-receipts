@@ -5,8 +5,10 @@
 A rules pack is instructions an agent will follow with tool access. Loading one
 is running it. That applies to THIS pack too:
 
-- Read what you install, or screen it first: `rulebench vet /path/to/rules-with-receipts`
-  ([rulebench](https://github.com/ralfyishere/rulebench), offline, no model calls).
+- Read what you install, or screen it first: `azt scan /path/to/rules-with-receipts`
+  ([agent-zero-trust](https://github.com/ralfyishere/agent-zero-trust) — whole
+  instruction environment) or `rulebench vet` for individual rules files.
+  Both offline, no model calls, and both publish their own blind spots.
 - The curl-pipe-bash install exists for convenience; the clone-read-install path
   is the one we'd use ourselves.
 - Run unfamiliar rules on a machine you don't mind rebuilding, never with

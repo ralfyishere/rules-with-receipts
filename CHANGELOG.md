@@ -2,6 +2,12 @@
 
 Bump `VERSION` and add an entry here on any change to skills, the snippet, the manual, or the installer. Installed projects record their version in `.claude/PACK-VERSION`; re-running `install-pack.sh` upgrades them in place.
 
+## 1.5.3 — 2026-07-08
+
+The regression debt is paid, and the intake layer joins the stack.
+- **Full n=3 behavior regression complete** (reps 4–6 alongside immutable r1–r3; 30/30 valid, zero stubs): **no regression** from the v1.4–v1.5 changes. E (full install) is again the only t04 PASS median — third independent run showing the separation's direction (reps PARTIAL/PASS/PASS; "3/3 every run" remains unreplicable, disclosed as ever). C produced the run's only real scope violation again (config.json rewrite). t02 has saturated (all conditions PASS) — t04 is now the discriminating half of the regression pair. Full record: `eval-results-v2/REGRESSION-20260708-r4r6.md`; grader-bug note included (bullets-as-diff-lines nearly graded E as F/F/F — hand-verification of flagged cells is not optional).
+- **agent-zero-trust cross-references:** publish-hygiene's ingestion procedure, BOOTSTRAP-NEW-MACHINE, and SECURITY.md now point at `azt scan` (whole-repo instruction-environment screening, PyPI: agent-zero-trust) alongside `rulebench vet` (single rules files).
+
 ## 1.5.2 — 2026-07-08
 
 Linux portability fix, found by the new CI on its first real run:
