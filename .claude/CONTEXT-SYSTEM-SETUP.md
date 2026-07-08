@@ -8,7 +8,7 @@ Create a `claude-context/` folder in the project(s) where you work with Claude (
 
 ### `business-summary.md` — one page, changes rarely
 ```markdown
-# WeCheck — summary (updated 2026-07-07)
+# <YourCompany> — summary (updated YYYY-MM-DD)
 - What we do: [one sentence].
 - Stage/size: [e.g., seed, 6 people, $Xk MRR].
 - Products: [product]: [who it serves, one line each].
