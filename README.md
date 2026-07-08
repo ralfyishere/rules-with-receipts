@@ -1,64 +1,90 @@
 # Rules with Receipts
 
-**A quality pack for Claude Code — 29 skills, an operating manual, and an always-on rules snippet — shipped with the eval harness and honest A/B numbers showing exactly what it does and doesn't change.**
+[![ci](https://github.com/ralfyishere/rules-with-receipts/actions/workflows/ci.yml/badge.svg)](https://github.com/ralfyishere/rules-with-receipts/actions/workflows/ci.yml)
+[![release](https://img.shields.io/github/v/release/ralfyishere/rules-with-receipts)](https://github.com/ralfyishere/rules-with-receipts/releases)
+[![license](https://img.shields.io/github/license/ralfyishere/rules-with-receipts)](LICENSE)
 
-Every agent rules file you've seen ships on vibes: "makes your agent 10x better," zero evidence. This one ships with receipts. We built two generations of trap-prompt evals, ran them across five install configurations in fresh isolated sessions, rubric-graded them, and published the raw outputs — including the findings that don't flatter us.
+**A testable operating discipline for AI coding agents — 29 skills, 14 always-on rules, publish/closeout gates, and the eval evidence showing exactly what it does and doesn't change.**
 
-## The honest headline
+## The problem
 
-- **Baseline models are already strong.** Plain Opus 4.8 passed ~90% of our own trap tests unaided. Anyone claiming their rules file transforms model intelligence should show you their receipts.
-- **What the pack measurably changes is discipline under temptation:** in our multi-step evals, the full install was the only configuration to pass the scope-control trap 3/3 — minimal diff *plus* the adjacent bug flagged instead of silently "fixed" — while other configs missed the flag or made unrequested changes (one even claimed "no other code touched" while its own diff showed a deleted file).
-- **The always-on snippet, not the skills alone, carries that effect.** Skills-only installs missed the flag in every rep of both eval generations. Rules that must apply *inside* every task have to live in `CLAUDE.md`, always in context.
+Every agent rules file ships on vibes: "makes your agent 10x better," zero evidence. Meanwhile agents fail in *repeatable* ways — claiming work is done without running it, bundling unrequested changes, missing the hidden ninth usage and saying "fully migrated." Rules that claim to fix this are almost never tested, and most of them do nothing.
 
-Full numbers, rubrics, raw session outputs, and limitations: [`eval-results-v2/SCORES.md`](eval-results-v2/SCORES.md) · [`HARD-FAILURE-ANALYSIS.md`](eval-results-v2/HARD-FAILURE-ANALYSIS.md). Caveats included: small n outside the replicated tests, and graders share an author with the pack — everything needed for an independent regrade is in the repo.
+This pack is the opposite bet: a discipline layer that ships with its own eval harness, publishes the A/B numbers — **including the findings that don't flatter us** — and installs deterministic gates that work even when the model forgets.
 
-## What's inside
+## Who it's for
 
-| Layer | What it does |
-|---|---|
-| [`.claude/skills/`](.claude/skills/) — 29 skills | Trigger-based procedures: planning gates, debugging playbook, scope fencing, adversarial self-review, error recovery, delegation verification, and more. Catalog: [`SKILLS-OVERVIEW.md`](.claude/skills/SKILLS-OVERVIEW.md) |
-| [14 always-on rules](.claude/skills/CLAUDE-MD-SNIPPET.md) | The proven layer: read-before-edit, quote-your-verification, two-strike error recovery, flag-don't-fix — plus skill-routing and the publish gate |
-| [Operating manual](.claude/FUTURE-MODEL-OPERATING-MANUAL.md) | The habits condensed into one paste-able document |
-| [Operator guide](.claude/OPERATOR-GUIDE.md) | For humans: warning signs → exact intervention phrases, plus a second-opinion review prompt |
-| [Exemplars](.claude/exemplars/) | Real rubric-graded PASS outputs — what "good" looks like, verbatim |
-| Compounding layer | [Learnings system](.claude/learnings/README.md), [context-folder guide](.claude/CONTEXT-SYSTEM-SETUP.md), [bounded goal templates](.claude/GOAL-TEMPLATES.md), [skill-interview prompt](.claude/WORKFLOW-SKILL-INTERVIEW-PROMPT.md) |
-| [Hygiene gate](scripts/hygiene-gate.sh) | Deterministic publish guard: a PreToolUse hook blocks push/release/publish commands unless the [security scan](scripts/security-scan.sh) passed recently — safety that doesn't depend on the model remembering |
-| [`trigger-eval/`](trigger-eval/) | Skill-activation evals: do the right skills load from messy real prompts ("push it", "make sure nothing leaked")? 18/18 on run cells at n=3; results included |
-| [`eval-results/`](eval-results/) + [`eval-results-v2/`](eval-results-v2/) | The receipts: harnesses, fixtures, prompts, rubrics, raw outputs, scores |
+Anyone running Claude Code on work that matters: teams shipping with agents, solo builders who can't babysit every session, and skeptics who want to test any rules file (including this one) before trusting it.
 
-## Install
+## Install in 60 seconds
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ralfyishere/rules-with-receipts/main/bootstrap.sh | bash -s -- /path/to/your/project
+```
+
+Prefer to read before you run (we would — see [SECURITY.md](SECURITY.md)):
 
 ```bash
 git clone https://github.com/ralfyishere/rules-with-receipts.git
-cd rules-with-receipts
-./install-pack.sh /path/to/your/project
+./rules-with-receipts/install-pack.sh /path/to/your/project
 ```
 
-Idempotent, versioned, never overwrites without a backup. Details: [`INSTALL.md`](INSTALL.md) · fastest path: [`QUICK-START.md`](QUICK-START.md)
+Verify (the installer runs the first two automatically):
 
-Verify it took: open a fresh session in your project and ask *"list the skills available to you."* Then ask for a small code change and watch whether it runs the verification and quotes the output unprompted — that's the snippet working.
+```bash
+cd /path/to/your/project
+./scripts/check-pack.sh && ./scripts/closeout-check.sh && ./scripts/test-hygiene-gate.sh
+```
+
+Upgrades: `./install-pack.sh --upgrade /path/to/project` — preserves your context, config, custom skills, and CLAUDE.md notes outside the managed blocks. New computer: [BOOTSTRAP-NEW-MACHINE.md](BOOTSTRAP-NEW-MACHINE.md).
+
+## What changes after install
+
+- **Tighter scope:** asked for a flag, you get a flag — adjacent problems get *flagged in prose*, not silently "fixed."
+- **Evidence-first claims:** verification runs and its output gets quoted; "should work" is treated as a prediction, not a result.
+- **A publish gate that doesn't rely on memory:** pushes, releases, and package publishes are blocked — in Claude sessions *and* your own terminal — until the project's security scan passes.
+- **Completion discipline:** "done" requires a closeout check; unchecked things get named as unchecked.
+- **Compounding:** hard problems leave learning notes; recurring workflows get promoted into skills.
+
+Under the hood: `.claude/skills/` (29 procedures), managed CLAUDE.md blocks (operating manual + 14 always-on rules), a PreToolUse hook plus a native git pre-push hook, per-project `.quality-pack/config.env`, and starter `claude-context/` files the installer never overwrites.
+
+## The receipts
+
+Two generations of trap evals across five install configurations, fresh isolated sessions per cell, rubrics written before grading, raw outputs published:
+
+- **Baseline models are already strong.** Plain Opus 4.8 passed ~90% of our own traps unaided. Anyone claiming their rules transform model intelligence should show you receipts.
+- **What measurably moved: discipline under temptation.** The full install was the only configuration to pass the scope-control trap 3/3 (minimal diff *plus* the adjacent bug flagged). The always-on snippet carries that effect — skills alone missed the flag in every rep.
+- **Independent cross-check:** [rulebench](https://github.com/ralfyishere/rulebench)'s first published run did **not** reproduce our 3/3 headline (run-to-run variance is real; both results are published), and its [six-pack study](https://github.com/ralfyishere/rulebench/blob/main/study/STUDY.md) found the one trap that differentiated — honest completion accounting — favored the two packs that demand explicit verification, this one included.
+
+Full numbers, rubrics, raw outputs, limitations: [`eval-results-v2/SCORES.md`](eval-results-v2/SCORES.md) · [`HARD-FAILURE-ANALYSIS.md`](eval-results-v2/HARD-FAILURE-ANALYSIS.md). Every release passes a [13-item checklist](RELEASE-CHECKLIST.md) including a cold-start install test with captured exit codes ([`scripts/release-test.sh`](scripts/release-test.sh)) — CI runs it on every push.
+
+## What this is not
+
+- **Not an intelligence upgrade.** Same model, better discipline; the evidence says exactly how narrow the gains are.
+- **Not a benchmark of general capability**, and not a safety guarantee — the gates reduce specific failure classes; they don't make agents safe to leave unsupervised.
+- **Not a replacement for human review.** The operator guide (`.claude/OPERATOR-GUIDE.md`) is half the product.
+- **Not a jailbreak or prompt pack.** The opposite: it treats rules files — including itself — as untrusted code. See [SECURITY.md](SECURITY.md).
 
 ## Test it yourself (please do)
 
-The whole point is falsifiability:
-
 ```bash
 cd eval-results-v2
-REP_START=4 ./run-eval-v2.sh A,E t04 6   # baseline vs full install on the scope-control trap (reps 4–6; shipped r1–r3 evidence is immutable and the harness refuses to overwrite it)
+REP_START=4 ./run-eval-v2.sh A,E t04 6   # baseline vs full install on the scope-control trap (reps 4–6; shipped evidence is immutable and the harness refuses to overwrite it)
 ```
 
-Fresh isolated sessions per cell, fixtures verified by execution, rubrics written before grading. If you get different numbers, open an issue with your raw outputs — a disconfirming replication is a first-class contribution here (see [`CONTRIBUTING.md`](CONTRIBUTING.md)).
+Different numbers? Open an issue with your raw outputs — a disconfirming replication is a first-class contribution ([CONTRIBUTING.md](CONTRIBUTING.md)).
+
+## The Receipts System
+
+| Repo | Role |
+|---|---|
+| **rules-with-receipts** (this repo) | Install the operating discipline |
+| [rulebench](https://github.com/ralfyishere/rulebench) | Test whether any rules file actually does anything |
+| [agent-failure-modes](https://github.com/ralfyishere/agent-failure-modes) | The AFM Index: named, numbered agent failures with detection traps and evidence grades |
 
 ## Provenance
 
-Authored by Claude (Fable 5) sessions in collaboration with a human maintainer; evaluated against Claude Opus 4.8 as the target model. The pack transfers *process* — planning, verification, scope, and recovery habits — and claims nothing about changing model capability. It does not reproduce, extract, or imitate any model's internals; it's an engineering-productivity layer, with the evidence to show exactly how far that goes.
-
-The standalone eval tool shipped: [rulebench](https://github.com/ralfyishere/rulebench) points the same methodology at *any* rules file. Fair warning from its first published validation run: at n=3 on its starter traps, it did **not** reproduce this repo's 3/3 scope-trap headline (reps split PASS/PARTIAL/FAIL) — run-to-run variance on discipline behaviors is real, and both results are published. That's the receipts working as intended. rulebench's follow-up [six-pack study](https://github.com/ralfyishere/rulebench/blob/main/study/STUDY.md) (this pack + baseline + four popular public packs, three traps, n=3) found the same shape: the one trap that differentiated (honest completion accounting) favored the two packs that demand explicit verification — this one included — one trap's split was grader noise (documented with the proof), and the third saturated at baseline.
-
-## Related
-
-- [rulebench](https://github.com/ralfyishere/rulebench) — run this methodology against any rules file
-- [agent-failure-modes](https://github.com/ralfyishere/agent-failure-modes) — the AFM Index: the failure taxonomy this pack's rules target, with evidence grades
+Authored by Claude (Fable 5) sessions in collaboration with a human maintainer; evaluated against Claude Opus 4.8. The pack transfers *process* — planning, verification, scope, and recovery habits — and claims nothing about changing model capability. It does not reproduce, extract, or imitate any model's internals.
 
 ## License
 

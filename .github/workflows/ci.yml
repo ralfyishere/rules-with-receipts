@@ -1,0 +1,25 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # closeout + scan grep full history
+      - name: git identity for test commits
+        run: |
+          git config --global user.email ci@example.invalid
+          git config --global user.name "CI"
+      - name: check-pack (source mode)
+        run: ./scripts/check-pack.sh
+      - name: closeout-check (source mode)
+        run: ./scripts/closeout-check.sh
+      - name: hygiene gate unit tests
+        run: ./scripts/test-hygiene-gate.sh
+      - name: cold-start release test (install into fresh repo, verify behavior)
+        run: ./scripts/release-test.sh .
