@@ -32,10 +32,12 @@ Every shipped component: what it is, who owns it after install, what upgrades do
 | `VERSION`, `CHANGELOG.md`, `PACK-MANIFEST.md` | Version, history, this file | yes |
 | `scripts/audit-triggers.py` | Description-vs-messy-prompt activation audit | yes |
 | `scripts/security-scan-starter.sh` | The generic scan shipped to installs | yes |
+| `RELEASE-CHECKLIST.md` | Release governance: 13 items, AUTO-enforced vs MANUAL-attested | yes |
+| `scripts/release-test.sh` | Cold-start behavioral test of an install from a given pack source (checklist 4/9/10/11) | yes |
 | `trigger-eval/` | Skill-activation eval suite + published results | yes |
 | `eval-results/`, `eval-results-v2/` | The receipts: harnesses, fixtures, rubrics, raw outputs, scores (immutable once graded) | yes |
 | `scripts/security-scan.sh` | Maintainer's personal scan (private repo list, clone-based public sweep) | **no — never shipped** |
-| `scripts/mirror-public.sh`, `scripts/make-release-bundle.sh` | Mirror sync + release bundling (cut from a fresh public clone; triple-gated) | no (dev tooling) |
+| `scripts/mirror-public.sh`, `scripts/make-release-bundle.sh` | Mirror sync + release bundling — the bundle script enforces every AUTO item in RELEASE-CHECKLIST.md before cutting from a fresh public clone | no (dev tooling) |
 | `.claude/learnings/` (dev notes), `study-draft/`, `.claude/settings.local.json` | Private working assets | **no** |
 
 ## Skills shipped (one folder per slug under `.claude/skills/`)

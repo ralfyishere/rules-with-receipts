@@ -5,6 +5,7 @@ This directory IS the quality pack's source. Sessions here are usually *maintain
 - **Evidence is immutable:** never edit anything under `eval-results*/raw/`, `fixtures/`, or `prompts/` after a run has been graded. New experiments get new files.
 - **Indexes stay in sync:** after adding/renaming/removing a skill, update `SKILLS-OVERVIEW.md` and `TASK-ROUTING-GUIDE.md` in the same change, then run `scripts/check-pack.sh` — it must exit clean before committing.
 - **Regression before release:** after any substantive skill/snippet/manual change, run the regression pair — `cd eval-results-v2 && ./run-eval-v2.sh all t02,t04 3` — and grep outputs for "hit your session limit" stubs before grading (quota stubs = NOT RUN, never FAIL).
+- **Releases follow `RELEASE-CHECKLIST.md`:** `scripts/make-release-bundle.sh` enforces every AUTO item and refuses to bundle otherwise; the three MANUAL items get attested in the release notes.
 - **Version on change:** bump `VERSION` + add a `CHANGELOG.md` entry for any change to skills, snippet, manual, or installer. Installed projects upgrade via re-running `install-pack.sh`.
 - **Snippet stays ≤ ~15 rules;** this file stays lean — procedures belong in skills, not here.
 - Skill-triggering can only be tested in fresh `claude -p` sessions in temp dirs outside this tree — never via subagents (they inherit the parent's skill snapshot).

@@ -84,7 +84,8 @@ if [ $# -ge 1 ] && [ -d "$1" ]; then
   echo "== mirror drift vs $PUB =="
   # Shared files must be identical:
   SHARED="CLAUDE.md CHANGELOG.md VERSION install-pack.sh bootstrap.sh INSTALL.md
-          QUICK-START.md BOOTSTRAP-NEW-MACHINE.md PACK-MANIFEST.md
+          QUICK-START.md BOOTSTRAP-NEW-MACHINE.md PACK-MANIFEST.md RELEASE-CHECKLIST.md
+          scripts/release-test.sh
           .quality-pack/config.env.template .githooks/pre-push
           scripts/check-pack.sh scripts/hygiene-gate.sh scripts/test-hygiene-gate.sh
           scripts/audit-triggers.py scripts/security-scan-starter.sh scripts/closeout-check.sh

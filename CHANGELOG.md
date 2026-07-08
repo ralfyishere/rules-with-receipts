@@ -2,6 +2,14 @@
 
 Bump `VERSION` and add an entry here on any change to skills, the snippet, the manual, or the installer. Installed projects record their version in `.claude/PACK-VERSION`; re-running `install-pack.sh` upgrades them in place.
 
+## 1.5.1 — 2026-07-08
+
+Release governance: the pack is released like a product, and the release process enforces itself.
+- **`RELEASE-CHECKLIST.md`** (shipped): 13 items, each AUTO (enforced by the bundle script, which refuses to bundle on failure) or MANUAL (attested in release notes). Failure protocol: fix, re-run from the top.
+- **`scripts/release-test.sh`** (shipped): cold-start behavioral test — installs from a given pack source into a fresh temp git repo and verifies with captured exit codes: skills/rules parity with the shipped source (no hardcoded counts), both hooks wired, gate blocks → scan opens → gate passes, 20/20 gate tests, both verifications in installed mode, upgrade preserving context/config/custom skills/CLAUDE.md notes, machine-string grep of the installed tree.
+- **`make-release-bundle.sh`** now runs the full AUTO set in order (check-pack, gate tests, closeout source+clone, raw-URL bootstrap byte-compare, fresh security scan, release-test, identity grep, version-match) and refuses to rebuild an existing version bundle (that IS the VERSION-bump check); prints the three MANUAL items it cannot attest.
+- `dist/` gitignored; maintainer rule added to CLAUDE.md.
+
 ## 1.5.0 — 2026-07-08
 
 Productization: the pack is now a portable operating system, installable and upgradable anywhere from the public source of truth (rules-with-receipts), with a cold-start replication test as the release bar.
