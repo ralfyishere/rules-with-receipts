@@ -7,22 +7,22 @@ description: Test a load-bearing efficacy claim by running the cheapest experime
 
 ## Purpose
 
-Claims of efficacy are cheap to make and expensive to trust. An inherited bot "has a
-74% win rate"; a new rule "sharpens the model"; a vendor "returns 5–20%/month." The
+Claims of efficacy are cheap to make and expensive to trust. An inherited service "has a
+74% success rate"; a new rule "sharpens the model"; a vendor "cuts errors 40%." The
 default failure is to *reason* about whether these hold — plausibility-check them, argue
-both sides — and then build on them. Reasoning cannot distinguish a real edge from an
+both sides — and then build on them. Reasoning cannot distinguish a real effect from an
 overfit artifact; only measurement can. This skill makes the reflex: when a claim is
 load-bearing, find the cheapest experiment that could *falsify* it, run it against real
 data with confidence intervals, and let the result decide — before you invest in it or
 ship it.
 
-It is the difference between "this signal looks predictive" and "over 52,000 candles it's
+It is the difference between "this metric looks predictive" and "over 52,000 samples it's
 49.8%, CI excludes nothing"; between "the new rule should help" and "14-rule flagged
 9/12, 15-rule 1/9 — it hurt." Both verdicts were unavailable to argument and decisive to data.
 
 ## When to use this skill
 
-- About to rely on an inherited/abandoned system's claimed edge (revival, due diligence).
+- About to rely on an inherited/abandoned system's claimed advantage (revival, due diligence).
 - About to ship a change to something whose value is empirically established (a proven
   prompt, snippet, model, config, few-shot set) — verify the change didn't erode it.
 - A performance number appears with no committed, re-runnable artifact behind it
@@ -94,8 +94,8 @@ the larger work once the premise survives.
 
 ## Provenance and maintenance
 
-Added 2026-07 after two independent wins in one session: a directional trading thesis (30+
-signals, a 74% docstring win rate) was falsified for $0 on free public data — the edge was
+Added 2026-07 after two independent wins in one session: a load-bearing efficacy claim that
+looked impressive on its face was falsified for $0 on real public data — the effect was
 overfit noise — and a snippet change believed to help was shown by a controlled A/B to have
 eroded the pack's one proven behavioral result. In both, argument had been inconclusive and
 a cheap experiment was decisive. Re-verify by the negative test: on the next "does X work?"
