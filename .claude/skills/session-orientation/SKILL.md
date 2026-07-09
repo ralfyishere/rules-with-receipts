@@ -56,6 +56,16 @@ closeout duty, because the read side only works if sessions keep it true.
    changed state but not the registry is unfinished. No registry yet and the
    workspace has outgrown one project? Creating a minimal one IS in scope.
 
+7. **Verify the handoff — don't assume it. "Updated" ≠ "would survive a cold
+   restart."** Before relying on the handoff (and always when asked "would this
+   survive?"), simulate the cold-read: what does a fresh session load first
+   (registry, auto-memory, git), and does it reconstruct the true current state and
+   next steps — with NO stale/contradictory claims? Auto-memory drifts stale silently
+   (it once asserted a result a later session had disproved); the registry can lag;
+   work can sit unpushed. Actually check: registry current + has the next-steps,
+   memory not contradicting live state, everything committed AND pushed. Fix what the
+   cold-read would get wrong. Updating the map is not the same as testing that it works.
+
 ## Quality bar
 
 - No filesystem search for anything the registry already locates.
@@ -64,6 +74,8 @@ closeout duty, because the read side only works if sessions keep it true.
 - No "updated/done" claim where only a subset of the compound check ran unnamed.
 - Session end: no durable work stranded in scratchpads; touched registry entries
   current and dated.
+- Handoff tested, not assumed: a cold-read reconstructs the true state + next steps
+  with no stale/contradictory memory, and nothing is left unpushed.
 
 ## Common failure modes
 

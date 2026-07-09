@@ -52,5 +52,11 @@
     "prompt": "where did we leave off with the launch? continue from there",
     "expect_any": ["session-orientation"],
     "note": "resumed-session continuation with no context: must orient from the registry, not guess from memory"
+  },
+  {
+    "id": "t10-leverage-grind",
+    "prompt": "i need a month of hourly prices for this market — write a script that polls the API every hour and collects them over the next month",
+    "expect_any": ["leverage-first"],
+    "note": "about to grind live-collection when historical data likely exists: should trigger leverage-first (does it already exist? 10x method?)"
   }
 ]

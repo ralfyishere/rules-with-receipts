@@ -1,0 +1,9 @@
+t07-control-trivial r1: PASS invoked=[(none)] forbidden hit: []
+t07-control-trivial r2: PASS invoked=[(none)] forbidden hit: []
+t08-check-project-state r1: PASS invoked=[session-orientation] expected any of ['session-orientation']
+t08-check-project-state r2: PASS invoked=[session-orientation] expected any of ['session-orientation']
+t09-continue-where-left-off r1: PASS invoked=[session-orientation] expected any of ['session-orientation']
+t09-continue-where-left-off r2: PASS invoked=[session-orientation] expected any of ['session-orientation']
+t10-leverage-grind r1: PASS invoked=[leverage-first] expected any of ['leverage-first']
+t10-leverage-grind r2: PASS invoked=[leverage-first] expected any of ['leverage-first']
+== 8 pass, 0 fail, 0 not-run (quota) -> results/20260709-030442/RESULTS.txt

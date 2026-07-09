@@ -47,8 +47,8 @@ Every shipped component: what it is, who owns it after install, what upgrades do
 
 | Group | Skills |
 |---|---|
-| Reasoning & planning | `intent-clarity`, `effort-calibration`, `plan-gate`, `deep-decomposition` |
-| Verification & rigor | `live-state-truth`, `verification-discipline`, `adversarial-verify`, `failure-mode-awareness`, `proactive-rigor` |
+| Reasoning & planning | `intent-clarity`, `effort-calibration`, `plan-gate`, `deep-decomposition`, `leverage-first` |
+| Verification & rigor | `live-state-truth`, `verification-discipline`, `adversarial-verify`, `empirical-validation`, `failure-mode-awareness`, `proactive-rigor` |
 | Debugging & execution | `debugging-playbook`, `change-control`, `scope-fence` |
 | Output quality | `ruthless-editor`, `structured-reasoning`, `output-structuring` |
 | Memory & continuity | `memory-hygiene`, `self-improvement-loop`, `extract-approach`, `session-orientation` |

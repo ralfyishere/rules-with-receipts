@@ -48,6 +48,8 @@ Maps common request shapes to the skills that should drive them. Skills listed i
 | All your "options" share one core mechanism | `divergent-ideation` — force different axes before converging |
 | You're about to say "this should work" | `live-state-truth` — run it instead |
 | High confidence, nothing verified | `adversarial-verify` — that mismatch is the trigger |
+| About to rely on/ship "X works" (an edge, a metric, a rule change) that nobody measured | `empirical-validation` — run the cheapest experiment that could falsify it before investing |
+| About to build a tool / collect data the slow way / grind a single track | `leverage-first` — ask the four questions (does it exist? 10× method? compose? best question?) before the effort |
 | User corrected you | `self-improvement-loop` — AAR before retry, lesson applied visibly |
 | Just solved something hard with a reusable pattern | `extract-approach` — write the learning note to `.claude/learnings/` before calling it done |
 | Resumed / compacted / very long session | `memory-hygiene` — re-anchor on live state before continuing |

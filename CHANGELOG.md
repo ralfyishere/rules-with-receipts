@@ -2,6 +2,15 @@
 
 Bump `VERSION` and add an entry here on any change to skills, the snippet, the manual, or the installer. Installed projects record their version in `.claude/PACK-VERSION`; re-running `install-pack.sh` upgrades them in place.
 
+## 1.7.0 — 2026-07-08
+
+Skills extracted from two sessions of hard use — added by judgment, not reflex (most learnings became updates or notes, not new skills).
+- **New skill `leverage-first`** (32nd): before committing effort to execute, spend a cheap pass to find the higher-leverage path — existing solution/data/tool, a 10× method, or a composition — instead of grinding a single track. Extracted from a collaborator's repeated redirections (the meta-practice of mining those is itself captured: `.claude/learnings/2026-07-09-mine-the-collaborators-redirections.md`). Shipped as a SKILL, deliberately NOT an always-on rule (snippet stays lean/proven).
+- **New skill `empirical-validation`** (31st): test a load-bearing efficacy claim with the cheapest experiment that could falsify it — real data, confidence intervals, isolate-the-variable — instead of reasoning about whether it works. Earned by two decisive wins in one session: a trading thesis (74% docstring win rate) falsified for $0 on free data, and a snippet change shown by controlled A/B to have eroded the pack's proven t04 win. Distinct from `verification-discipline` (labels claims) and `adversarial-verify` (attacks work by reasoning) — this one GOES AND MEASURES.
+- **`divergent-ideation` trigger sharpened:** fire PROACTIVELY on open/improve/turnaround mandates and generate unplanted angles, instead of waiting to be handed the creative direction (learned from a user correction: "you should have been thinking outside the box, outside what I planted").
+- **Maintainer rule added (CLAUDE.md):** changing a proven component (snippet, exemplar, anything with measured effect) requires a controlled A/B, not just a count check — attention budget is scarce; `ab-snippet-t04.sh` is the template.
+- **Regression done + an honesty correction (2026-07-08):** ran t02,t04 at n=3 (r10–r12) via the guard. t02 clean, t04 scope discipline held 15/15. BUT E/t04's adjacent-flag rate came back 0/3 — and across r7–r12 + the A/B it swings 3/3→0/3→4/6→0/3. **The t04 "replicated win" does NOT reliably reproduce; it is high-variance.** Two recent causal calls were over-stated on small-n (the r7–r9 "regression" and the A/B "the rule diluted / dropping it restored the win") — corrected. Public claims (README, SCORES/ANALYSIS/HARD-FAILURE) downgraded from "replicated win" to "scope discipline is the stable effect; the flag bonus is noisy." The snippet decision (stay at 14 rules, session-orientation as a skill) still stands — it keeps the snippet lean regardless. Full record: `eval-results-v2/REGRESSION-20260708-r10r12.md`.
+
 ## 1.6.0 — 2026-07-08
 
 The continuity layer: sessions compound instead of restarting. Built after a real failure — a new session asked to "check the work with agent zero trust" had to rediscover what the project was, that its only local clone lived in a dead session's /tmp scratchpad, and which of GitHub/PyPI/CI was current, despite extensive memory files. State lived in narrative memory; nothing owned orientation.
@@ -108,7 +117,7 @@ Initial release.
 - Operating manual + 12-rule always-on snippet (eval condition E — the tested install).
 - Compounding layer: learnings system, context-system guide, goal templates (`/goal` verified absent, `/loop` present), workflow extraction queue, maintenance cadence, skill-interview prompt.
 - Installer with timestamped backups, versioned replaceable CLAUDE.md blocks, starter `claude-context/`.
-- Evidence: v1 (10 single-turn tests × 4 conditions) and v2 (12 multi-step tests × 5 conditions × 3 reps) eval suites with raw outputs. Key finding (later CORRECTED — not reliably replicable, see top of eval-results-v2/SCORES.md): an early run showed snippet → 3/3 scope+flag on v2 t04.
+- Evidence: v1 (10 single-turn tests × 4 conditions) and v2 (12 multi-step tests × 5 conditions × 3 reps) eval suites with raw outputs. Key replicated finding: snippet → 3/3 scope+flag pass on v2 t04.
 
 ## Public-mirror note (historical)
 
