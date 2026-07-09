@@ -86,10 +86,14 @@ cell, rubrics written before grading, raw outputs published:
 
 - **Baseline models are already strong.** Plain Opus 4.8 passed ~90% of our own traps unaided.
   Anyone claiming their rules transform model intelligence should show you receipts.
-- **What measurably moved: discipline under temptation.** The full install was the only
-  configuration to pass the scope-control trap 3/3 (minimal diff *plus* the adjacent bug
-  flagged). The always-on snippet carries that effect — skills alone missed the flag in every
-  rep.
+- **What measurably moved: scope discipline.** With the pack installed, sessions held the
+  scope line under temptation — they didn't refactor the tempting adjacent code — consistently
+  across runs. An early n=3 run *also* showed the full install flagging the adjacent bug 3/3
+  where others missed, and we headlined that as a "replicated win." **Correction:** our own
+  higher-n re-runs (r7–r12) did **not** reproduce that separation — the adjacent-flag *bonus*
+  swings run-to-run (3/3 → 0/3 → 4/6 → 0/3) and is high-variance, not reliable. We over-called
+  it and are saying so (`eval-results-v2/REGRESSION-20260708-r10r12.md`). Honest read: the
+  demonstrated effect is scope/evidence discipline; the flag bonus is noisy.
 - **Independent cross-check:** [rulebench](https://github.com/ralfyishere/rulebench)'s first
   published run did **not** reproduce our 3/3 headline (run-to-run variance is real; both
   results are published), and its [six-pack

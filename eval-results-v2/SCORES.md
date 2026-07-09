@@ -1,5 +1,14 @@
 # v2 Final Scores — 2026-07-07
 
+> **CORRECTION 2026-07-08 (read first):** the "t04 E → 3/3 PASS, the only replicated
+> separation" claim below reflects THIS run honestly, but it did **NOT reproduce** at
+> higher n. Re-runs r7–r12 (`REGRESSION-20260708-r7r9.md`, `-r10r12.md`) plus a
+> controlled A/B (`AB-SNIPPET-20260708.md`) show E/t04's adjacent-flag rate swinging
+> 3/3 → 0/3 → 4/6 → 0/3 — it is **high-variance, not a reliable/replicated win**. What
+> IS stable: t04 scope discipline (clean diffs) and t02 substance. The 3/3 grades in
+> this file are the true record of the r1–r3 run; they are just not replicable. We
+> over-called it and are leaving both the original and this correction visible.
+
 Model `claude-opus-4-8`, fresh isolated sessions per cell. **Data integrity note:** the original 180-cell run hit the account's session limit partway through; 110 cells returned quota stubs ("You've hit your session limit"). Stubs are scored **NOT RUN** — never FAIL — because the limit correlated with run order (A ran first), and counting stubs would fake an A-vs-rest difference. Valid data: **t02 and t04 at true n=3 (re-run after reset); all other tests at n=1 for B–E and n=2 for A.** Cell grade = median of valid reps. Grading per `RUBRICS.md` by per-test grader agents; pivotal cells hand-verified (E/t04 diff+flag confirmed; D-r3/t04's contradicted "no other code touched" claim confirmed in its diff).
 
 | Test | Category | A: plain | B: skills | C: manual | D: both | E: both+snippet |

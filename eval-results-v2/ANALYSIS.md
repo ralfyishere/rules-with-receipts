@@ -17,7 +17,7 @@ Short companion to `SCORES.md` (table, integrity notes) and `HARD-FAILURE-ANALYS
 | Best condition | D (skills+manual) 10/10 | B/D 11.5 by totals; **E uniquely replicated on t04** |
 | Tests that discriminate | 2/10 (11, 15) | 2/12 (02, 04) |
 | Nature of the pack's edge | Delivery completeness (usable artifact) | Standing constraints (scope, flags, quoted evidence) |
-| Only replicated effect | — (all n=1) | **Snippet → t04 3/3 PASS** |
+| Only replicated effect | — (all n=1) | **Snippet → t04 3/3 PASS** (CORRECTED 2026-07-08: did NOT reproduce at higher n — high-variance, not replicated; see `REGRESSION-20260708-r10r12.md`) |
 
 Consistent story across both generations: raw problem-solving is baseline-strong; the pack's real, measurable contribution is a narrow band of discipline behaviors — and that band is delivered by the *always-on snippet*, not by skill triggering alone (B missed the t04 flag in all reps of both generations).
 

@@ -28,7 +28,9 @@ Plain Opus 4.8 passed 10 of 12 tests with no pack at all: it made the non-naive 
 
 ## 5. Does the always-on snippet materially improve results?
 
-**Yes — it is the only intervention with a replicated effect.** E vs D differs only by the snippet; E went 3/3 PASS on t04 where D went PARTIAL/PARTIAL/FAIL. Combined with B's repeated flag-misses across both eval generations, the mechanism is consistent: standing-constraint rules work when always in context, not when gated behind per-task skill triggering. Counterweight: E showed two noise-level PARTIALs elsewhere (t02, t12), so the snippet's demonstrated win is specific to scope/flag behavior, not a global lift.
+**CORRECTED 2026-07-08:** this claimed "replicated effect" did NOT hold up — higher-n re-runs (r7–r12) and a controlled A/B show E/t04's flag rate swinging 3/3 → 0/3 → 4/6 → 0/3, i.e. high-variance, not replicated (see `REGRESSION-20260708-r10r12.md`). The stable effects are t04 scope discipline and t02 substance, not the adjacent-flag bonus. Original (now-corrected) claim preserved below for the record:
+
+**[SUPERSEDED] Yes — it is the only intervention with a replicated effect.** E vs D differs only by the snippet; E went 3/3 PASS on t04 where D went PARTIAL/PARTIAL/FAIL. Combined with B's repeated flag-misses across both eval generations, the mechanism is consistent: standing-constraint rules work when always in context, not when gated behind per-task skill triggering. Counterweight: E showed two noise-level PARTIALs elsewhere (t02, t12), so the snippet's demonstrated win is specific to scope/flag behavior, not a global lift.
 
 ## 6. Changes to make, based only on v2 evidence
 

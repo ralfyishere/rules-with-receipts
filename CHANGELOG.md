@@ -108,7 +108,7 @@ Initial release.
 - Operating manual + 12-rule always-on snippet (eval condition E — the tested install).
 - Compounding layer: learnings system, context-system guide, goal templates (`/goal` verified absent, `/loop` present), workflow extraction queue, maintenance cadence, skill-interview prompt.
 - Installer with timestamped backups, versioned replaceable CLAUDE.md blocks, starter `claude-context/`.
-- Evidence: v1 (10 single-turn tests × 4 conditions) and v2 (12 multi-step tests × 5 conditions × 3 reps) eval suites with raw outputs. Key replicated finding: snippet → 3/3 scope+flag pass on v2 t04.
+- Evidence: v1 (10 single-turn tests × 4 conditions) and v2 (12 multi-step tests × 5 conditions × 3 reps) eval suites with raw outputs. Key finding (later CORRECTED — not reliably replicable, see top of eval-results-v2/SCORES.md): an early run showed snippet → 3/3 scope+flag on v2 t04.
 
 ## Public-mirror note (historical)
 
