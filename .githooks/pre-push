@@ -11,6 +11,7 @@ TTL_MIN="${HYGIENE_GATE_TTL_MIN:-60}"
 
 fresh() {
   [ -f "$MARKER" ] || return 1
+  command -v python3 >/dev/null 2>&1 || return 1  # age unknowable -> not fresh
   AGE=$(( ( $(date +%s) - $(python3 -c 'import os,sys;print(int(os.path.getmtime(sys.argv[1])))' "$MARKER") ) / 60 ))
   [ "$AGE" -le "$TTL_MIN" ]
 }

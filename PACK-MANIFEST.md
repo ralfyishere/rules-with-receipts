@@ -16,7 +16,7 @@ Every shipped component: what it is, who owns it after install, what upgrades do
 | `.quality-pack/config.env` | Project-local settings (owner, identities, patterns, mirror, enforcement) | project | never touched | template: yes |
 | `.claude/FUTURE-MODEL-OPERATING-MANUAL.md` | Source of the CLAUDE.md manual block | pack | replaced | yes |
 | `.claude/OPERATOR-GUIDE.md`, `.claude/MAINTENANCE-CADENCE.md`, `.claude/CONTEXT-SYSTEM-SETUP.md`, `.claude/GOAL-TEMPLATES.md`, `.claude/OPUS-IMPROVEMENT-EVALS.md`, `.claude/WORKFLOW-SKILL-INTERVIEW-PROMPT.md` | Operating docs (human side, upkeep, context system, goal patterns, v1 eval spec, skill interview) | pack | kept if present (edit freely; delete to receive fresh copy) | yes |
-| `.claude/WORKFLOW-EXTRACTION-QUEUE.md` | Recurring-workflow promotion queue | project | kept | yes (seed) |
+| `.claude/WORKFLOW-EXTRACTION-QUEUE.md` | Recurring-workflow promotion queue | project | kept | seed only — mirror ships `WORKFLOW-EXTRACTION-QUEUE.seed.md` as this file; the filled-in working copy never leaves the dev repo |
 | `.claude/exemplars/` | Rubric-graded PASS outputs — the imitation standard | pack | kept if present | yes |
 | `.claude/learnings/README.md`, `_template.md` | Learning-note system | pack | kept if present | yes |
 | `.claude/learnings/<your notes>` | The project's own learnings | project | never touched | no |
@@ -40,6 +40,8 @@ Every shipped component: what it is, who owns it after install, what upgrades do
 | `scripts/security-scan.sh` | Maintainer's personal scan (private repo list, clone-based public sweep) | **no — never shipped** |
 | `scripts/mirror-public.sh`, `scripts/make-release-bundle.sh` | Mirror sync + release bundling — the bundle script enforces every AUTO item in RELEASE-CHECKLIST.md before cutting from a fresh public clone | no (dev tooling) |
 | `.claude/learnings/` (dev notes), `study-draft/`, `.claude/settings.local.json` | Private working assets | **no** |
+| `ACTIVE-PROJECTS.md`, `SESSION-START.md` | Continuity layer: machine-specific project registry + orientation procedure (the generic procedure ships as the `session-orientation` skill) | **no — never shipped** |
+| `scripts/registry-check.sh` | Registry drift check: every registry entry vs live GitHub/PyPI/clone state | no (dev tooling) |
 
 ## Skills shipped (one folder per slug under `.claude/skills/`)
 
@@ -49,7 +51,7 @@ Every shipped component: what it is, who owns it after install, what upgrades do
 | Verification & rigor | `live-state-truth`, `verification-discipline`, `adversarial-verify`, `failure-mode-awareness`, `proactive-rigor` |
 | Debugging & execution | `debugging-playbook`, `change-control`, `scope-fence` |
 | Output quality | `ruthless-editor`, `structured-reasoning`, `output-structuring` |
-| Memory & continuity | `memory-hygiene`, `self-improvement-loop`, `extract-approach` |
+| Memory & continuity | `memory-hygiene`, `self-improvement-loop`, `extract-approach`, `session-orientation` |
 | Domain & agentic | `code-reconnaissance`, `error-recovery`, `delegation-discipline`, `research-methodology`, `prompt-engineering`, `divergent-ideation`, `product-thinking`, `human-handoff`, `open-mandate` |
 | Boundaries & delegation of judgment | `publish-hygiene` |
 | Meta | `frontier-workflow-mode` |

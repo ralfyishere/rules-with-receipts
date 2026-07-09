@@ -73,7 +73,7 @@ Bad (Depth mismatch): User: "rename this variable" → Model writes a 5-part pla
 Good (Depth 2): User: "add rate limiting to the API"
 ```
 ## Plan: Add rate limiting to the public API
-**Success criteria:** Requests over the limit get 429; under-limit traffic unaffected; existing tests still pass.
+**Success criteria:** New test: burst over the limit returns 429. New test: same burst under the limit returns all 200s. Existing suite stays green (run it, quote the summary line).
 **Constraints:** No new external service (inferred: single-node deploy).
 **Assumptions:** Middleware layer exists where this can hook in — verify first.
 **Risks:** Breaking auth middleware ordering → check middleware chain before inserting.

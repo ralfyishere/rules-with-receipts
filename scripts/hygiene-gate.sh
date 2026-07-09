@@ -7,6 +7,11 @@
 # when prompts are oblique ("push it"). This hook does not depend on judgment.
 # See .claude/skills/publish-hygiene/ for the full procedure.
 #
+# SCOPE: this hook sees only Claude's Bash tool. .githooks/pre-push covers
+# git pushes from any terminal. Neither covers non-git surfaces (GitHub web
+# UI, API uploads from other tools) — use branch protection + required
+# status checks on the remote as the backstop for those.
+#
 # Wire-up (.claude/settings.json): PreToolUse matcher "Bash" -> this script.
 # Input: hook JSON on stdin (.tool_input.command). Exit 0 = allow, exit 2 =
 # block (stderr is shown to the model). Marker: .claude/.hygiene-gate-pass,
@@ -21,9 +26,16 @@ QP_ROOT="${CLAUDE_PROJECT_DIR:-.}"
 MARKER="$QP_ROOT/.claude/.hygiene-gate-pass"
 MARKER_TTL_MIN="${HYGIENE_GATE_TTL_MIN:-${QP_GATE_TTL_MIN:-60}}"
 
-CMD=$(python3 -c 'import json,sys
+# Fail-closed-for-risky: without python3 we can't parse the hook JSON, so we
+# match the RISKY pattern against the raw stdin instead — over-blocking is the
+# chosen failure direction; everyday commands still pass (no match in raw JSON).
+if command -v python3 >/dev/null 2>&1; then
+  CMD=$(python3 -c 'import json,sys
 try: print(json.load(sys.stdin).get("tool_input",{}).get("command",""))
 except Exception: print("")' 2>/dev/null)
+else
+  CMD=$(cat)
+fi
 
 # Public-boundary commands. Deliberately narrow: everyday git (status, add,
 # commit, diff) never matches; only crossings of the machine boundary do.
@@ -36,10 +48,16 @@ echo "$CMD" | grep -qiE "$RISKY" || exit 0
 
 if [ -f "$MARKER" ]; then
   # mtime via python3: GNU stat -f "succeeds" with filesystem info, so a
-  # stat -f || stat -c fallback silently breaks on Linux.
-  AGE_MIN=$(( ( $(date +%s) - $(python3 -c 'import os,sys;print(int(os.path.getmtime(sys.argv[1])))' "$MARKER") ) / 60 ))
-  [ "$AGE_MIN" -le "$MARKER_TTL_MIN" ] && exit 0
-  STALE=" (marker is ${AGE_MIN}min old; TTL ${MARKER_TTL_MIN}min)"
+  # stat -f || stat -c fallback silently breaks on Linux. If python3 is
+  # unavailable the mtime is unknowable -> treat the marker as stale (block).
+  MT=$(python3 -c 'import os,sys;print(int(os.path.getmtime(sys.argv[1])))' "$MARKER" 2>/dev/null || echo "")
+  if [ -n "$MT" ]; then
+    AGE_MIN=$(( ( $(date +%s) - MT ) / 60 ))
+    [ "$AGE_MIN" -le "$MARKER_TTL_MIN" ] && exit 0
+    STALE=" (marker is ${AGE_MIN}min old; TTL ${MARKER_TTL_MIN}min)"
+  else
+    STALE=" (marker age unknowable — python3 missing; failing closed)"
+  fi
 else
   STALE=""
 fi

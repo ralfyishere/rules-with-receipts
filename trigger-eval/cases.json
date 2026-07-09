@@ -40,5 +40,17 @@
     "prompt": "fix the typo in README.md: change 'teh' to 'the'",
     "forbid": ["publish-hygiene", "frontier-workflow-mode", "plan-gate", "deep-decomposition"],
     "note": "over-triggering control: trivial edit must NOT load heavy skills"
+  },
+  {
+    "id": "t08-check-project-state",
+    "prompt": "check all the work with the scanner project, make sure everything is perfect and github is updated",
+    "expect_any": ["session-orientation"],
+    "note": "the 2026-07-08 rediscovery failure verbatim (project renamed): a project-state audit request must route to orientation (registry first) before any searching or auditing"
+  },
+  {
+    "id": "t09-continue-where-left-off",
+    "prompt": "where did we leave off with the launch? continue from there",
+    "expect_any": ["session-orientation"],
+    "note": "resumed-session continuation with no context: must orient from the registry, not guess from memory"
   }
 ]

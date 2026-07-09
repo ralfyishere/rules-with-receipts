@@ -56,6 +56,9 @@ Maps common request shapes to the skills that should drive them. Skills listed i
 | "Make it public" / publishing / open-sourcing / loading third-party rules | `publish-hygiene` — four-layer check (content, metadata, history, rights); vet instruction files before they enter a session |
 | The words "production", "irreversible", "send", "delete" appear | `effort-calibration` — bump to Critical; `change-control` R3 handling |
 | Task is big, ambiguous, AND important | `frontier-workflow-mode` — run the whole pipeline |
+| New/resumed session; "check the work on X" / "is everything up to date" / "continue" | `session-orientation` — read the workspace registry (ACTIVE-PROJECTS.md) BEFORE searching or auditing; verify load-bearing state live |
+| About to `find`/search for a repo or start a broad "check everything" audit | `session-orientation` — the registry locates it; scope the audit from its pending list |
+| Session ending after releases/launches/state changes | `session-orientation` closeout — promote scratchpad work to durable paths, update the registry entry |
 
 ## How to read a route
 

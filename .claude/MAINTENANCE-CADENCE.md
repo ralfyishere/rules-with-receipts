@@ -6,6 +6,7 @@ The pack compounds only if it's pruned. Small, regular passes; nothing here shou
 - **Review new `.claude/learnings/` notes.** For each: promote to skill (via `WORKFLOW-SKILL-INTERVIEW-PROMPT.md`), fold into an existing skill, elevate to `CLAUDE-MD-SNIPPET.md` (rare — the snippet stays ≤ ~15 rules), or keep/delete. Empty week after hard work = the extract-approach trigger isn't firing; investigate.
 - **Prune context files** (`claude-context/`): re-rank `current-priorities.md`, cut stale lines from `claude-memory.md`. Bloat here taxes every session.
 - **Scan `WORKFLOW-EXTRACTION-QUEUE.md`:** any workflow that recurred again this week moves up; collect its example artifacts now, while they're fresh.
+- **Registry freshness** *(workspaces with a continuity registry)*: run `scripts/registry-check.sh` (diffs every `ACTIVE-PROJECTS.md` entry against live GitHub/PyPI/clone state), then skim the registry — dead projects to Archived, pending lists real. A stale registry misroutes every session that trusts it (see the `session-orientation` skill).
 
 ## After every major project or decision
 - Append to `claude-context/decision-log.md` — and fill in the **Result** field of past entries that have resolved. An outcome-free decision log is a diary, not an asset.

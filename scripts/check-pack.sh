@@ -27,7 +27,7 @@ for f in skills:
 sfx = ('-verify','-gate','-clarity','-calibration','-decomposition','-truth','-discipline',
        '-awareness','-rigor','-playbook','-control','-fence','-editor','-reasoning',
        '-structuring','-hygiene','-loop','-mode','-reconnaissance','-recovery',
-       '-methodology','-engineering','-ideation','-thinking','-approach')
+       '-methodology','-engineering','-ideation','-thinking','-approach','-orientation')
 docs = glob.glob('.claude/skills/*.md') + glob.glob('.claude/*.md') + glob.glob('.claude/learnings/*.md')
 docs += glob.glob('.claude/exemplars/README.md')
 # In an installed project, root *.md files belong to the project; only CLAUDE.md

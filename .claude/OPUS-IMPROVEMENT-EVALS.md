@@ -10,7 +10,7 @@ Practical trap prompts to test whether the skill library and operating manual ac
 4. **Condition D — Both:** skills copy + manual-as-CLAUDE.md in the same directory.
 5. **Condition E (optional) — D + snippet:** append the `CLAUDE-MD-SNIPPET.md` block to the CLAUDE.md. Standing-constraint tests (4, 10, 12, 15) are where E should separate from B.
 
-Isolation matters: condition directories must live *outside* any tree containing this pack (ancestor `.claude/` discovery would contaminate Condition A). A runnable harness implementing exactly this lives in `eval-results/run-eval.sh`.
+Isolation matters: condition directories must live *outside* any tree containing this pack (ancestor `.claude/` discovery would contaminate Condition A). **Current harness: `eval-results-v2/run-eval-v2.sh`** (multi-turn, workspace-isolated, refuses to overwrite existing evidence cells — see `eval-results-v2/README.md` for the REP_START re-run form and the quota-stub rule: grep outputs for provider-limit text before grading; stubs are NOT RUN, never FAIL). The v1 harness `eval-results/run-eval.sh` is superseded — v1 saturated (plain Opus passed 8/10) and measures the model, not the pack.
 5. Same model, same settings across conditions. Run each test 2–3 times per condition — single runs are noise. In Claude Code, use fresh headless runs (`claude -p "<prompt>"` in the project directory) — subagents spawned from an existing session inherit that session's skill snapshot and do NOT test discovery (verified 2026-07).
 6. Score each run against the rubric (Pass / Partial / Fail). Compare pass *rates*, not anecdotes.
 

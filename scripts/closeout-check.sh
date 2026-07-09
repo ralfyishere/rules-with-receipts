@@ -72,8 +72,16 @@ TOPVER=$(grep -m1 -Eo '^## [0-9]+\.[0-9]+\.[0-9]+' CHANGELOG.md | awk '{print $2
 # --- 3. installer must not hardcode counts (they live in ground truth only) ---
 grep -qE "[0-9]+ skills" install-pack.sh && note "install-pack.sh hardcodes a skill count — keep it count-free"
 
+# --- 3b. continuity registry: exists and not stale on this repo's own entry ---
+if [ -f ACTIVE-PROJECTS.md ]; then
+  grep -q "Version:.*$VERSION" ACTIVE-PROJECTS.md \
+    || note "ACTIVE-PROJECTS.md fable-skills entry does not list version $VERSION (registry went stale — update it at closeout)"
+else
+  note "ACTIVE-PROJECTS.md missing — the continuity registry is load-bearing (see SESSION-START.md)"
+fi
+
 # --- 4. every component in scripts/ + trigger-eval appears in PACK-MANIFEST ---
-for comp in hygiene-gate.sh security-scan.sh audit-triggers.py check-pack.sh closeout-check.sh mirror-public.sh; do
+for comp in hygiene-gate.sh security-scan.sh audit-triggers.py check-pack.sh closeout-check.sh mirror-public.sh registry-check.sh; do
   [ -e "scripts/$comp" ] && ! grep -q "$comp" PACK-MANIFEST.md && note "PACK-MANIFEST.md missing scripts/$comp"
 done
 grep -q "trigger-eval" PACK-MANIFEST.md || note "PACK-MANIFEST.md missing trigger-eval/"

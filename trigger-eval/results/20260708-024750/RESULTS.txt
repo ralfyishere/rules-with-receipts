@@ -1,0 +1,4 @@
+t07-control-trivial r1: PASS invoked=[(none)] forbidden hit: []
+t07-control-trivial r2: PASS invoked=[(none)] forbidden hit: []
+t07-control-trivial r3: PASS invoked=[(none)] forbidden hit: []
+== 3 pass, 0 fail, 0 not-run (quota) -> results/20260708-024750/RESULTS.txt

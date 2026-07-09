@@ -1,6 +1,6 @@
 # Skills Overview
 
-A portable, project-agnostic quality pack: 29 skills that improve **process** — planning, verification, editing, debugging, decision-making — on any project. 18 form the core rigor set; 7 were added in an expansion pass for high-recurrence domains (codebase work, error recovery, delegation, research, prompts, ideation, product decisions); `extract-approach` adds the persistence layer. They add discipline, not capability; see `HOW-TO-USE-WITH-OPUS.md` for limitations.
+A portable, project-agnostic quality pack: 30 skills that improve **process** — planning, verification, editing, debugging, decision-making — on any project. 18 form the core rigor set; 7 were added in an expansion pass for high-recurrence domains (codebase work, error recovery, delegation, research, prompts, ideation, product decisions); `extract-approach` and `session-orientation` add the persistence and continuity layers. They add discipline, not capability; see `HOW-TO-USE-WITH-OPUS.md` for limitations.
 
 Beyond the skills, the pack has companion layers (each one file, at `.claude/`): always-on rules (`skills/CLAUDE-MD-SNIPPET.md`), durable notes (`learnings/`), user-world context (`CONTEXT-SYSTEM-SETUP.md`), bounded objectives (`GOAL-TEMPLATES.md`), the skill pipeline (`WORKFLOW-EXTRACTION-QUEUE.md`), and upkeep (`MAINTENANCE-CADENCE.md`).
 
@@ -31,6 +31,7 @@ Beyond the skills, the pack has companion layers (each one file, at `.claude/`):
 | `memory-hygiene` | Classify and re-verify session context | Long/resumed sessions; after compaction; contradictions with memory |
 | `self-improvement-loop` | Convert corrections and failures into applied lessons | User corrections; failed attempts; recurring friction; end of big tasks |
 | `extract-approach` | Persist the reusable approach as a note in `.claude/learnings/` | After solving anything non-trivial that future sessions will face again |
+| `session-orientation` | Registry first, canonical paths only, registry updated at closeout | New/resumed session in a multi-project workspace; "check the work on X"; before any broad audit |
 | **Domain & agentic (expansion pass)** | | |
 | `code-reconnaissance` | Understand code, conventions, and blast radius before changing it | Any feature/fix in a codebase you didn't write this session; "where should this go" |
 | `error-recovery` | Stop the spiral: stabilize, revert-or-fix-forward deliberately | Second consecutive failed fix; newly broken state; patch-on-patch layering |
@@ -55,7 +56,8 @@ Beyond the skills, the pack has companion layers (each one file, at `.claude/`):
 - **Researching things:** `deep-decomposition` → `research-methodology` → `verification-discipline` → `output-structuring`.
 - **Generating options:** `divergent-ideation` (diverge) → `structured-reasoning` (converge) → `product-thinking` if the options are product ideas.
 - **Agentic fan-out:** `deep-decomposition` (partitions) → `delegation-discipline` (briefs + verification) → `adversarial-verify` on the synthesis.
-- **Standing constraints (always on, no invocation needed):** `scope-fence`, `change-control`, `verification-discipline`, `memory-hygiene`.
+- **Standing constraints vs always-on rules (two different things):** the four *standing-constraint skills* — `scope-fence`, `change-control`, `verification-discipline`, `memory-hygiene` — apply inside nearly every task and never need explicit invocation. Separately, the *always-on rules snippet* (`CLAUDE-MD-SNIPPET.md`) carries 14 one-line reflexes, one per skill it names (including these four): the rule is the permanent reflex in context; the skill is the full procedure behind it. (`session-orientation` is a skill but deliberately NOT an always-on rule — a controlled A/B showed the extra rule diluted the snippet's proven scope-flagging effect while the skill activates fine on its own; see `eval-results-v2/AB-SNIPPET-20260708.md`.)
+- **Session continuity:** `session-orientation` (read the registry, orient) opens a session; `extract-approach` (lessons) + `session-orientation`'s closeout (state) end it — the next session starts where this one stopped, not from zero.
 - **The full stack:** `frontier-workflow-mode` sequences everything for High/Critical work.
 
 Boundary notes (commonly confused pairs):
