@@ -2,6 +2,11 @@
 
 Bump `VERSION` and add an entry here on any change to skills, the snippet, the manual, or the installer. Installed projects record their version in `.claude/PACK-VERSION`; re-running `install-pack.sh` upgrades them in place.
 
+## 1.8.1 — 2026-07-10
+
+Installer hardening (from the 2026-07-09 cross-repo audit; `ship-surface-hardening`).
+- **`install-pack.sh` no longer produces a silent broken install when python3 is absent.** It uses python3 to write the CLAUDE.md snippet and the settings hook; on a machine without python3 it previously printed "command not found", wrote NO CLAUDE.md and no hook, yet stamped `PACK-VERSION` and exited 0 — an install that looked clean but was missing the eval-tested condition-E core. Added a python3 preflight that fails closed before writing anything (exit 1, clear message). Verified: no-python3 → exit 1 + nothing written; happy path → `release-test.sh` PASS.
+
 ## 1.8.0 — 2026-07-09
 
 An integrity pass driven by a full skill-by-skill review and a cross-repo audit of what the pack itself shipped (6-agent skill review + 5 sibling-repo auditors; every load-bearing finding re-verified against the files). Three new skills, description trims (A/B-validated), and fixes.

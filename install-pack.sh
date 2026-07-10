@@ -10,6 +10,16 @@
 #   - never overwrites an existing file without a timestamped backup
 #   - idempotent: re-running against the same target won't duplicate content
 set -u
+# Preflight: the installer writes the CLAUDE.md snippet and the settings hook via
+# python3 (below). Without it the install silently produces NO CLAUDE.md / no hook
+# yet still stamps PACK-VERSION and exits 0 — a broken install that looks clean.
+# Fail closed, before writing anything.
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "ERROR: python3 is required (used to install the CLAUDE.md snippet and the" >&2
+  echo "       settings hook) but was not found on PATH. Nothing was written." >&2
+  echo "       Install python3 and re-run install-pack.sh." >&2
+  exit 1
+fi
 SRC="$(cd "$(dirname "$0")" && pwd)"
 STAMP="$(date +%Y%m%d%H%M%S)"
 VERSION="$(cat "$SRC/VERSION" 2>/dev/null | tr -d '[:space:]')"; VERSION="${VERSION:-0.0.0}"
