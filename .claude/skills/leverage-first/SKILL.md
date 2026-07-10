@@ -1,6 +1,6 @@
 ---
 name: Leverage First
-description: Before committing real effort to execute a chosen approach, spend a cheap cycle to find the higher-leverage path — an existing solution/dataset/tool, a fundamentally more efficient method, or a composition of steps — instead of grinding the first workable idea on a single track. Activate the moment you are about to build a tool, collect data the slow way, run a heavy process, or write a lot of code; on "how should we do this", "is there a better way", "what else could we try"; and whenever you notice yourself about to hand-roll something, poll/scrape in a loop, or test one pet hypothesis. Trigger signals: you're reaching for the obvious grind; a task feels like it'll take hours; you're about to reinvent something.
+description: Before committing real effort to a chosen approach, spend a cheap cycle to find the higher-leverage path - an existing solution/tool/dataset, a more efficient method, or a smarter composition - instead of grinding the first workable idea on one track. Activate when about to build a tool, collect data the slow way, or write a lot of code; on "is there a better way", "what else could we try", "how should we do this"; or when you catch yourself about to hand-roll something, poll/scrape in a loop, or test one pet hypothesis. Signals: the obvious grind; about to reinvent something.
 ---
 
 # Leverage First

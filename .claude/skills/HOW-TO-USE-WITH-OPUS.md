@@ -16,7 +16,7 @@ A practical guide to installing, testing, and getting value from the pack in Cla
 
 **Checking discovery:** in a session in the project, ask Claude "list the skills available to you" or "which of your skills would apply to fixing a bug?" — the skill names from this pack should appear. If they don't, verify the path is exactly `.claude/skills/<slug>/SKILL.md` and the YAML frontmatter is intact (three-dash fences, `name:` and `description:` keys).
 
-**The always-on layer (important):** skills trigger per-task, which under-serves *standing constraints* — rules like "run it before claiming it works" that apply inside every task rather than to a kind of task. For those, paste the block from `CLAUDE-MD-SNIPPET.md` into your project's `CLAUDE.md` — it keeps the ten load-bearing rules permanently in context, with the skills as the deep procedure behind each. Snippet + skills together is the intended installation; skills alone will under-deliver on the standing constraints.
+**The always-on layer (important):** skills trigger per-task, which under-serves *standing constraints* — rules like "run it before claiming it works" that apply inside every task rather than to a kind of task. For those, paste the block from `CLAUDE-MD-SNIPPET.md` into your project's `CLAUDE.md` — it keeps the 14 load-bearing rules permanently in context, with the skills as the deep procedure behind each. Snippet + skills together is the intended installation; skills alone will under-deliver on the standing constraints.
 
 ## Testing whether the skills are working
 

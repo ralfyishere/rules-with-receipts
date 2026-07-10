@@ -2,6 +2,19 @@
 
 Bump `VERSION` and add an entry here on any change to skills, the snippet, the manual, or the installer. Installed projects record their version in `.claude/PACK-VERSION`; re-running `install-pack.sh` upgrades them in place.
 
+## 1.8.0 — 2026-07-09
+
+An integrity pass driven by a full skill-by-skill review and a cross-repo audit of what the pack itself shipped (6-agent skill review + 5 sibling-repo auditors; every load-bearing finding re-verified against the files). Three new skills, description trims (A/B-validated), and fixes.
+
+- **New skill `correction-propagation` (33rd):** when a published claim is corrected, sweep every surface that restates it — sibling docs, other repos, mirrors, indexes, memory — and banner each in the same closeout. Earned by finding the disproven t04 "3/3" claim corrected in rules-with-receipts but still live in agent-failure-modes (AFM-3) and in this repo's own AB-SNIPPET title.
+- **New skill `security-pattern-review` (34th):** evasion-test any guard/allowlist/detector before shipping. Earned by two live-confirmed scanner bypasses shared across agent-zero-trust and rulebench (markdown-table/pipe suppression; unanchored `docs.` allowlist) plus a CI self-screen that never ran (`rb_vet.py` had no `__main__` guard).
+- **New skill `disclosure-is-not-a-fix` (35th):** ship the cheapest mitigation or a dated decision-not-to, never a caveat standing in for the fix. Earned by a public eval tool shipping a grading criterion its own study proved ungradeable.
+- **Descriptions trimmed to the token budget, activation A/B'd (0 loss):** publish-hygiene 877→599, divergent-ideation 776→596, leverage-first 727→583, empirical-validation 696→588, session-orientation 604→587 (~727 chars/session saved). Live A/B (fresh `claude -p`, current vs trimmed): trimmed cells activated 8/8, 0 regressions; offline `audit-triggers.py` stays 0 gaps.
+- **Skill amendments:** `adversarial-verify` now names "attack your own guard, not just your conclusions" (→ `security-pattern-review`) and the correction sweep (→ `correction-propagation`); `empirical-validation` gains CI-on-the-independent-unit, name-the-selection-space, and archive-ephemeral-evidence clauses.
+- **Fixes:** SKILLS-OVERVIEW breakdown summed to 29 not 32 (expansion pass is 10 — corrected); HOW-TO-USE "ten load-bearing rules" → 14; "one per skill it names" clarified (`skill-routing` is a meta-reflex, not a skill dir); empirical-validation sanitization completed (generic trading residuals → domain-neutral); divergent-ideation body now covers the proactive/turnaround trigger its 1.7.0 description already shipped; `security-scan.sh` + starter made fail-closed (git grep rc≥2 = finding, not silent-clean); v1 eval README superseded-bannered + v2 gains the guarded-runner pointer; TASK-ROUTING boundary rows added; adversarial-verify anecdote genericized. Dogfooded `correction-propagation` on our own eval docs (AB-SNIPPET/HARD-FAILURE/ANALYSIS t04 correction banners).
+- **Cross-repo audit findings FILED (not fixed here — each a separate boundary):** azt+rulebench scanner bypass, AFM stale-claim + evidence-grade rigor, sofia doc-supersession + pseudo-replication CIs, rwr installer silent-partial-on-missing-python3. Full detail: `CROSS-REPO-AUDIT-2026-07-09.md`.
+- **Validation status:** offline gates green (`check-pack` 35 skills; `audit-triggers` 0 gaps). Regression pair reps 13–14 complete, 0 stubs, on the fix tree; **r15 completion + new-skill trigger-eval hit the quota wall (resumable) and are PENDING — required before the public mirror.**
+
 ## 1.7.0 — 2026-07-08
 
 Skills extracted from two sessions of hard use — added by judgment, not reflex (most learnings became updates or notes, not new skills).

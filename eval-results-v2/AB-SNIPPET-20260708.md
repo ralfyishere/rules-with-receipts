@@ -1,5 +1,12 @@
 # Controlled A/B: the 15th snippet rule DILUTED the proven t04 win — confirmed
 
+> **[SUPERSEDED 2026-07-09 — read first]** The causal claim in this title — that the 15th
+> rule *caused* the t04 dilution — was over-called on small n. Across r7–r12 plus this A/B the
+> adjacent-flag rate swings 3/3 → 0/3 → 4/6 → 0/3 with no stable cause: the t04 adjacent-flag
+> effect is **high-variance, not a replicated win**, and this A/B's "restoration" (4/6) was
+> another draw. See `REGRESSION-20260708-r10r12.md` and `CHANGELOG.md`. The snippet decision
+> (stay at 14 rules) still stands. Original analysis preserved below for the record.
+
 **Run:** 2026-07-08 · `ab-snippet-t04.sh 6` · model `claude-opus-4-8` · t04 · n=6/arm,
 interleaved, 0 stubs. Raw: `raw-ab-snippet-20260708/{E14,E15}/`.
 

@@ -1,6 +1,6 @@
 ---
 name: Session Orientation
-description: Orient from the workspace's project registry before working - canonical repo paths, current versions, pending state - instead of rediscovering them by searching. Activate at the start of any new or resumed session in a multi-project workspace, on project-state requests ("check the work on X", "is everything up to date", "continue where we left off"), before any broad audit, and before searching the filesystem for a project whose location should be known. Also owns the closeout duty: promote scratchpad work to durable paths and update the registry before ending a session that changed project state.
+description: Orient from the workspace's project registry before working - canonical repo paths, current versions, pending state - instead of rediscovering them by searching. Activate at the start of any new or resumed session in a multi-project workspace, on project-state requests ("check the work on X", "is everything up to date", "continue where we left off"), before any broad audit, and before searching the filesystem for a project whose location should be known. Also owns closeout: promote scratchpad work to durable paths and update the registry before ending a session that changed state.
 ---
 
 # Session Orientation

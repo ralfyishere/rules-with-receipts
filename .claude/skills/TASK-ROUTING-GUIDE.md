@@ -66,6 +66,16 @@ Maps common request shapes to the skills that should drive them. Skills listed i
 
 The arrows are dependency order, not a rigid script — skills interleave in practice (state checks happen throughout; editing comes last). If a route consistently feels heavy for a task type you handle often, the fix is tiering (`effort-calibration`), not skipping verification on the heavy tasks.
 
+## When both seem to fit
+
+Commonly-confused pairs and the line that splits them:
+
+| When you're torn between... | Pick by... |
+|---|---|
+| `memory-hygiene` vs `live-state-truth` | `memory-hygiene` is the classifier — it decides WHEN a remembered fact is suspect; `live-state-truth` is the verifier — it GOES AND LOOKS. Suspect something you recall → `memory-hygiene`; need the current truth → `live-state-truth`. |
+| `output-structuring` vs `ruthless-editor` | `output-structuring` picks the **format/shape** (table? memo? checklist?); `ruthless-editor` tightens the **prose** inside that shape. Wrong container → `output-structuring`; right container, flabby words → `ruthless-editor`. |
+| `adversarial-verify` vs `failure-mode-awareness` | `adversarial-verify` attacks **finished work AFTER** it's built; `failure-mode-awareness` attacks **plans/designs BEFORE** you commit. Deliverable in hand → `adversarial-verify`; plan on the table → `failure-mode-awareness`. |
+
 ## Provenance and maintenance
 
 Part of the portable quality pack (2026-07). Routes reference only skills that exist in this directory. Maintain by addition: when a task type recurs that no row covers, add the row after handling it well once. Re-verify links stay valid when skills are renamed (`ls .claude/skills/` and compare against the names used here).

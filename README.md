@@ -4,7 +4,7 @@
 [![release](https://img.shields.io/github/v/release/ralfyishere/rules-with-receipts)](https://github.com/ralfyishere/rules-with-receipts/releases)
 [![license](https://img.shields.io/github/license/ralfyishere/rules-with-receipts)](LICENSE)
 
-**A testable operating discipline for AI coding agents — 32 skills, 14 always-on rules,
+**A testable operating discipline for AI coding agents — 35 skills, 14 always-on rules,
 publish/closeout gates, and the eval evidence showing exactly what it does and doesn't change.**
 
 ## The problem
@@ -68,7 +68,7 @@ Under the hood: `.claude/skills/` (29 procedures), managed CLAUDE.md blocks (ope
 
 ```mermaid
 flowchart LR
-    I[install-pack.sh<br/>or bootstrap.sh] --> S[32 skills<br/>.claude/skills/]
+    I[install-pack.sh<br/>or bootstrap.sh] --> S[35 skills<br/>.claude/skills/]
     I --> R[14 always-on rules<br/>CLAUDE.md managed blocks]
     I --> G[Gates<br/>PreToolUse hook + git pre-push]
     I --> P[claude-context/ + config.env<br/>yours — never overwritten]

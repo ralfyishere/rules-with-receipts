@@ -1,0 +1,7 @@
+t11-correction-propagation r1: PASS invoked=[correction-propagation] expected any of ['correction-propagation']
+t11-correction-propagation r2: PASS invoked=[correction-propagation] expected any of ['correction-propagation']
+t12-security-pattern-review r1: PASS invoked=[security-pattern-review] expected any of ['security-pattern-review']
+t12-security-pattern-review r2: PASS invoked=[security-pattern-review] expected any of ['security-pattern-review']
+t13-disclosure-is-not-a-fix r1: PASS invoked=[disclosure-is-not-a-fix] expected any of ['disclosure-is-not-a-fix']
+t13-disclosure-is-not-a-fix r2: PASS invoked=[disclosure-is-not-a-fix] expected any of ['disclosure-is-not-a-fix']
+== 6 pass, 0 fail, 0 not-run (quota) -> results/20260709-233207/RESULTS.txt

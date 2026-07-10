@@ -23,13 +23,24 @@ LEAK_PATTERN="/Users/$ME_USER|/home/$ME_USER|$ME_HOST"
 DETECTORS=':!scripts/security-scan*.sh :!scripts/hygiene-gate.sh'
 
 if [ -d .git ]; then
+  # A failed/empty rev-list must be a finding, not a silent "clean" — the greps
+  # below would quietly scan nothing. Capture the rev list ONCE and reuse it.
+  if ! REVS="$(git rev-list --all 2>/dev/null)" || [ -z "$REVS" ]; then
+    note "history unreadable (rev-list failed/empty) — NOT scanned"
+  else
+  # git grep: rc 0 = match, rc 1 = no match (clean), rc>=2 = real error.
+  # A tool error must be a FINDING, never read as zero hits (fail closed).
   echo "== history: secrets =="
-  hits=$(git grep -IiEl "$SECRET_PATTERN" $(git rev-list --all) -- $DETECTORS 2>/dev/null | head -5)
-  [ -n "$hits" ] && note "possible secrets in history:" && echo "$hits"
+  hits=$(git grep -IiEl "$SECRET_PATTERN" $REVS -- $DETECTORS 2>/dev/null); grc=$?
+  if [ "$grc" -gt 1 ]; then note "git grep errored (rc=$grc) scanning history for secrets — NOT reliably scanned"
+  elif [ -n "$hits" ]; then note "possible secrets in history:" && echo "$hits" | head -5; fi
 
   echo "== history: machine identity ($ME_USER / $ME_HOST) =="
-  ihits=$(git grep -IilE "$LEAK_PATTERN" $(git rev-list --all) -- $DETECTORS 2>/dev/null | grep -v 'settings.local' | head -5)
-  [ -n "$ihits" ] && note "machine username/hostname in history:" && echo "$ihits"
+  iraw=$(git grep -IilE "$LEAK_PATTERN" $REVS -- $DETECTORS 2>/dev/null); grc=$?
+  ihits=$(printf '%s\n' "$iraw" | grep -v 'settings.local')
+  if [ "$grc" -gt 1 ]; then note "git grep errored (rc=$grc) scanning history for machine identity — NOT reliably scanned"
+  elif [ -n "$iraw" ] && [ -n "$ihits" ]; then note "machine username/hostname in history:" && echo "$ihits" | head -5; fi
+  fi
 
   echo "== history: author/committer identities =="
   IDS=$(git log --format='%ae%n%ce' 2>/dev/null | sort -u)

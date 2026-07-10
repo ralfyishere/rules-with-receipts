@@ -14,7 +14,7 @@ Short companion to `SCORES.md` (table, integrity notes) and `HARD-FAILURE-ANALYS
 | | v1 (single-turn traps) | v2 (multi-step, messy) |
 |---|---|---|
 | Plain Opus | 9.0/10 (90%) | 11.0/12 (92%) |
-| Best condition | D (skills+manual) 10/10 | B/D 11.5 by totals; **E uniquely replicated on t04** |
+| Best condition | D (skills+manual) 10/10 | B/D 11.5 by totals; **E uniquely replicated on t04** [SUPERSEDED 2026-07-09: did NOT reproduce at higher n — high-variance, not replicated; see the row below and `REGRESSION-20260708-r10r12.md`] |
 | Tests that discriminate | 2/10 (11, 15) | 2/12 (02, 04) |
 | Nature of the pack's edge | Delivery completeness (usable artifact) | Standing constraints (scope, flags, quoted evidence) |
 | Only replicated effect | — (all n=1) | **Snippet → t04 3/3 PASS** (CORRECTED 2026-07-08: did NOT reproduce at higher n — high-variance, not replicated; see `REGRESSION-20260708-r10r12.md`) |

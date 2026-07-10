@@ -1,6 +1,6 @@
 ---
 name: Divergent Ideation
-description: Generate genuinely different options before choosing - for brainstorms, naming, design alternatives, and any open problem where the first workable idea is about to become the only idea. Activate on "brainstorm", "give me ideas/options/names", "what could we build", "how else could we do this", first design attempts on open-ended problems, and whenever you notice all your "options" share the same core mechanism. PROACTIVELY on open/improve/turnaround mandates ("improve this", "what would you do", "print money", "do what you think") — generate unplanted angles yourself instead of waiting to be handed the direction; if every option traces back to something the user or the material planted, the divergent pass hasn't run yet. Not for problems with a known correct answer.
+description: Generate different options before choosing - for brainstorms, naming, design alternatives, and any open problem where the first workable idea becomes the only idea. Activate on "brainstorm", "give me ideas/options/names", "what could we build", "how else could we do this", first attempts on open-ended problems, and when your "options" all share one core mechanism. PROACTIVELY on open/improve/turnaround mandates ("improve this", "what would you do", "print money", "do what you think") - generate unplanted angles instead of waiting for direction. Not for problems with a known correct answer.
 ---
 
 # Divergent Ideation
@@ -14,6 +14,7 @@ The default failure of idea generation isn't bad ideas — it's *narrow* ones: t
 - Explicit generation asks: brainstorms, naming, campaign concepts, feature ideas, alternative designs.
 - The first attempt at any open-ended problem — before committing to an approach that arrived unexamined (`plan-gate`'s risk section deserves real alternatives).
 - Mid-task, when stuck: circling one approach that isn't working is a divergence trigger, not a push-harder trigger.
+- Open / improve / turnaround mandates ("improve this", "what would you do", "do what you think"): generate unplanted angles proactively instead of waiting to be handed a direction — this is where the first idea most silently becomes the only idea. (Distinct from `open-mandate`, which *chooses* the direction; this skill first widens the option set the choice is made from.)
 
 ## When NOT to use this skill
 

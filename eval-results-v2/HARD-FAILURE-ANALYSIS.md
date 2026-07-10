@@ -1,5 +1,12 @@
 # Hard Failure Analysis — v2 Evidence Only
 
+> **[CORRECTION 2026-07-09 — read first]** §1 below calls the t04 adjacent-flag result the
+> pack's "one *replicated* prevention" and "the demonstrated value." That was over-called:
+> higher-n re-runs (r7–r12) and a controlled A/B show the adjacent-flag rate is **high-variance,
+> not replicated** (it swings 3/3 → 0/3 → 4/6 → 0/3). The stable effects are t04 *scope
+> discipline* (15/15) and t02 substance — not the adjacent-flag bonus. Full retraction at the
+> end of §1 and in `REGRESSION-20260708-r10r12.md`; original text preserved below.
+
 Every claim below traces to graded cells in `raw/` (see `SCORES.md` for the table). Where evidence is thin (n=1), it says so.
 
 ## 1. Failures the pack actually prevents

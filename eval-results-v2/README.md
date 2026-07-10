@@ -30,9 +30,12 @@ A plain · B skills · C manual-as-CLAUDE.md · D skills+manual · E = D + alway
 Fresh `claude -p --model claude-opus-4-8 --permission-mode bypassPermissions` per cell; multi-turn tests continue the same session via `--resume <session_id>`; every cell gets its own workspace (fixtures + condition layer) so runs can't contaminate each other. n=3 reps per cell → 180 cells. Raw capture per cell: every turn's response + `diff -ru` of final workspace vs fixtures.
 
 ```bash
-./run-eval-v2.sh                # full matrix
+./run-eval-guarded.sh           # RECOMMENDED: one cell at a time, halts on the first quota stub and deletes it (rep numbers stay free)
+./run-eval-v2.sh                # full matrix (concurrent — a mid-batch quota wall stubs every in-flight/later cell)
 ./run-eval-v2.sh A,E t04 1      # subsets: conds, tests, reps
 ```
+
+Prefer `run-eval-guarded.sh` when quota may run short: it wraps the (unmodified) graded runner, runs strictly sequential cells in priority order, and stops cleanly at the quota wall so no stub evidence is left behind — same args `[conds] [tests] [reps-csv]`.
 
 ## Honesty constraints
 

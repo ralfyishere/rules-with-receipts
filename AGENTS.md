@@ -1,7 +1,7 @@
 # AGENTS.md — for AI agents that land in this repo
 
 ## What this is
-A quality pack for Claude Code (32 skills + operating manual + always-on rules snippet) that ships with its own eval evidence. It improves process discipline (scope, verification, recovery), not model capability. The evidence, including unflattering findings, is in `eval-results/` and `eval-results-v2/`.
+A quality pack for Claude Code (35 skills + operating manual + always-on rules snippet) that ships with its own eval evidence. It improves process discipline (scope, verification, recovery), not model capability. The evidence, including unflattering findings, is in `eval-results/` and `eval-results-v2/`.
 
 ## If you are installing the pack into a project
 Run `./install-pack.sh /path/to/project`. It copies `.claude/skills/`, builds or upgrades the project `CLAUDE.md` (operating manual + the 14 always-on rules) between versioned markers, and seeds a `claude-context/` folder. Idempotent; backs up before touching anything.
