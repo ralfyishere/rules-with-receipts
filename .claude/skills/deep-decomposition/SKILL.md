@@ -28,6 +28,15 @@ Turn one intractable task into a sequence of tractable ones. A task is decompose
 **Step 2 — Inventory knowns and unknowns.**
 - Knowns: what you already have (files, facts, requirements, prior art).
 - Unknowns: what you'd have to discover. Mark each unknown **cheap** (one command/read away) or **expensive** (needs experimentation or user input).
+- **Map the domain's dimensionality before building for its first cell.** If the task
+  targets a space (markets, entities, file types, locales, plans), enumerate its axes
+  from the source of truth — an API, a listing, a schema — not from assumption; it is
+  usually one cheap query. Then build the general case (dynamic discovery, config-driven
+  values) rather than hardcoding the first slice. Tell: a hardcoded enumeration
+  (`ITEMS = [4 things]`, a fixed column list) where the real set is queryable and
+  growing. Real case (2026-07-11): a dashboard was built for one entity × one dimension
+  and re-scoped three times by the user; the full entity × dimension × type matrix was
+  enumerable from the platform's API in two calls.
 
 **Step 3 — Cut the task into stages.** Each stage must have:
 - A concrete **output** (a working function, an answered question, a drafted section) — not an activity ("investigate", "think about").

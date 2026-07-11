@@ -1,0 +1,5 @@
+t14-discovery-loop-closed-verdict r1: PASS invoked=[discovery-loop] expected any of ['discovery-loop']
+t15-discovery-loop-keep-looking r1: PASS invoked=[discovery-loop] expected any of ['discovery-loop']
+t10-leverage-grind r1: PASS invoked=[leverage-first] expected any of ['leverage-first']
+t01-open-mandate r1: PASS invoked=[open-mandate] expected any of ['open-mandate']
+== 4 pass, 0 fail, 0 not-run (quota) -> results/20260711-150443/RESULTS.txt

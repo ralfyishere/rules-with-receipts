@@ -57,7 +57,10 @@ echo "ground truth: $SKILLS skills, $RULES snippet rules, version $VERSION"
 # correct as history), and this script (detector self-match).
 DOCS=$(git ls-files '*.md' '*.sh' | grep -vE '^eval-results.*/(raw|fixtures|prompts)|^\.claude/learnings/|^study-draft/|raw-regression|CHANGELOG\.md|scripts/closeout-check\.sh')
 HITS=$( (for f in $DOCS; do
-  grep -HnEo '[0-9]+( [a-z]+)? skills' "$f" | grep -v ":$SKILLS skills" | grep -v ":$SKILLS [a-z]* skills"
+  # Only TOTAL-count claims are policed. Drop subset phrasings ("3 new skills",
+  # "2 other skills") — those are not claims about the pack's total.
+  grep -HnEo '[0-9]+( [a-z]+)? skills' "$f" | grep -v ":$SKILLS skills" | grep -v ":$SKILLS [a-z]* skills" \
+    | grep -viE ' (new|other|additional|more|few|several|only|first|last|next|two|three|four) skills'
   grep -HnEo "[0-9]+ always-on rules|[0-9]+ rules?( snippet| —)" "$f" | grep -vE ":($RULES) "
 done) 2>/dev/null )
 if [ -n "$HITS" ]; then

@@ -36,7 +36,7 @@ Before committing effort, spend a few minutes on:
 
 1. **Don't reinvent — does it already exist?** Has someone solved this? Is there a dataset,
    API, library, tool, or community knowledge that hands you 80% of it? Search/ask before
-   you build. (Free historical trade data existed instead of hours of live polling; the
+   you build. (A free historical dataset existed instead of hours of live collection; the
    answer was a documented endpoint away.)
 2. **10× not 10% — is there a fundamentally more efficient method?** Not a faster version of
    the same grind — a different shape: historical vs live, batch vs loop, existing index vs
@@ -51,6 +51,19 @@ Before committing effort, spend a few minutes on:
 
 Then commit to the highest-leverage path you found. If all four come up empty, grind with
 a clear conscience — but you asked.
+
+5. **Adopting a tool? Evaluate before you integrate — unprompted.** When Q1 lands on an
+   existing tool/library/dependency and you're about to add it, the adoption isn't done at
+   "installed." Deliver, without being asked: (a) **what it is** — its type and integration
+   model (CLI vs library vs AI-assistant skill vs MCP server vs background daemon), because
+   that governs what it touches and can see; (b) **standard or per-case** — does it belong
+   in every project or only where it earns its keep, with the threshold stated; (c)
+   **alternatives** — what else solves this and why this one (the category often moves);
+   (d) **limitations, adversarially** — where it's weak/wrong, up front; (e) **what else it
+   enables** — the deeper features beyond the headline use. This is the *value/fit* pass;
+   the *safety* pass on any third-party instruction files (`publish-hygiene` /
+   `security-pattern-review` — treat them as untrusted code) is a separate, required gate.
+   Having to be prompted for this evaluation is the failure — it is part of adopting.
 
 ## Quality bar
 

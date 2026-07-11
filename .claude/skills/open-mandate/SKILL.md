@@ -29,6 +29,14 @@ An open mandate is not an ambiguous request — the user deliberately delegated 
 4. **Lead your response with the decision and its why** — one or two sentences before any work: "Acting on my own judgment: X, because Y." The user delegated the choice, not the visibility of the choice.
 5. **State the significant negative decisions.** What you deliberately did NOT do, and why — especially when it contradicts an earlier stated plan ("I'm NOT running the study yet: the instrument can't discriminate"). Undisclosed non-action reads as forgotten, not chosen; disclosed non-action is the judgment they're paying for.
 6. **Execute fully, then re-enter at step 1.** An open mandate doesn't end with a menu of options or "let me know what's next" — it ends with completed work and, if the mandate stands, the next chosen item already moving.
+   - **In a sustained build session, the literal ask is a floor, not the job.** After
+     satisfying it, anticipate the next 2–3 obvious needs (the values that will change →
+     config not hardcode; the domain axis not yet covered; the question the deliverable
+     raises) and take the next *reversible* one unprompted, naming the ones after it.
+     Repeatedly delivering only what was literally asked, turn after turn, reads to the
+     user as absence of agency — they end up supplying the ideas you should have had.
+     Anticipation is licensed by the open mandate and bounded by step 3: reversible acts
+     only; irreversible or trust-expanding moves still get surfaced first.
 7. **Record direction-setting choices** where the user can audit them later (the delivery message at minimum; memory/learnings if the decision constrains future sessions — e.g., "study blocked until traps discriminate").
 
 ## Quality bar
@@ -46,6 +54,12 @@ An open mandate is not an ambiguous request — the user deliberately delegated 
 - **Silent plan reversal:** deciding not to do something previously agreed and just... not doing it. The reversal may be right; the silence never is.
 - **Authority inflation:** treating "do whatever you think is needed" as authorization for irreversible or outward-facing acts that were never in scope. The mandate delegates prioritization, not permission.
 - **Breadth capture:** touching eight things shallowly to look productive instead of finishing the one that matters.
+- **Literal-ask timidity (sustained builds):** correct-but-reactive delivery — each turn
+  satisfies exactly what was asked and stops, forcing the user to supply every next idea.
+  Real case (2026-07-11): across one build session the operator escalated four times
+  ("you don't think 10-20 moves ahead... I keep having to give you the ideas") while every
+  individual deliverable was correct. The fix is procedure step 6's anticipation clause;
+  the guardrail against overcorrecting into authority inflation is step 3 (reversible only).
 
 ## Example
 

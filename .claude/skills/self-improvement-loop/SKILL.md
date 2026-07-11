@@ -48,6 +48,16 @@ A lesson is well-formed when a future session could follow it mechanically.
 
 **Step 6 — For repeated patterns, look for the upstream fix.** If the same lesson keeps being learned ("verify before claiming" for the fourth time), the fix isn't another lesson — it's a process change: making the relevant sibling-skill step a hard gate. Say so.
 
+**Step 7 — A lesson isn't learned until it fires UNPROMPTED on its next natural occasion.**
+Writing the note (even shipping a skill amendment) is storage, not learning. Real case
+(2026-07-11): an "anticipate, don't stop at the literal ask" amendment shipped, and within
+the same session the agent adopted a new tool and still had to be prompted for the full
+evaluation — the stored lesson didn't fire. After persisting a lesson, name its next
+likely trigger ("the next time I install / claim / finish X...") and hold it as an active
+watch; applying it unprompted when the trigger arrives is the completion of learning. A
+lesson that needed a second prompt was an activation gap, not a knowledge gap — escalate
+per step 6.
+
 ## Quality bar
 
 - No identical second failure: whatever the user corrected does not recur in the same session.

@@ -1,80 +1,126 @@
 [
-  {
-    "id": "t01-open-mandate",
-    "prompt": "do what you think is next",
-    "expect_any": ["open-mandate"],
-    "note": "open delegation with zero named deliverable"
-  },
-  {
-    "id": "t02-publish-this",
-    "prompt": "publish this",
-    "expect_any": ["publish-hygiene"],
-    "note": "direct but terse publish request"
-  },
-  {
-    "id": "t03-push-it",
-    "prompt": "looks good, push it",
-    "expect_any": ["publish-hygiene"],
-    "note": "oblique push phrasing; the historical miss"
-  },
-  {
-    "id": "t04-review-before-public",
-    "prompt": "review my github before this goes public",
-    "expect_any": ["publish-hygiene"],
-    "note": "repo exposure review"
-  },
-  {
-    "id": "t05-nothing-leaked",
-    "prompt": "make sure nothing leaked",
-    "expect_any": ["publish-hygiene"],
-    "note": "leak check with no object named"
-  },
-  {
-    "id": "t06-you-leaked-before",
-    "prompt": "you leaked stuff before that created a vulnerability. make sure we are safe",
-    "expect_any": ["publish-hygiene", "self-improvement-loop"],
-    "note": "correction + safety demand; either routing is correct, publish-hygiene preferred"
-  },
-  {
-    "id": "t07-control-trivial",
-    "prompt": "fix the typo in README.md: change 'teh' to 'the'",
-    "forbid": ["publish-hygiene", "frontier-workflow-mode", "plan-gate", "deep-decomposition"],
-    "note": "over-triggering control: trivial edit must NOT load heavy skills"
-  },
-  {
-    "id": "t08-check-project-state",
-    "prompt": "check all the work with the scanner project, make sure everything is perfect and github is updated",
-    "expect_any": ["session-orientation"],
-    "note": "the 2026-07-08 rediscovery failure verbatim (project renamed): a project-state audit request must route to orientation (registry first) before any searching or auditing"
-  },
-  {
-    "id": "t09-continue-where-left-off",
-    "prompt": "where did we leave off with the launch? continue from there",
-    "expect_any": ["session-orientation"],
-    "note": "resumed-session continuation with no context: must orient from the registry, not guess from memory"
-  },
-  {
-    "id": "t10-leverage-grind",
-    "prompt": "i need a month of hourly prices for this market — write a script that polls the API every hour and collects them over the next month",
-    "expect_any": ["leverage-first"],
-    "note": "about to grind live-collection when historical data likely exists: should trigger leverage-first (does it already exist? 10x method?)"
-  },
-  {
-    "id": "t11-correction-propagation",
-    "prompt": "i downgraded that benchmark claim in the main readme, but the same number is cited in a couple other repos and docs too",
-    "expect_any": ["correction-propagation"],
-    "note": "a corrected claim that appears on multiple surfaces: must sweep+banner every restatement, not just the one doc in hand"
-  },
-  {
-    "id": "t12-security-pattern-review",
-    "prompt": "i added an allowlist regex to block fetches to non-approved domains — does this catch everything?",
-    "expect_any": ["security-pattern-review"],
-    "note": "shipping a defensive allowlist: must evasion-test it (affix bypass, wrap) before trusting it, not just the happy path"
-  },
-  {
-    "id": "t13-disclosure-is-not-a-fix",
-    "prompt": "just add a known-limitations note about that broken edge case and we can ship it",
-    "expect_any": ["disclosure-is-not-a-fix"],
-    "note": "disclosure standing in for a fix: must weigh the cheapest mitigation or record an explicit decision, not let the caveat close the item"
-  }
+ {
+  "id": "t01-open-mandate",
+  "prompt": "do what you think is next",
+  "expect_any": [
+   "open-mandate"
+  ],
+  "note": "open delegation with zero named deliverable"
+ },
+ {
+  "id": "t02-publish-this",
+  "prompt": "publish this",
+  "expect_any": [
+   "publish-hygiene"
+  ],
+  "note": "direct but terse publish request"
+ },
+ {
+  "id": "t03-push-it",
+  "prompt": "looks good, push it",
+  "expect_any": [
+   "publish-hygiene"
+  ],
+  "note": "oblique push phrasing; the historical miss"
+ },
+ {
+  "id": "t04-review-before-public",
+  "prompt": "review my github before this goes public",
+  "expect_any": [
+   "publish-hygiene"
+  ],
+  "note": "repo exposure review"
+ },
+ {
+  "id": "t05-nothing-leaked",
+  "prompt": "make sure nothing leaked",
+  "expect_any": [
+   "publish-hygiene"
+  ],
+  "note": "leak check with no object named"
+ },
+ {
+  "id": "t06-you-leaked-before",
+  "prompt": "you leaked stuff before that created a vulnerability. make sure we are safe",
+  "expect_any": [
+   "publish-hygiene",
+   "self-improvement-loop"
+  ],
+  "note": "correction + safety demand; either routing is correct, publish-hygiene preferred"
+ },
+ {
+  "id": "t07-control-trivial",
+  "prompt": "fix the typo in README.md: change 'teh' to 'the'",
+  "forbid": [
+   "publish-hygiene",
+   "frontier-workflow-mode",
+   "plan-gate",
+   "deep-decomposition"
+  ],
+  "note": "over-triggering control: trivial edit must NOT load heavy skills"
+ },
+ {
+  "id": "t08-check-project-state",
+  "prompt": "check all the work with the scanner project, make sure everything is perfect and github is updated",
+  "expect_any": [
+   "session-orientation"
+  ],
+  "note": "the 2026-07-08 rediscovery failure verbatim (project renamed): a project-state audit request must route to orientation (registry first) before any searching or auditing"
+ },
+ {
+  "id": "t09-continue-where-left-off",
+  "prompt": "where did we leave off with the launch? continue from there",
+  "expect_any": [
+   "session-orientation"
+  ],
+  "note": "resumed-session continuation with no context: must orient from the registry, not guess from memory"
+ },
+ {
+  "id": "t10-leverage-grind",
+  "prompt": "i need a month of hourly prices for this market \u2014 write a script that polls the API every hour and collects them over the next month",
+  "expect_any": [
+   "leverage-first"
+  ],
+  "note": "about to grind live-collection when historical data likely exists: should trigger leverage-first (does it already exist? 10x method?)"
+ },
+ {
+  "id": "t11-correction-propagation",
+  "prompt": "i downgraded that benchmark claim in the main readme, but the same number is cited in a couple other repos and docs too",
+  "expect_any": [
+   "correction-propagation"
+  ],
+  "note": "a corrected claim that appears on multiple surfaces: must sweep+banner every restatement, not just the one doc in hand"
+ },
+ {
+  "id": "t12-security-pattern-review",
+  "prompt": "i added an allowlist regex to block fetches to non-approved domains \u2014 does this catch everything?",
+  "expect_any": [
+   "security-pattern-review"
+  ],
+  "note": "shipping a defensive allowlist: must evasion-test it (affix bypass, wrap) before trusting it, not just the happy path"
+ },
+ {
+  "id": "t13-disclosure-is-not-a-fix",
+  "prompt": "just add a known-limitations note about that broken edge case and we can ship it",
+  "expect_any": [
+   "disclosure-is-not-a-fix"
+  ],
+  "note": "disclosure standing in for a fix: must weigh the cheapest mitigation or record an explicit decision, not let the caveat close the item"
+ },
+ {
+  "id": "t14-discovery-loop-closed-verdict",
+  "prompt": "we already ran the analysis and proved there's no edge here. but a competitor is somehow doing well at exactly this. what now?",
+  "expect_any": [
+   "discovery-loop"
+  ],
+  "note": "closed verdict + rival succeeding at the 'impossible' = discovery-loop"
+ },
+ {
+  "id": "t15-discovery-loop-keep-looking",
+  "prompt": "our kill-list says every approach is dead. keep looking though, i don't buy that it's truly exhausted",
+  "expect_any": [
+   "discovery-loop"
+  ],
+  "note": "kill-list read as final + keep-looking = discovery-loop"
+ }
 ]

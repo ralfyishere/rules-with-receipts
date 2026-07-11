@@ -2,6 +2,63 @@
 
 Bump `VERSION` and add an entry here on any change to skills, the snippet, the manual, or the installer. Installed projects record their version in `.claude/PACK-VERSION`; re-running `install-pack.sh` upgrades them in place.
 
+## 1.9.2 — 2026-07-11
+
+Pre-publication sanitization (going-public prep). No behavior change; genericized
+private-project and domain-specific examples out of skill provenance + examples so the
+pack is publishable:
+- `discovery-loop`: a private project name and domain-specific vocabulary in its
+  provenance/examples → domain-neutral (candidate / performer / config).
+- `correction-propagation`, `deep-decomposition`, `leverage-first`: domain-specific case
+  wording → generic analysis / entity / dataset phrasing.
+- Full skill sweep confirms 0 machine paths, 0 usernames, 0 company names, 0 domain-
+  specific tells remaining. check-pack 36 PASS.
+NOTE: this sanitizes the SKILLS for the public mirror. The private dev repo itself stays
+private (it carries the machine-specific continuity files); the public path is the mirror
+allowlist, not making the dev repo public. Release gates for the 1.9.x line still required
+before mirroring.
+
+## 1.9.1 — 2026-07-11
+
+Two amendments from the live-lab session review (no new skills; count stays 36).
+- **`intent-clarity`:** new failure mode "objective-function substitution" — executing the
+  user's tasks while optimizing YOUR risk tolerance instead of THEIR stated objective
+  (real case: "race, stake = accepted tuition" vs the agent's protect-the-stake frame).
+  On risk/return recommendations, restate whose objective is being served.
+- **`self-improvement-loop` step 7:** a lesson isn't learned until it fires UNPROMPTED on
+  its next natural occasion — storage ≠ learning; name the next trigger and hold it as an
+  active watch; a second prompt = activation gap, escalate per step 6.
+- (A drafted `pressure-integrity` skill was deleted before commit at the operator's order.)
+- Release gates for the 1.9.x line (trigger-eval + t02/t04 regression) still REQUIRED
+  before any public mirror.
+
+## 1.9.0 — 2026-07-11
+
+New skill + two amendments, extracted from a standing-investigation session (learnings:
+`kill-lists-close-hypotheses-not-spaces`, `map-the-domain-before-building`,
+`anticipate-the-next-moves-dont-stop-at-the-literal-ask`).
+- **NEW skill `discovery-loop`** (36 total): standing-investigation layer — observe the live
+  domain before theorizing, generate ≥1 new dated hypothesis per touch, keep an explicit
+  belief-state (credence + evidence chain), attack any 3-streak of confirmations, audit
+  short-window "winners" at full depth before anointing. Provenance: a closed "no edge"
+  verdict scope-corrected by observation; the credence/streak tripwire caught two would-be
+  over-calls in its first day.
+- **`open-mandate` amendment:** sustained-build anticipation — on an open mandate the literal
+  ask is a floor; anticipate the next 2–3 obvious needs and take the next reversible one
+  unprompted. New failure mode: literal-ask timidity.
+- **`leverage-first` amendment (step 5):** adopting a tool? evaluate before integrating —
+  what it is (type + integration model), standard-or-per-case, alternatives, limitations,
+  what else it enables — unprompted; safety-vetting of third-party instruction files stays a
+  separate required gate. From the Graphify adoption (learning: `evaluate-a-tool-fully-on-adoption`).
+- **`deep-decomposition` amendment:** map the domain's dimensionality from the source of truth
+  before building for its first cell; prefer dynamic discovery/config over hardcoded
+  enumerations of queryable, growing sets.
+- Snippet UNCHANGED (stays at the proven 14 rules). Indexes updated (SKILLS-OVERVIEW 35→36,
+  TASK-ROUTING-GUIDE +1 route).
+- **Release gates NOT yet run** (this is a private-repo version bump, not a release): the
+  new-skill trigger-eval (fresh `claude -p`) and the t02/t04 regression pair are REQUIRED
+  before any mirror to rules-with-receipts.
+
 ## 1.8.1 — 2026-07-10
 
 Installer hardening (from the 2026-07-09 cross-repo audit; `ship-surface-hardening`).
@@ -16,8 +73,8 @@ An integrity pass driven by a full skill-by-skill review and a cross-repo audit 
 - **New skill `disclosure-is-not-a-fix` (35th):** ship the cheapest mitigation or a dated decision-not-to, never a caveat standing in for the fix. Earned by a public eval tool shipping a grading criterion its own study proved ungradeable.
 - **Descriptions trimmed to the token budget, activation A/B'd (0 loss):** publish-hygiene 877→599, divergent-ideation 776→596, leverage-first 727→583, empirical-validation 696→588, session-orientation 604→587 (~727 chars/session saved). Live A/B (fresh `claude -p`, current vs trimmed): trimmed cells activated 8/8, 0 regressions; offline `audit-triggers.py` stays 0 gaps.
 - **Skill amendments:** `adversarial-verify` now names "attack your own guard, not just your conclusions" (→ `security-pattern-review`) and the correction sweep (→ `correction-propagation`); `empirical-validation` gains CI-on-the-independent-unit, name-the-selection-space, and archive-ephemeral-evidence clauses.
-- **Fixes:** SKILLS-OVERVIEW breakdown summed to 29 not 32 (expansion pass is 10 — corrected); HOW-TO-USE "ten load-bearing rules" → 14; "one per skill it names" clarified (`skill-routing` is a meta-reflex, not a skill dir); empirical-validation sanitization completed (generic trading residuals → domain-neutral); divergent-ideation body now covers the proactive/turnaround trigger its 1.7.0 description already shipped; `security-scan.sh` + starter made fail-closed (git grep rc≥2 = finding, not silent-clean); v1 eval README superseded-bannered + v2 gains the guarded-runner pointer; TASK-ROUTING boundary rows added; adversarial-verify anecdote genericized. Dogfooded `correction-propagation` on our own eval docs (AB-SNIPPET/HARD-FAILURE/ANALYSIS t04 correction banners).
-- **Cross-repo audit findings FILED (not fixed here — each a separate boundary):** azt+rulebench scanner bypass, AFM stale-claim + evidence-grade rigor, sofia doc-supersession + pseudo-replication CIs, rwr installer silent-partial-on-missing-python3. Full detail: `CROSS-REPO-AUDIT-2026-07-09.md`.
+- **Fixes:** SKILLS-OVERVIEW breakdown summed to 29 not 32 (expansion pass is 10 — corrected); HOW-TO-USE "ten load-bearing rules" → 14; "one per skill it names" clarified (`skill-routing` is a meta-reflex, not a skill dir); empirical-validation sanitization completed (domain-specific residuals → domain-neutral); divergent-ideation body now covers the proactive/turnaround trigger its 1.7.0 description already shipped; `security-scan.sh` + starter made fail-closed (git grep rc≥2 = finding, not silent-clean); v1 eval README superseded-bannered + v2 gains the guarded-runner pointer; TASK-ROUTING boundary rows added; adversarial-verify anecdote genericized. Dogfooded `correction-propagation` on our own eval docs (AB-SNIPPET/HARD-FAILURE/ANALYSIS t04 correction banners).
+- **Cross-repo audit findings FILED (not fixed here — each a separate boundary):** scanner-bypass and stale-claim findings across sibling repos, plus an installer silent-partial-on-missing-python3. 
 - **Validation status:** offline gates green (`check-pack` 35 skills; `audit-triggers` 0 gaps). Regression pair reps 13–14 complete, 0 stubs, on the fix tree; **r15 completion + new-skill trigger-eval hit the quota wall (resumable) and are PENDING — required before the public mirror.**
 
 ## 1.7.0 — 2026-07-08

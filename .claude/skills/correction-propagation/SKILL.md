@@ -89,8 +89,8 @@ metadata across the public boundary; this guards claim *consistency* across that
 Added 2026-07-09 after a cross-repo audit found a disproven benchmark claim — "only the
 always-on rules flagged it 3/3" — corrected in one public repo (rules-with-receipts) but still
 asserted in a sibling public repo (agent-failure-modes, AFM-3), and an internal AB-SNIPPET doc
-whose title still read "confirmed" after the result was disproved; separately, a
-trading-investigation verdict was never amended after its own successor commit reversed it. In
+whose title still read "confirmed" after the result was disproved; separately, an
+analysis's published verdict was never amended after its own successor commit reversed it. In
 each case the correction was made in one place and never propagated. Re-verify by grepping a
 corrected claim's distinctive tokens across all repos after any correction — a hit that isn't
 bannered is this skill's trigger having failed.
