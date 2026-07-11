@@ -2,6 +2,32 @@
 
 Bump `VERSION` and add an entry here on any change to skills, the snippet, the manual, or the installer. Installed projects record their version in `.claude/PACK-VERSION`; re-running `install-pack.sh` upgrades them in place.
 
+## 1.10.0 — 2026-07-11
+
+The epistemic layer: one new skill + the first `tools/` companion. Snippet UNCHANGED
+(14 rules — per the A/B'd rule, new skills do not claim always-on slots).
+- **NEW skill `foresight`** (37 total): trajectory-projection layer — at commit points,
+  pre-register 3–7 dated, credenced predictions (claim + credence + resolve-by +
+  observable) about what breaks / becomes necessary / pays off 5/10/20 steps ahead;
+  resolve and score them when the dates arrive; feed miscalibration back. Distinct from
+  `failure-mode-awareness` (present-design risks vs trajectory; boundary rows added to
+  SKILLS-OVERVIEW + TASK-ROUTING-GUIDE). Origin: operator correction during the
+  hypothesis-engine design session ("I kept having to give you the ideas").
+- **NEW tool `tools/hypothesis-engine/`** (`hq.py`, first of the tools/ companion layer):
+  single-file, stdlib-only, offline, suggest-only hypothesis queue — credence + evidence
+  chains + origin provenance (operator / self-observed / self-projected, the autonomy
+  metric) + deterministic tripwires (CONFIRM-STREAK, GENERATION-STALL, STALE,
+  FORESIGHT-DUE; `check` is CI-able). Executable arm of `discovery-loop` + `foresight`.
+  Generalized from a standing investigation's belief-state file that caught two real
+  over-calls in its first day. Dev-repo only for now — NOT in the public mirror until
+  its adoption A/B passes (a drafted belief-register variant was dropped at operator
+  order during design).
+- Trigger-eval: 3 new cases (t16/t17 foresight, t18 failure-mode-awareness
+  collision control). Gates GREEN 2026-07-11: trigger 5/5 (t16/t17 fire 2/2; t18
+  collision control clean — an initial FAIL was ablation-proven to be a pre-existing
+  baseline gap, see the t18 case note); t02/t04 regression 30/30 fresh cells, 0 quota
+  stubs, t02 15/15 root-cause, t04 15/15 scope — no new regression vs baseline.
+
 ## 1.9.2 — 2026-07-11
 
 Pre-publication sanitization (going-public prep). No behavior change; genericized
@@ -20,7 +46,7 @@ before mirroring.
 
 ## 1.9.1 — 2026-07-11
 
-Two amendments from the live-lab session review (no new skills; count stays 36).
+Two amendments from a standing-investigation session review (no new skills; count stays 36).
 - **`intent-clarity`:** new failure mode "objective-function substitution" — executing the
   user's tasks while optimizing YOUR risk tolerance instead of THEIR stated objective
   (real case: "race, stake = accepted tuition" vs the agent's protect-the-stake frame).

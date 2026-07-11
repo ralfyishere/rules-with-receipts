@@ -35,6 +35,7 @@ Maps common request shapes to the skills that should drive them. Skills listed i
 | "Research topic X" | `deep-decomposition` (the sub-questions) → `research-methodology` (angles, independence, dissent, stopping rule) → `verification-discipline` (grade every claim) → `adversarial-verify` → `output-structuring` |
 | "Brainstorm / give me ideas or names" | `divergent-ideation` (8–15 raw, judgment off, forced axes) → `structured-reasoning` (converge) → shortlist + longlist |
 | "Review this plan / proposal" | `failure-mode-awareness` (premortem it) + `structured-reasoning` (steelman it) → `output-structuring` (critique) |
+| "Will this scale?" / "what will we regret?" / committing to an architecture, roadmap, or direction | `foresight` (pre-register 3–7 dated, credenced predictions with observables; far horizon included) + `failure-mode-awareness` (present-design risks) — they catch different regret classes |
 | "Check these numbers" | `live-state-truth` (the actual data) → `verification-discipline` (recompute independently, units, magnitude) |
 
 ## Ambient situations (not requests — states you notice)
@@ -76,6 +77,7 @@ Commonly-confused pairs and the line that splits them:
 | `memory-hygiene` vs `live-state-truth` | `memory-hygiene` is the classifier — it decides WHEN a remembered fact is suspect; `live-state-truth` is the verifier — it GOES AND LOOKS. Suspect something you recall → `memory-hygiene`; need the current truth → `live-state-truth`. |
 | `output-structuring` vs `ruthless-editor` | `output-structuring` picks the **format/shape** (table? memo? checklist?); `ruthless-editor` tightens the **prose** inside that shape. Wrong container → `output-structuring`; right container, flabby words → `ruthless-editor`. |
 | `adversarial-verify` vs `failure-mode-awareness` | `adversarial-verify` attacks **finished work AFTER** it's built; `failure-mode-awareness` attacks **plans/designs BEFORE** you commit. Deliverable in hand → `adversarial-verify`; plan on the table → `failure-mode-awareness`. |
+| `failure-mode-awareness` vs `foresight` | `failure-mode-awareness` interrogates the design **as it stands** (what breaks in this plan, present tense); `foresight` walks the **trajectory** (what breaks or becomes necessary 5/10/20 steps out) and pre-registers dated, credenced predictions to score later. Reviewing a plan → `failure-mode-awareness`; committing to a direction → both. |
 
 ## Provenance and maintenance
 

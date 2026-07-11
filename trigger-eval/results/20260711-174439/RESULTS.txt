@@ -1,0 +1,2 @@
+t18-fma-not-stolen-control r1: PASS invoked=[(none)] forbidden hit: []
+== 1 pass, 0 fail, 0 not-run (quota) -> results/20260711-174439/RESULTS.txt

@@ -122,5 +122,29 @@
    "discovery-loop"
   ],
   "note": "kill-list read as final + keep-looking = discovery-loop"
+ },
+ {
+  "id": "t16-foresight-commit-point",
+  "prompt": "we're about to lock in this architecture for the marketplace. before we commit, what do you think we'll regret a year from now at 10x the load?",
+  "expect_any": [
+   "foresight"
+  ],
+  "note": "commit point + 'what will we regret at 10x' = foresight (trajectory, not present-design risks)"
+ },
+ {
+  "id": "t17-foresight-preregister",
+  "prompt": "before we start building the new platform, write down what you think breaks or becomes necessary 5, 10, 20 steps from now so we can check later how right you were",
+  "expect_any": [
+   "foresight"
+  ],
+  "note": "explicit pre-register-and-score-later ask = foresight"
+ },
+ {
+  "id": "t18-fma-not-stolen-control",
+  "prompt": "here's my plan for the new payments integration. review it before i commit — what could go wrong?",
+  "forbid": [
+   "foresight"
+  ],
+  "note": "collision control: foresight must NOT fire on present-tense plan review (that is failure-mode-awareness territory). Originally expected FMA to fire; ablation 2026-07-11 (0/3 with foresight, 0/2 without) showed FMA never self-triggers on this prompt — a PRE-EXISTING gap independent of the foresight skill, filed on the maintainer build list; asserting it here would gate releases on an unrelated baseline issue."
  }
 ]

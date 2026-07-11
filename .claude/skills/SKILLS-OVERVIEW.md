@@ -1,6 +1,6 @@
 # Skills Overview
 
-A portable, project-agnostic quality pack: 36 skills that improve **process** — planning, verification, editing, debugging, decision-making — on any project. 18 form the core rigor set; 10 were added in an expansion pass for high-recurrence domains (codebase work, error recovery, delegation, research, prompts, ideation, product decisions, the public boundary, human handoff, and open mandates); `extract-approach` and `session-orientation` add the persistence and continuity layers; `empirical-validation` adds the test-the-claim-with-data layer; `leverage-first` adds the find-the-efficient-path-before-grinding reflex; `correction-propagation`, `security-pattern-review`, and `disclosure-is-not-a-fix` add the ship-integrity layer (from a 2026-07-09 cross-repo audit of what the pack itself shipped); and `discovery-loop` adds the standing-investigation layer (keep generating and belief-tracking hypotheses instead of stopping at a closed verdict; from the 2026-07-10/11 live-lab sessions). They add discipline, not capability; see `HOW-TO-USE-WITH-OPUS.md` for limitations.
+A portable, project-agnostic quality pack: 37 skills that improve **process** — planning, verification, editing, debugging, decision-making — on any project. 18 form the core rigor set; 10 were added in an expansion pass for high-recurrence domains (codebase work, error recovery, delegation, research, prompts, ideation, product decisions, the public boundary, human handoff, and open mandates); `extract-approach` and `session-orientation` add the persistence and continuity layers; `empirical-validation` adds the test-the-claim-with-data layer; `leverage-first` adds the find-the-efficient-path-before-grinding reflex; `correction-propagation`, `security-pattern-review`, and `disclosure-is-not-a-fix` add the ship-integrity layer (from a 2026-07-09 cross-repo audit of what the pack itself shipped); `discovery-loop` adds the standing-investigation layer (keep generating and belief-tracking hypotheses instead of stopping at a closed verdict; from 2026-07-10/11 standing-investigation sessions); and `foresight` adds the trajectory-projection layer (pre-registered, credenced predictions about what breaks or pays off N steps ahead, resolved and scored when the future arrives; from a 2026-07-11 tool-design session). They add discipline, not capability; see `HOW-TO-USE-WITH-OPUS.md` for limitations.
 
 Beyond the skills, the pack has companion layers (each one file, at `.claude/`): always-on rules (`skills/CLAUDE-MD-SNIPPET.md`), durable notes (`learnings/`), user-world context (`CONTEXT-SYSTEM-SETUP.md`), bounded objectives (`GOAL-TEMPLATES.md`), the skill pipeline (`WORKFLOW-EXTRACTION-QUEUE.md`), and upkeep (`MAINTENANCE-CADENCE.md`).
 
@@ -21,6 +21,7 @@ Beyond the skills, the pack has companion layers (each one file, at `.claude/`):
 | `discovery-loop` | Keep generating + belief-tracking hypotheses in standing investigations; attack confirmation streaks | A verdict/kill-list about to be read as final; a rival succeeding at the "impossible"; credence rising unattacked |
 | `leverage-first` | Find the higher-leverage path before grinding a single track | About to build/collect/run the long way; "is there a better way"; reinventing something |
 | `failure-mode-awareness` | Ask "how does this break?" at design time | Plans, designs, proposals, recommendations — before they harden |
+| `foresight` | Pre-register dated, credenced predictions about 5/10/20 steps ahead; resolve and score them when the future arrives | Commit points — architecture/roadmap/scaling bets; "will this scale", "what will we regret"; risk sections that only cover the present |
 | `proactive-rigor` | Flag what the request didn't say — without friction | Missing constraints, weak evidence, contradictions, downstream problems |
 | **Debugging & execution** | | |
 | `debugging-playbook` | Symptom → repro → hypotheses → evidence → root cause | Anything broken, failing, or surprising; "it worked yesterday"; intermittent issues |
@@ -69,6 +70,7 @@ Beyond the skills, the pack has companion layers (each one file, at `.claude/`):
 
 Boundary notes (commonly confused pairs):
 - `failure-mode-awareness` attacks **plans** (before); `adversarial-verify` attacks **finished work** (after).
+- `failure-mode-awareness` interrogates the design **as it stands** (present tense); `foresight` walks the **trajectory** (N steps/scale/time ahead) and pre-registers scoreable predictions.
 - `scope-fence` decides **what** to change; `change-control` governs **how** to change it.
 - `memory-hygiene` decides **when** memory is suspect; `live-state-truth` **goes and looks**.
 - `structured-reasoning` produces the analysis; `output-structuring` shapes its presentation.

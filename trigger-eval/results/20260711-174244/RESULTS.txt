@@ -1,0 +1,3 @@
+t18-fma-not-stolen-control r1: FAIL invoked=[(none)] expected any of ['failure-mode-awareness']
+t18-fma-not-stolen-control r2: FAIL invoked=[(none)] expected any of ['failure-mode-awareness']
+== 0 pass, 2 fail, 0 not-run (quota) -> results/20260711-174244/RESULTS.txt

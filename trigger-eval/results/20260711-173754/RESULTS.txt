@@ -1,0 +1,6 @@
+t16-foresight-commit-point r1: PASS invoked=[foresight] expected any of ['foresight']
+t17-foresight-preregister r1: PASS invoked=[foresight] expected any of ['foresight']
+t18-fma-not-stolen-control r1: FAIL invoked=[(none)] expected any of ['failure-mode-awareness']
+t07-control-trivial r1: PASS invoked=[(none)] forbidden hit: []
+t14-discovery-loop-closed-verdict r1: PASS invoked=[discovery-loop] expected any of ['discovery-loop']
+== 4 pass, 1 fail, 0 not-run (quota) -> results/20260711-173754/RESULTS.txt
